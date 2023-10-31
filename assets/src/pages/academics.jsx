@@ -10,3 +10,5 @@ class Academics extends React.Component {
         );
     }
 }
+
+export default Academics;

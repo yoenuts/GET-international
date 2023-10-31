@@ -1,30 +1,16 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-	Collapse,
-	DropdownItem,
-	DropdownMenu,
-	DropdownToggle,
-	Nav,
-	Navbar as ReactstrapNavbar,
-	NavbarBrand,
-	NavbarToggler,
-	NavItem,
-	NavLink,
-	UncontrolledDropdown,
-} from "reactstrap";
-import {Link} from "react-router-dom";
-import path from "path";
-import PropTypes from "prop-types";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+
 
 
 const Logo = props => (
     <img
         alt="Guild of Educators in TESOL International Institute"
-        src={path.join(process.env.PUBLIC_URL, "/img/GET-logo.png")}
+        src="./img/GET-logo.png"
         {...props} //used to pass additional props, a spread operator
     ></img>
 );  
@@ -32,19 +18,23 @@ const Logo = props => (
 
 const LINKS = [
 	{
+		page: "Home",
+		link: "/",
+	},
+	{
 		page: "About",
 		link: "/about",
 		subLinks: [
-			{title: "History of GET International", link: "/background"},
-			{title: "Vision, Mission and Core Values", link: "/vmc"}
+			{title: "History of GET International", link: '/about/background'},
+			{title: "Vision, Mission and Core Values", link: '/about/vmc'}
 		]
 	},
 	{
 		page: "Administration",
 		link: "/administration",
 		subLinks: [
-			{title: "Message of the President", link: "/president"},
-			{title: "Message of the Vice President for International Linkages and Research Publication", link: "/vicepresident"}
+			{title: "Message of the President", link: '/administration/president'},
+			{title: "Message of the Vice President for International Linkages and Research Publication", link: '/administration/vicepresident'}
 		]
 	},
 	{
@@ -61,7 +51,7 @@ const LINKS = [
 	},
 ];
 
-class Navbar extends React.Component {
+class NavBar extends React.Component {
 
 	renderDropdownItems(subLinks) {
 		return subLinks.map((item, index) => (
@@ -82,7 +72,6 @@ class Navbar extends React.Component {
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
-							<Nav.Link href="/">Home</Nav.Link>
 							{LINKS.map((link,index) => (
 								link.subLinks ? (
 									<NavDropdown key={index} title={link.page} id={'nav-dropdown-${index}'}>
@@ -103,4 +92,4 @@ class Navbar extends React.Component {
 	}
 }
 
-export default Navbar;
+export default NavBar;

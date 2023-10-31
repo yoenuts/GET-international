@@ -10,3 +10,5 @@ class Administration extends React.Component {
         );
     }
 }
+
+export default Administration;
