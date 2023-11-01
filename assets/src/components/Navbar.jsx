@@ -5,6 +5,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../App.css'
+
 
 const LINKS = [
 	{
@@ -41,8 +43,9 @@ const LINKS = [
 	},
 ];
 
-function NavBar(){
 
+function NavBar(){
+	//<img src="../img/GET-logo.png"></img>
 	//this is a hook
 	//hooks can only be used inside functions.
 	//it's no longer a function, so no need to use this when referencing it
@@ -55,14 +58,17 @@ function NavBar(){
 	}
 
 	return (
-		<Navbar sticky="top" bg="dark" variant="dark" data-bs-theme="dark" collapseOnSelect expand="lg" className="bg-body-tertiary">
+		<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
 			<Container>
+				<Navbar.Brand>
+					<img src="../img/GET-logo.png" alt="GET logo" href='/' className="logo"></img>
+				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="me-auto">
+					<Nav className="nav-contain">
 						{LINKS.map((link,index) => (
 							link.subLinks ? (
-								<NavDropdown key={index} title={link.page} id={`nav-dropdown-${index}`}>
+								<NavDropdown key={index} title={link.page} id={`nav-dropdown-${index}`} className="nav-dropdown">
 									{renderDropdownItems(link.subLinks)}
 								</NavDropdown>
 							) : (

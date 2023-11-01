@@ -2,5 +2,17 @@
   text-align: center;
 }
 
+.logo {
+  width: 130px;
+  height: 55px;
+}
+
+.navbar {
+  background: linear-gradient(to right,#4A4EA0, #5758a6, #b2acc3);
+}
+
+.dropdown-toggle::after {
+  display: none !important; 
+}
 
 
