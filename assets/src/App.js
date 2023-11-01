@@ -15,7 +15,7 @@ import Research from './pages/research';
 import VMC from './pages/vmc';
 import Background from './pages/background';
 
-function App() {
+const App = () => {
   return (
     <div className='App'>
       <NavBar />
@@ -33,6 +33,7 @@ function App() {
       </Routes>
     </div>
   );
+  
 }
 
 export default App;

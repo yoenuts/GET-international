@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const LINKS = [
 	{
@@ -55,7 +55,7 @@ function NavBar(){
 	}
 
 	return (
-		<Navbar expand="lg" className="bg-body-tertiary">
+		<Navbar sticky="top" bg="dark" variant="dark" data-bs-theme="dark" collapseOnSelect expand="lg" className="bg-body-tertiary">
 			<Container>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
@@ -81,3 +81,4 @@ function NavBar(){
 }
 
 export default NavBar;
+
