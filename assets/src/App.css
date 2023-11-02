@@ -8,7 +8,7 @@
 }
 
 .navbar {
-  background: linear-gradient(to right,#4A4EA0, #5758a6, #b2acc3);
+  background: linear-gradient(to right,#4A4EA0 15% , #b2acc3 35%, #a598cb,  #4A4EA0 90%);
 }
 
 .dropdown-toggle::after {
@@ -16,3 +16,76 @@
 }
 
 
+.navbar .nav-drop .dropdown-menu{
+  background-color: hsl(256, 16%, 80%);
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.navbar .nav-drop:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s, visibility 0.3s;
+  
+}
+
+.navbar .nav-drop .dropdown-menu .dropdown-item:hover {
+  background-color: transparent;
+}
+
+
+.linkText {
+  color: #21409a;
+}
+
+.linkText:hover{
+  color: #bd2529;
+  font-size: large;
+}
+
+@font-face {
+  font-family: "Station";
+  src: url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.eot");
+  src: url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.svg#Station")format("svg");
+}
+
+@font-face {
+  font-family: "Budmo W00 Solid";
+  src: url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.eot");
+  src: url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.svg#Budmo W00 Solid")format("svg");
+}
+
+.logotitle1 {
+  color: #bd2529;
+  font-family: "Budmo W00 Solid";
+}
+
+.logotitle2 {
+  color: #21409a;
+  font-family: "Station";
+  font-weight: 1000;
+}
+
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5px
+}
+
+.logotitle1, .logotitle2 {
+  margin: 0;
+  margin-right: 10px;
+
+}

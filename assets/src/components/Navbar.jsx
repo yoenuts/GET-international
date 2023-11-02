@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -44,45 +45,60 @@ const LINKS = [
 ];
 
 
-function NavBar(){
+class NavBar extends React.Component{
+	/**
 	//<img src="../img/GET-logo.png"></img>
 	//this is a hook
 	//hooks can only be used inside functions.
 	//it's no longer a function, so no need to use this when referencing it
-	const renderDropdownItems = (subLinks) => {
+	renderDropdownItems = (subLinks) => {
 		return subLinks.map((item, index) => (
 		  <NavDropdown.Item key={index} href={item.link}>
 			{item.title}
 		  </NavDropdown.Item>
 		));
-	}
+		}
+	**/
+	render() {
+		return (
+			<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
+				<Container>
+					<Navbar.Brand>
+							<Link to='/'>
+								<img src="../img/GET-logo.png" alt="Guild of Educators in TESOL International Institute" className="logo"></img>
+							</Link>
+					</Navbar.Brand>
+					<div className="title-container">
+						<Link to='/' style={{textDecoration:'none'}}>
+							<h5 className="logotitle1">Guild of Educators in TESOL</h5>
+							<h6 className="logotitle2"><bold>I N T E R N A T I O N A L</bold></h6>
+						</Link>
+					</div>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="nav-contain">
+							{LINKS.map((link,index) => (
+								link.subLinks ? (
+									<NavDropdown key={index} title={<h6 className="linkText">{link.page}</h6>} id={`nav-dropdown-${index}`} className="nav-drop" show="false">
+										{link.subLinks.map((subLink,subIndex) => (
+											<NavDropdown.Item key={subIndex} href={subLink.link}>
+												<h6 className="linkText">{subLink.title}</h6>
+											</NavDropdown.Item>
+										))}
+									</NavDropdown>
+								) : (
+									<Nav.Link key={index} href={link.link}>
+										<h6 className="linkText">{link.page}</h6>
+									</Nav.Link>
+								)
 
-	return (
-		<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
-			<Container>
-				<Navbar.Brand>
-					<img src="../img/GET-logo.png" alt="GET logo" href='/' className="logo"></img>
-				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="nav-contain">
-						{LINKS.map((link,index) => (
-							link.subLinks ? (
-								<NavDropdown key={index} title={link.page} id={`nav-dropdown-${index}`} className="nav-dropdown">
-									{renderDropdownItems(link.subLinks)}
-								</NavDropdown>
-							) : (
-								<Nav.Link key={index} href={link.link}>
-									{link.page}
-								</Nav.Link>
-							)
-
-						))}
-					</Nav>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
-	);
+							))}
+						</Nav>
+					</Navbar.Collapse>
+				</Container>
+			</Navbar>
+		);
+	}						
 	
 }
 
