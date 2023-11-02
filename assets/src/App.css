@@ -8,7 +8,7 @@
 }
 
 .navbar {
-  background: linear-gradient(to right,#4A4EA0 15% , #b2acc3 35%, #a598cb,  #4A4EA0 90%);
+  background: linear-gradient(to right,#4A4EA0 15% , #a598cb,  #4A4EA0 90%);
 }
 
 .dropdown-toggle::after {
@@ -88,4 +88,10 @@
   margin: 0;
   margin-right: 10px;
 
+}
+
+.home-top-div {
+  background-image: url("../public/img/GET-background.png");
+  background-color: #ffffff;
+  background-repeat: no-repeat;
 }
