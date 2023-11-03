@@ -92,7 +92,8 @@
 
 .home-top-div {
   display: flex;
-  height: 100vh;
+  justify-content: space-evenly;
+  min-height: 100vh;
   background-image: url("../public/img/GET-background-blur.png");
   background-color: #ffffff;
 
@@ -104,21 +105,24 @@
 
 
 .top-content {
-  width: 40%;
-  height: auto;
+  max-width: 100%;
+  min-height: 200px;
   padding: 50px;
   margin-top: 50px;
 }
 
 .top-content-card {
+  
   background-color: rgba(0, 29, 126, 0.5);
   color: #ffffff;
   max-width: 100%;
+  min-height: 100px;
   padding: 10px;
   border-radius: 10px;
+
 }
 
-.top-content h2 {
+.top-content h1 {
   color: #bd2529;
   font-family: "Budmo W00 Solid";
 }
