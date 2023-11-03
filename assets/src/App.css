@@ -91,7 +91,34 @@
 }
 
 .home-top-div {
-  background-image: url("../public/img/GET-background.png");
+  display: flex;
+  height: 100vh;
+  background-image: url("../public/img/GET-background-blur.png");
   background-color: #ffffff;
+
+
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+.top-content {
+  width: 40%;
+  height: auto;
+  padding: 50px;
+  margin-top: 50px;
+}
+
+.top-content-card {
+  background-color: rgba(0, 29, 126, 0.5);
+  color: #ffffff;
+  max-width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.top-content h2 {
+  color: #bd2529;
+  font-family: "Budmo W00 Solid";
 }
