@@ -1,7 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
+import $ from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'malihu-custom-scrollbar-plugin';
+import 'malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min';
+
 
 class Home extends React.Component {
+    //check if component mounted on DOM, then target class nd execute the function import on it.
+    componentDidMount() {
+        $('.mCustomScrollbar').mCustomScrollbar({
+            theme: 'dark-thin'
+        });
+    }
+
     render(){
         return(
             <div className="Home">
@@ -21,7 +32,6 @@ class Home extends React.Component {
                                     title="YouTube video player" 
                                     frameborder="0" 
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                                    allowfullscreen
                                 >
                                 </iframe>
                                 <div>Some description here</div>
@@ -36,7 +46,7 @@ class Home extends React.Component {
 
                         <div className="col d-flex">
                                 
-                            <div className="top-content-card">
+                            <div className="mCustomScrollbar">
                                 <h5>Teaching English to Speakers of Other Languages (TESOL) is a field that can be approached from a multi-disciplinary or interdisciplinary perspective. Here’s how TESOL can intersect with various disciplines </h5>
                                 <ul className="card-content">
                                     <li>
@@ -85,7 +95,7 @@ class Home extends React.Component {
 
                         <div className="col d-flex">
                                 
-                            <div className="top-content-card">
+                            <div className="mCustomScrollbar">
                                 <h5>When we consider TESOL from an interdisciplinary perspective, it means examining the field in connection with other disciplines and exploring the intersections and interconnections between them. TESOL can intersect with other disciplines in an interdisciplinary manner: </h5>
                                 <ul className="card-content">
                                     <li>
@@ -124,7 +134,7 @@ class Home extends React.Component {
 
                         <div className="col d-flex">
                                 
-                            <div className="top-content-card">
+                            <div className="mCustomScrollbar">
                                 <h5>Teaching English to Speakers of Other Languages (TESOL) is a field that can be approached from a multi-disciplinary or interdisciplinary perspective. Here’s how TESOL can intersect with various disciplines </h5>
                                 <ul className="card-content">
                                     <li>
@@ -132,7 +142,7 @@ class Home extends React.Component {
                                         It helps teachers understand the structure, grammar, syntax, phonetics, and phonology of the English language, 
                                         enabling them to effectively teach these aspects to non-native speakers.  
                                     </li> 
-                                    <li>
+                                    <li>    
                                         <strong>Second Language Acquisition (SLA):</strong>  SLA research draws from disciplines such as psychology, 
                                         cognitive science, and sociolinguistics. Understanding how second languages are acquired helps TESOL professionals 
                                         design effective teaching strategies and create supportive learning environments.    
