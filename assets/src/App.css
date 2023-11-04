@@ -104,25 +104,66 @@
 }
 
 
-.top-content {
+.title-header {
   max-width: 100%;
   min-height: 200px;
   padding: 50px;
   margin-top: 50px;
 }
 
-.top-content-card {
-  
-  background-color: rgba(0, 29, 126, 0.5);
-  color: #ffffff;
-  max-width: 100%;
-  min-height: 100px;
-  padding: 10px;
-  border-radius: 10px;
 
-}
-
-.top-content h1 {
+.title-header h1 {
   color: #bd2529;
   font-family: "Budmo W00 Solid";
+}
+
+
+.youtube-video {
+  width:  90vw;
+  height: 50.625vw; /* 90*9/16 */
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 10vw;
+  
+}
+
+@media (min-width: 893px) {
+  .youtube-video {
+    width: 45vw;
+    height: 25.3125vw; /* 45*9/16 */
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 2vw;
+  }
+}
+
+.home-content-1 {
+  min-height: 100vh;
+  background-image: url("../public/img/section1.png");
+  background-color: #ffffff;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.home-content-1 h2 {
+  color: #bd2529;
+  font-family: "Budmo W00 Solid";
+}
+
+.top-content-card {
+  
+  background-color: rgba(255, 255, 255, .3);
+  color: rgb(255, 255, 255);
+  max-width: 100%;
+  min-height: 100px;
+  max-height: 700px;
+  padding: 10px;
+  border-radius: 15px;
+  margin-left: 15px;
+  margin-right: 10px;
+  margin-top: 15px;
+  overflow: auto;
+
 }

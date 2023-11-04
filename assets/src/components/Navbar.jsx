@@ -11,11 +11,11 @@ import '../App.css'
 
 const LINKS = [
 	{
-		page: "Home",
+		page: "HOME",
 		link: "/",
 	},
 	{
-		page: "About",
+		page: "ABOUT",
 		link: "/about",
 		subLinks: [
 			{title: "History of GET International", link: '/about/background'},
@@ -23,7 +23,7 @@ const LINKS = [
 		]
 	},
 	{
-		page: "Administration",
+		page: "ADMINISTRATION",
 		link: "/administration",
 		subLinks: [
 			{title: "Message of the President", link: '/administration/president'},
@@ -31,15 +31,15 @@ const LINKS = [
 		]
 	},
 	{
-		page: "Contact Us",
+		page: "CONTACT",
 		link: "/contact",
 	},
     {
-		page: "Academics",
+		page: "ACADEMICS",
 		link: "/academics",
 	},
     {
-		page: "Research",
+		page: "RESEARCH",
 		link: "/research",
 	},
 ];
