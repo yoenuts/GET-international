@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import carousel from "../components/carouselImages";
+//import Carousel from "../components/carouselImages";
 
 class Home extends React.Component {
     //check if component mounted on DOM, then target class nd execute the function import on it.
@@ -35,12 +35,15 @@ class Home extends React.Component {
     
     render(){
 
+        /*
         const images = [
-            "../public/img/GET-logo.png",
+            "./img/GET-logo.png",
             "../public/img/GET-background-blur.png",
             "../public/img/GET-background.png",
             "../public/img/section-background.png"
         ]
+        */
+       //<Carousel images={images} />
 
         return(
             <div className="Home">
@@ -76,8 +79,11 @@ class Home extends React.Component {
                         <div className="col-md-8">
                             
                             <div className="col d-flex">
-                                <h1>Carousel exists</h1>
-                                <carousel images={images} />
+                                <div className="owl-carousel owl-theme">
+                                    <img src="./img/GET-logo.png" key="1"></img>
+                                    <img src="../public/img/GET-background-blur.png" key="2"></img>
+                                    <img src="../public/img/section-background.png" key="3"></img>
+                                </div>
                             </div>
 
                             <div className="col d-flex align-items-center">

@@ -1,6 +1,6 @@
 import React from "react";
 
-class carousel extends React.Component {
+class Carousel extends React.Component {
     render(){
         //get images from props
 
@@ -23,4 +23,4 @@ class carousel extends React.Component {
     }
 }
 
-export default carousel;
+export default Carousel;
