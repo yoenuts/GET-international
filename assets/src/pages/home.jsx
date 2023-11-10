@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import carousel from "../components/Carousel";
-
-
-
+import carousel from "../components/carouselImages";
 
 class Home extends React.Component {
     //check if component mounted on DOM, then target class nd execute the function import on it.
@@ -12,9 +9,39 @@ class Home extends React.Component {
         $('.mCustomScrollbar').mCustomScrollbar({
             theme: 'light-thin'
         });
+
+        $('.owl-carousel').owlCarousel({
+            loop:true,
+            margin:10,
+            responsiveClass:true,
+            responsive:{
+                0:{
+                    items:1,
+                    nav:true
+                },
+                600:{
+                    items:3,
+                    nav:false
+                },
+                1000:{
+                    items:5,
+                    nav:true,
+                    loop:false
+                }
+            }
+        });
     }
+
     
     render(){
+
+        const images = [
+            "../public/img/GET-logo.png",
+            "../public/img/GET-background-blur.png",
+            "../public/img/GET-background.png",
+            "../public/img/section-background.png"
+        ]
+
         return(
             <div className="Home">
                 <section className="home-top-div">
@@ -49,7 +76,8 @@ class Home extends React.Component {
                         <div className="col-md-8">
                             
                             <div className="col d-flex">
-                                <carousel />
+                                <h1>Carousel exists</h1>
+                                <carousel images={images} />
                             </div>
 
                             <div className="col d-flex align-items-center">
