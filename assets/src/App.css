@@ -218,3 +218,17 @@ a {
   
 }
 
+@media (min-width: 893px) {
+  .owl-carousel {
+    margin-top: 2vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.owl-carousel img {
+  max-width: 100%; /* or any other width suitable to fill the carousel */
+  height: auto; /* Maintain aspect ratio */
+}

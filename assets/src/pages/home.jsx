@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-//import Carousel from "../components/carouselImages";
+import Carousel from "../components/carouselImages";
 
 class Home extends React.Component {
     //check if component mounted on DOM, then target class nd execute the function import on it.
@@ -14,19 +14,23 @@ class Home extends React.Component {
             loop:true,
             margin:10,
             responsiveClass:true,
+            autoplay:true,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
+            dots:false,
+            nav: false,
+            center: true,
             responsive:{
                 0:{
                     items:1,
-                    nav:true
                 },
                 600:{
                     items:3,
-                    nav:false
+                    
                 },
                 1000:{
-                    items:5,
-                    nav:true,
-                    loop:false
+                    items:3,
+                    loop:true
                 }
             }
         });
@@ -35,15 +39,17 @@ class Home extends React.Component {
     
     render(){
 
-        /*
+        
         const images = [
-            "./img/GET-logo.png",
-            "../public/img/GET-background-blur.png",
-            "../public/img/GET-background.png",
-            "../public/img/section-background.png"
+            "./img/carouselItem1.png",
+            "./img/carouselItem2.png",
+            "./img/carouselItem3.png",
+            "./img/carouselItem4.png",
+            "./img/carouselItem5.png",
+            "./img/carouselItem6.png"
         ]
-        */
-       //<Carousel images={images} />
+        
+
 
         return(
             <div className="Home">
@@ -56,7 +62,7 @@ class Home extends React.Component {
                             </div>
                         </div>
                         <div className="col d-flex justify-content-center">
-                            <div className="col d-flex">
+                            <div className="col d-flex ">
                                 <iframe  
                                     className="youtube-video"
                                     src="https://www.youtube.com/embed/4jJVMXrOb14?si=ASM9HO8AVzT-f7JA" 
@@ -71,28 +77,30 @@ class Home extends React.Component {
                 </section>
 
 
-
                 <section className="home-content-1">
                     
                     <div className="row">
                         
                         <div className="col-md-8">
+                            <div className="col d-flex align-items-center">
+                                    <div className="description">
+                                        <h5> 
+                                            GUILD OF EDUCATORS IN TESOL INTERNATIONAL INSTITUTE is a progressive knowledge generating institution that is internationally 
+                                            -recognized for quality English language trainings, seminar, workshops, and conference. It aims to provide relevant, quality, 
+                                            and accessible seminar; to deliver innovative, and interactive workshops, and, to produce highly competitive and functional trainings 
+                                            for teachers and other professions.
+                                        </h5>
+                                    </div>
+                            </div>
                             
-                            <div className="col d-flex">
-                                <div className="owl-carousel owl-theme">
-                                    <img src="./img/GET-logo.png" key="1"></img>
-                                    <img src="../public/img/GET-background-blur.png" key="2"></img>
-                                    <img src="../public/img/section-background.png" key="3"></img>
-                                </div>
+                            <div className="col d-flex align-items-center">
+                                <Carousel images={images} />
                             </div>
 
                             <div className="col d-flex align-items-center">
                                 <div className="description">
-                                    <h5>
-                                        GUILD OF EDUCATORS IN TESOL INTERNATIONAL INSTITUTE is a progressive knowledge generating institution that is internationally 
-                                        -recognized for quality English language trainings, seminar, workshops, and conference. It aims to provide relevant, quality, 
-                                        and accessible seminar; to deliver innovative, and interactive workshops, and, to produce highly competitive and functional trainings 
-                                        for teachers and other professions. GET International Research Journal aims to promote English language education to educators across 
+                                    <h5> 
+                                        GET International Research Journal aims to promote English language education to educators across 
                                         all disciplines, to provide excellent training in language education through open learning, seminars and workshops, to enable the educators
                                         to be expert in the teaching of English to speakers of other languages and to be a leading center of excellence in the continuing professional 
                                         development for teachers and other professions locally and internationally.
