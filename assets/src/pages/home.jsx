@@ -12,14 +12,13 @@ class Home extends React.Component {
 
         $('.owl-carousel').owlCarousel({
             loop:true,
-            margin:10,
+            margin: 0,
             responsiveClass:true,
             autoplay:true,
-            autoplayTimeout:5000,
+            autoplayTimeout:4000,
             autoplayHoverPause:true,
             dots:false,
             nav: false,
-            center: true,
             responsive:{
                 0:{
                     items:1,
