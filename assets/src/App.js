@@ -14,6 +14,7 @@ import President from './pages/president';
 import Research from './pages/research';
 import VMC from './pages/vmc';
 import Background from './pages/background';
+import Footer from './components/Footer'
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
         <Route  path='/administration/president' element={<President />}></Route>
         <Route  path='/administration/vicepresident' element={<VicePresident />}></Route>
       </Routes>
+      <Footer />
     </div>
   );
   

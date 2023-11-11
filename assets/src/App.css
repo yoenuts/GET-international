@@ -220,6 +220,7 @@ a {
 
 .owl-carousel {
   margin-top: 4vw;
+  margin-left: 2vw;
 }
 
 @media (min-width: 893px) {
@@ -234,3 +235,29 @@ a {
   max-width: 85%; /* or any other width suitable to fill the carousel */
   height: auto; /* Maintain aspect ratio */
 }
+
+/*research section*/
+
+.research-top-div {
+  min-height: 40vh;
+  background-image: url("../public/img/research-background.png");
+  background-color: #ffffff;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover ;
+}
+
+/*
+@media (min-width: 893px) {
+  .research-logo {
+    margin-left: 4vw;
+    margin
+  }
+
+}*/
+
+.Footer {
+  background-color: rgb(74, 78, 161, 0.3);
+}
+
