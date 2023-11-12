@@ -257,7 +257,35 @@ a {
 
 }*/
 
+/*Footer here*/
+
 .Footer {
   background-color: rgb(74, 78, 161, 0.3);
+  font-style: Arial;
+
 }
 
+.logo-collection img, .logo-collection-1 img {
+  max-width: 240px;
+  height: auto;
+  padding-bottom: 40px;
+}
+
+.logo-collection h3 {
+  padding-top: 40px;
+  
+}
+
+.logo-collection-1 {
+  padding-bottom: 25px;
+}
+
+.Footer hr {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-end {
+  margin-top: 50px;
+}

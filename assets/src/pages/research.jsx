@@ -34,7 +34,7 @@ class Research extends React.Component {
                                     </li>
 
                                     <li> 
-                                        <strong>Established:</strong>2023
+                                        <strong>Established:</strong> 2023
                                     </li>
 
                                 </ul>

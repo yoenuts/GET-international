@@ -16,10 +16,26 @@ class Footer extends React.Component {
 		return (
             <div className='Footer'>
                 <div className="row">
-                    <h3>GET International Research Journal is indexed by:</h3>
                     <div className="col d-flex justify-content-center">
-                        <img src="./img/issn-logo.png" alt="issn-logo" />
+						<div className="logo-collection">
+							<h3>GET International Research Journal is indexed by:</h3>
+							<img src="./img/issn-logo.png" alt="issn-logo" />
+							<a href="https://www.openaire.eu/"><img src="./img/open-aire-logo.png" alt="open-aire-logo" /></a>
+							<a href="https://zenodo.org/communities/getinternational?q=&l=list&p=1&s=10&sort=newest"><img src="./img/zenodo-logo.png" alt="zenodo-logo" /></a>
+							<img src="./img/google-scholar-logo.png" alt="google-scholar-logo" />
+							<a href="https://www.scipedia.com/profile/getinternational24"><img src="./img/scipedia-logo.png" alt="google-scholar-logo"/></a>
+						</div> 
                     </div>
+					
+					<div className="logo-collection-1">
+						<h3>Plagiarism checked by:</h3>
+						<img src="./img/quetext-logo.svg" alt="quetext-logo"></img>
+					</div>
+					<hr />
+					<div className="footer-end">
+						<h5><strong>Guild of Educators in TESOL International Institute – Graduate School for Teachers Inc.</strong></h5>
+						<h6>9036 Tinejero <br></br> Brgy. Pulilan, Bulacan <br></br> Philippines</h6>
+					</div>
 
                 </div>
                 

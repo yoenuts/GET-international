@@ -15,6 +15,7 @@ import Research from './pages/research';
 import VMC from './pages/vmc';
 import Background from './pages/background';
 import Footer from './components/Footer'
+import Archives from './pages/archives';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route  path='/about/background' element={<Background />}></Route>
         <Route  path='/about/vmc' element={<VMC />}></Route>
         <Route  path='/research' element={<Research />}></Route>
+        <Route  path='/research/archives' element={<Archives />}></Route>
         <Route  path='/administration' element={<Administration />}></Route>
         <Route  path='/administration/president' element={<President />}></Route>
         <Route  path='/administration/vicepresident' element={<VicePresident />}></Route>

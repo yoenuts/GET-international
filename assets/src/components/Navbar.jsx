@@ -41,6 +41,9 @@ const LINKS = [
     {
 		page: "RESEARCH",
 		link: "/research",
+		subLinks: [
+			{title: "Archives", link: '/research/archives'}
+		]
 	},
 ];
 
@@ -81,13 +84,13 @@ class NavBar extends React.Component{
 								link.subLinks ? (
 									<NavDropdown key={index} title={<h6 className="linkText">{link.page}</h6>} id={`nav-dropdown-${index}`} className="nav-drop" show="false">
 										{link.subLinks.map((subLink,subIndex) => (
-											<NavDropdown.Item key={subIndex} href={subLink.link}>
+											<NavDropdown.Item key={subIndex} as={Link} to={subLink.link}>
 												<h6 className="linkText">{subLink.title}</h6>
 											</NavDropdown.Item>
 										))}
 									</NavDropdown>
 								) : (
-									<Nav.Link key={index} href={link.link}>
+									<Nav.Link key={index} as={Link} to={link.link}>
 										<h6 className="linkText">{link.page}</h6>
 									</Nav.Link>
 								)
