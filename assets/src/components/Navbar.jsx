@@ -48,7 +48,7 @@ const LINKS = [
 ];
 
 
-class NavBar extends React.Component{
+function NavBar() {
 	/**
 	//<img src="../img/GET-logo.png"></img>
 	//this is a hook
@@ -62,27 +62,28 @@ class NavBar extends React.Component{
 		));
 		}
 	**/
-	render() {
-		return (
-			<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
-				<Container>
-					<Navbar.Brand>
-							<Link to='/'>
-								<img src="../img/GET-logo.png" alt="Guild of Educators in TESOL International Institute" className="logo"></img>
-							</Link>
-					</Navbar.Brand>
-					<div className="title-container">
-						<Link to='/' style={{textDecoration:'none'}}>
-							<h5 className="logotitle1">Guild of Educators in TESOL</h5>
-							<h6 className="logotitle2"><bold>I N T E R N A T I O N A L</bold></h6>
+	return(
+
+		<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
+			<Container>
+				<Navbar.Brand>
+						<Link to='/'>
+							<img src="../img/GET-logo.png" alt="Guild of Educators in TESOL International Institute" className="logo"></img>
 						</Link>
-					</div>
-					<Navbar.Toggle aria-controls="basic-navbar-nav" />
-					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="nav-contain">
+				</Navbar.Brand>
+				<div className="title-container">
+					<Link to='/' style={{textDecoration:'none'}}>
+						<h5 className="logotitle1">Guild of Educators in TESOL</h5>
+						<h6 className="logotitle2"><bold>I N T E R N A T I O N A L</bold></h6>
+					</Link>
+				</div>
+				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+				<Navbar.Collapse id="basic-navbar-nav">
+					<Nav className="nav-contain">
+						<React.Fragment>
 							{LINKS.map((link,index) => (
 								link.subLinks ? (
-									<NavDropdown key={index} title={<h6 className="linkText">{link.page}</h6>} id={`nav-dropdown-${index}`} className="nav-drop" show="false">
+									<NavDropdown key={index} title={<Link to={link.link} className="linkText"><h6>{link.page}</h6></Link>} id={`nav-dropdown-${index}`} className="nav-drop" show="false" as={Link} to={link.link}>
 										{link.subLinks.map((subLink,subIndex) => (
 											<NavDropdown.Item key={subIndex} as={Link} to={subLink.link}>
 												<h6 className="linkText">{subLink.title}</h6>
@@ -96,12 +97,13 @@ class NavBar extends React.Component{
 								)
 
 							))}
-						</Nav>
-					</Navbar.Collapse>
-				</Container>
-			</Navbar>
-		);
-	}						
+						</React.Fragment>
+					</Nav>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>												
+
+	)						
 	
 }
 
