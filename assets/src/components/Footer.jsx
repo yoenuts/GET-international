@@ -18,7 +18,7 @@ class Footer extends React.Component {
                 <div className="row">
                     <div className="col d-flex justify-content-center">
 						<div className="logo-collection">
-							<h3>GET International Research Journal is indexed by:</h3>
+							<h4>GET International Research Journal is indexed by:</h4>
 							<img src="./img/issn-logo.png" alt="issn-logo" />
 							<a href="https://www.openaire.eu/"><img src="./img/open-aire-logo.png" alt="open-aire-logo" /></a>
 							<a href="https://zenodo.org/communities/getinternational?q=&l=list&p=1&s=10&sort=newest"><img src="./img/zenodo-logo.png" alt="zenodo-logo" /></a>
@@ -28,7 +28,7 @@ class Footer extends React.Component {
                     </div>
 					
 					<div className="logo-collection-1">
-						<h3>Plagiarism checked by:</h3>
+						<h4>Plagiarism checked by:</h4>
 						<img src="./img/quetext-logo.svg" alt="quetext-logo"></img>
 					</div>
 					<hr />

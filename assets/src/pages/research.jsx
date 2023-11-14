@@ -42,6 +42,22 @@ class Research extends React.Component {
                         </div>
                     </div>
                 </div>
+
+                <section className="research-content-div">
+                    <div className="row">
+                        <div className="col d-flex align-items-center">
+                            <b>GUILD OF EDUCATORS IN TESOL INTERNATIONAL INSTITUTE</b> is a progressive knowledge generating institution that is 
+                            internationally -recognized for quality English language trainings, seminar, workshops, and conference. It aims to provide relevant, quality, and accessible seminar; 
+                            to deliver innovative, and interactive workshops, and, to produce highly competitive and functional trainings for teachers and other professions. GET International Research Journal aims to promote English language education to educators across all disciplines, 
+                            to provide excellent training in language education through open learning, seminars and workshops, to enable the educators to be expert in the teaching of English to speakers of other languages and to be a leading 
+                            center of excellence in the continuing professional development for teachers and other professions locally and internationally.
+                        </div>
+
+                        <div className="col d-flex">
+                            
+                        </div>
+                    </div>
+                </section>
             </div>
         );
     }
