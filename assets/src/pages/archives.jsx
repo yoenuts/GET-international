@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import '../App.css';
-import LoginForm from "../components/LoginForm";
+import MemberForm from "../components/MemberForm";
 
 function Archives() {
     const [showForm, setShowForm] = useState(true);
@@ -21,7 +21,7 @@ function Archives() {
     return (
         <div className="archives">
             <h1>Archives page</h1>
-            {showForm && (<LoginForm handleSubmit={handleSubmit} />)}
+            {showForm && (<MemberForm handleSubmit={handleSubmit} />)}
 
         </div>
     );

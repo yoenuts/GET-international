@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 
-function LoginForm({ handleSubmit }){
+function MemberForm({ handleSubmit }){
     const [signInputs, setSignInputState] = useState({
         email: "",
         password: "",
@@ -113,4 +113,4 @@ function LoginForm({ handleSubmit }){
     );
 }
 
-export default LoginForm;
+export default MemberForm;
