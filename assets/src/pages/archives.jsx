@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../App.css';
 import MemberForm from "../components/MemberForm";
+import axios from "axios";
 
 function Archives() {
     const [showForm, setShowForm] = useState(true);
@@ -21,7 +22,16 @@ function Archives() {
             console.log("User is logged in!");
 
         }
-        console.log(action, inputs);
+
+        if(action == 'signup') {
+            try {
+                const response = axios.post('http://localhost:8080/TESOL/signup', inputs);
+                console.log(response.data);
+            } 
+            catch(error) {
+                console.log("Error signing up.", error);
+            }
+        }
 
     }
 

@@ -49,7 +49,6 @@ function MemberForm({ handleSubmit }){
 
     const handleSignUp = (event) => {
         handleSubmit("signup", signInputs);
-        axios.post('http://localhost:8080/TESOL/user/login', signInputs);
     }
 
 

@@ -14,6 +14,36 @@ class SignUpController extends SignUp {
         $this -> confirm = $z;
     }
 
+    public function signUpUser() {
+        if($this -> checkInputs() == false){
+            //echo 'Complete all Fields.';
+            header("location:../main.php?error=emptyinput");
+            exit();
+        }
+        if($this -> validUserID() == false){
+            //echo 'Invalid Username.';
+            header("location:../main.php?error=username");
+            exit();
+        }
+        if($this -> validateEmail() == false){
+            //echo 'Invalid Email.';
+            header("location:../main.php?error=email");
+            exit();
+        }
+        if($this -> validatePass() == false){
+            //echo 'Passwords don't match.';
+            header("location:../main.php?error=incorrectpassword");
+            exit();
+        }
+        if($this -> userExists() == false){
+            //echo 'Username or Email already exist.';
+            header("location:../main.php?error=existinguser");
+            exit();
+        }
+
+        $this -> setUser($this -> username, $this -> email, $this -> pwd);
+    }
+
     //make sure all fields are filled
 
     private function checkInputs(){
