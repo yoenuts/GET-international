@@ -47,7 +47,13 @@ function MemberForm({ handleSubmit }){
 
     }
 
-    const handleSignUp = (event) => {
+    const handleSignUp = async (event) => {
+        try {
+            const response = await axios.post('http://localhost:8080/TESOL/signup.php', signInputs);
+            console.log("Response:", response.data);
+        } catch (error) {
+            console.error("Error signing up:", error);
+        }
         handleSubmit("signup", signInputs);
     }
 

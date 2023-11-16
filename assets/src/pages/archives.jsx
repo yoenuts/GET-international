@@ -22,7 +22,7 @@ function Archives() {
             console.log("User is logged in!");
 
         }
-
+        /*
         if(action == 'signup') {
             try {
                 const response = axios.post('http://localhost:8080/TESOL/signup', inputs);
@@ -32,6 +32,7 @@ function Archives() {
                 console.log("Error signing up.", error);
             }
         }
+        */
 
     }
 
