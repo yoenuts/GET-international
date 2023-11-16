@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import axios from 'axios';
 
 
 function MemberForm({ handleSubmit }){
@@ -37,12 +38,21 @@ function MemberForm({ handleSubmit }){
     };
     
     const handleLogIn = (event) => {
+
+        //ano to?
+        event.preventDefault();
+        //signal the archives page na naglog in yung user
         handleSubmit("login", logInputs);
+        //axios.post('http://localhost:3000/TESOL/user/login', inputs);
+
     }
 
     const handleSignUp = (event) => {
         handleSubmit("signup", signInputs);
+        axios.post('http://localhost:8080/TESOL/user/login', signInputs);
     }
+
+
 
     return (
         <div className='loginForm'>

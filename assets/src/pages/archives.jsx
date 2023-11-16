@@ -14,8 +14,15 @@ function Archives() {
 
     //when user logs in, handle these states
     const handleSubmit = (action, inputs) => {
+
+        if(action == 'login') {
+            setIsLoggedIn(true);
+            //just to check lang
+            console.log("User is logged in!");
+
+        }
         console.log(action, inputs);
-        setIsLoggedIn(true);
+
     }
 
     return (
