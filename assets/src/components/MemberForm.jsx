@@ -38,19 +38,20 @@ function MemberForm({ handleSubmit }){
     };
     
     const handleLogIn = (event) => {
-
         //ano to?
         event.preventDefault();
         //signal the archives page na naglog in yung user
         handleSubmit("login", logInputs);
-        //axios.post('http://localhost:3000/TESOL/user/login', inputs);
+        //axios.post('http://localhost:3000/TESOL/user/login.php', inputs);
 
     }
 
     const handleSignUp = async (event) => {
         try {
-            const response = await axios.post('http://localhost:8080/TESOL/signup.php', signInputs);
+            const response = await axios.post('http://localhost:8080/TESOL/endpoints/signup.php', signInputs);
+            console.log(signInputs);
             console.log("Response:", response.data);
+            
         } catch (error) {
             console.error("Error signing up:", error);
         }
