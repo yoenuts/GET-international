@@ -10,7 +10,8 @@ const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
 function MemberForm({ handleSubmit }){
-    
+    const [loginStatus, setLoginStatus] = useState(null);
+    const [token, setToken] = useState(null);
     //one state to check for the error and the data itself
     const [signInputs, setSignInputState] = useState({
         email: {value: '', error: ''},
@@ -147,22 +148,26 @@ function MemberForm({ handleSubmit }){
                 }
             });
 
-            /*
-            //console.log(signInputs);
-            console.log("Login Response:", response.data);
-            //this wont print things are asynchronous
-            if(response.data.status === 1 ) {
-                console.log("response status success");
-                console.log("before handle submit");
-                await handleSubmit("login", extractData(logInputs));
-                console.log("After handlesubmit");
-                resetForm();
-            } else {
-                console.log("Login failed: ", response.data.message);
-            }
-            */
+            // Destructure the response.data object
 
-        } catch (error) {
+            console.log(response.data);
+            const { status, token } = response.data;
+            console.log('test line');
+
+            if (status === 1) {
+                // Successful login
+                setToken(token);
+                //console.log(token);
+                setLoginStatus('Successfully logged in.');  
+                //console.log("i executed login");
+            } 
+            else {
+            // Failed login
+                setLoginStatus('Failure to log in.');
+            }   
+
+        } 
+        catch (error) {
             console.error("Error logging in:", error);
             resetForm();
         }
