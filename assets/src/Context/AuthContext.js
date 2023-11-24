@@ -23,7 +23,8 @@ export function AuthProvider(props) {
     }
 
     const value = {
-        token, 
+        token,
+        setToken,
         login,
         logout,
     }

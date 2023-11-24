@@ -8,8 +8,11 @@ import { Link, Navigate } from "react-router-dom";
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
 function MemberForm({ handleSubmit }){
+
+    //useful states
     const [loginStatus, setLoginStatus] = useState(null);
     const [token, setToken] = useState(null);
     //one state to check for the error and the data itself
@@ -25,6 +28,7 @@ function MemberForm({ handleSubmit }){
         password: {value: '', error: ''}
     });
 
+    //CHANGES IN FORM INPUT
 
     const handleSignInputChange = (event, propName) => {
         const { value } = event.target;
@@ -44,7 +48,7 @@ function MemberForm({ handleSubmit }){
         }));
     };
 
-
+    //EMPTY OUT FORM INPUTS
     const resetForm = () => {
         setLogInputState((prevState) => ({
             ...prevState,
@@ -52,17 +56,19 @@ function MemberForm({ handleSubmit }){
             password: {value: '', error: ''},
         }));
 
-        //reset the input field states
+
         setSignInputState((prevState) => ({
             ...prevState,
             email: {...prevState.email,value: '', error: ''},
-            password: {...prevState.password,value: '', error: 'Note: Must contain Atleast One Lowercase and Uppercase letter, One Number and One Symbol.'},
+            password: {...prevState.password,value: '', error: 'Note: Must contain a Lowercase and Uppercase letter, a Number and a Symbol.'},
             name: {...prevState.name,value: '', error: ''},
             checkPass: {...prevState.checkPass,value: '', error: ''}
         }));
 
     }
 
+
+    //VALIDATE 
     const isLogInFormValid = () => {
         let valid = true;
 
@@ -81,6 +87,7 @@ function MemberForm({ handleSubmit }){
             }));
             valid = false;
         }
+
         return valid;
     }
 
@@ -89,7 +96,7 @@ function MemberForm({ handleSubmit }){
     const isSignUpFormValid = () => {
         let valid = true;
 
-        //check field if empty
+        //email
         if(signInputs.email.value.trim() === '') {
             setSignInputState((prevState) => ({
                 ...prevState,
@@ -97,6 +104,17 @@ function MemberForm({ handleSubmit }){
             }));
             valid = false;
         }
+        else if(!EMAIL_REGEX.test(signInputs.email.value)) {
+            console.log("email regex");
+            setSignInputState((prevState) => ({
+                ...prevState,
+                email: {...prevState.email, error: 'Invalid email format.'}
+            }));
+            valid = false;
+        }
+
+
+        //username
         if(signInputs.name.value.trim() === '') {
             setSignInputState((prevState) => ({
                 ...prevState,
@@ -104,6 +122,16 @@ function MemberForm({ handleSubmit }){
             }));
             valid = false;
         }
+        else if(!USER_REGEX.test(signInputs.name.value)) {
+            setSignInputState((prevState) => ({
+                ...prevState,
+                name: {...prevState.name, error: 'Invalid Username.'}
+            }));
+            valid = false;
+        }
+
+
+        //password
         if(signInputs.password.value.trim() === '') {
             setSignInputState((prevState) => ({
                 ...prevState,
@@ -111,6 +139,17 @@ function MemberForm({ handleSubmit }){
             }));
             valid = false;
         }
+        else if(!PWD_REGEX.test(signInputs.password.value)) {
+            console.log("pwd regex");
+            setSignInputState((prevState) => ({
+                ...prevState,
+                password: {...prevState.password, error: 'Invalid Password. Must contain a Lowercase and Uppercase letter, a Number and a Symbol..'}
+            }));
+            valid = false;
+        }
+
+
+        //checkpass
         if(signInputs.checkPass.value.trim() === '') {
             setSignInputState((prevState) => ({
                 ...prevState,
@@ -118,6 +157,14 @@ function MemberForm({ handleSubmit }){
             }));
             valid = false;
         }
+        else if(signInputs.checkPass.value !== signInputs.password.value) {
+            setSignInputState((prevState) => ({
+                ...prevState,
+                checkPass: {...prevState.checkPass, error: 'Passwords do not match.'}
+            }));
+            valid = false;
+        }
+
         return valid;
     }
     
@@ -152,19 +199,16 @@ function MemberForm({ handleSubmit }){
 
             console.log(response.data);
             const { status, token } = response.data;
-            console.log('test line');
+            //console.log('test line');
 
             if (status === 1) {
                 // Successful login
                 setToken(token);
-                //console.log(token);
-                setLoginStatus('Successfully logged in.');  
-                //console.log("i executed login");
-            } 
-            else {
-            // Failed login
-                setLoginStatus('Failure to log in.');
-            }   
+                console.log("i executed login");
+                resetForm();
+            } else {
+
+            }
 
         } 
         catch (error) {
