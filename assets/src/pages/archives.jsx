@@ -5,8 +5,7 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 
 function Archives() {
-    const {isLoggedin, setIsLoggedIn} = useState(false);
-	const { token, login, logout } = useAuth();
+	const { token, login, logout, isLoggedin } = useAuth();
 
     /*
         cant use this cuz thisll render for each render of components
@@ -19,12 +18,10 @@ function Archives() {
 
     //when user logs in, handle these states
     const handleSubmit = (token) => {
-
-        if(token) {
-            //just to check lang
-            login(token);
-
-            setIsLoggedIn(true);
+        login(token)
+        /*
+        if(login(token)) {
+            
 
 
             //if user is logged in i need something constant for other pages to know that a user is logged in and
@@ -44,7 +41,8 @@ function Archives() {
     return (
         <div className="archives">
             <h1>Archives page</h1>
-            {showForm && (<MemberForm handleSubmit={handleSubmit} />)}
+            {isLoggedin ? <MemberForm handleSubmit={handleSubmit} /> : null}
+            <button onClick={(e) => {logout(e)}}>Log out here</button>
 
         </div>
     );

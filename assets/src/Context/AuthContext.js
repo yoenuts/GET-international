@@ -11,6 +11,7 @@ export function useAuth(){
 export function AuthProvider(props) {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [user,setUser] = useState(null);
+    const [isLoggedin, setIsLoggedin] = useState(false);
     //decode the token here
 
 
@@ -25,9 +26,11 @@ export function AuthProvider(props) {
             name: decodedToken.data.userName,
             role: decodedToken.data.role,
         })
+
+        setIsLoggedin(true);
     }
 
-    const logout = (token) => {
+    const logout = () => {
         setToken(null);
         localStorage.setItem(null);
         setUser(null);
@@ -36,6 +39,7 @@ export function AuthProvider(props) {
     const value = {
         token,
         user,
+        isLoggedin,
         login,
         logout,
     }
