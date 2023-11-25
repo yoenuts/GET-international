@@ -2,24 +2,35 @@ import React, { useEffect, useState } from "react";
 import '../App.css';
 import MemberForm from "../components/MemberForm";
 import axios from "axios";
+import { useAuth } from "../Context/AuthContext";
 
 function Archives() {
-    const [showForm, setShowForm] = useState(true);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const {isLoggedin, setIsLoggedIn} = useState(false);
+	const { token, login, logout } = useAuth();
 
+    /*
+        cant use this cuz thisll render for each render of components
     useEffect(() => {
         if(isLoggedIn) {
             setShowForm(false);
         }
     }, [isLoggedIn]);
+    */
 
     //when user logs in, handle these states
-    const handleSubmit = (action, inputs) => {
+    const handleSubmit = (token) => {
 
-        if(action == 'login') {
-            setIsLoggedIn(true);
+        if(token) {
             //just to check lang
-            console.log("User is logged in!");
+            login(token);
+
+            setIsLoggedIn(true);
+
+
+            //if user is logged in i need something constant for other pages to know that a user is logged in and
+            //what their role is.
+        } 
+        else {
 
         }
         /*

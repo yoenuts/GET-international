@@ -10,11 +10,8 @@ const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
-function MemberForm({ handleSubmit }){
+function MemberForm({handleSubmit}){
 
-    //useful states
-    const [loginStatus, setLoginStatus] = useState(null);
-    const [token, setToken] = useState(null);
     //one state to check for the error and the data itself
     const [signInputs, setSignInputState] = useState({
         email: {value: '', error: ''},
@@ -83,7 +80,7 @@ function MemberForm({ handleSubmit }){
         if(logInputs.password.value.trim() === '') {
             setLogInputState((prevState) => ({
                 ...prevState,
-                password: {...prevState.email, error: 'Enter your Password.'}
+                password: {...prevState.password, error: 'Enter your Password.'}
             }));
             valid = false;
         }
@@ -167,17 +164,12 @@ function MemberForm({ handleSubmit }){
 
         return valid;
     }
+
+    //decode token 
+
     
-    //create a new map that will take the value key and its value
-    const extractData = (input) => {
-        const validData = {};
-        Object.keys(input).forEach((key) => {
-            validData[key] = input[key].value;
-        });
-        //console.log("value extracted");
-        return validData;
-        
-    }
+
+
     
     const handleLogIn = async (event) => {
         event.preventDefault();
@@ -197,17 +189,17 @@ function MemberForm({ handleSubmit }){
 
             // Destructure the response.data object
 
-            console.log(response.data);
             const { status, token } = response.data;
-            //console.log('test line');
 
             if (status === 1) {
-                // Successful login
-                setToken(token);
-                console.log("i executed login");
-                resetForm();
-            } else {
+                handleSubmit(token);
 
+            } else {
+                setLogInputState((prevState) => ({
+                    ...prevState,
+                    userIdentity: {...prevState.email, error: 'Invalid Email/Username or Password.'},
+                    password: {...prevState.password, error: 'Invalid Email/Username or Password.'}
+                }));
             }
 
         } 
@@ -235,16 +227,12 @@ function MemberForm({ handleSubmit }){
                     'Content-Type' : 'application/json',
                 }
             });
-            //console.log(signInputs);
-            console.log("Sign up Response:", response.data);
-
-            handleSubmit("signup", extractData(signInputs));
 
             resetForm();
             
 
         } catch (error) {
-            console.error("Error signing up:", error);
+            console.log("Error signing up:", error);
             resetForm();
         }
         /*
@@ -261,7 +249,6 @@ function MemberForm({ handleSubmit }){
         */
 
     }
-
 
     return (
         <div className='loginForm'>
@@ -300,7 +287,7 @@ function MemberForm({ handleSubmit }){
                 </Modal.Body>
 
                 <Modal.Body>
-                    <h5>Sign up for a New Account</h5>
+                    <h5>Or Sign up for a New Account</h5>
                     <Form>
                         <Form.Group className="mb-3" controlId="signformEmail">
                             <Form.Control type="email" placeholder="Email Address" value={signInputs.email.value} onChange={(e) => handleSignInputChange(e, "email")} />
