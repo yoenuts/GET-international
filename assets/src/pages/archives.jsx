@@ -5,7 +5,7 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 
 function Archives() {
-	const { token, login, logout, isLoggedin } = useAuth();
+	const { login, logout, isLoggedin } = useAuth();
 
     /*
         cant use this cuz thisll render for each render of components

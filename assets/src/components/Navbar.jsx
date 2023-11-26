@@ -7,6 +7,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css'
+import { useAuth } from "../Context/AuthContext";
+import MemberForm from "./MemberForm";
 
 
 const LINKS = [
@@ -49,6 +51,7 @@ const LINKS = [
 
 
 function NavBar() {
+	const {isLoggedin, logout } = useAuth();
 	/**
 	//<img src="../img/GET-logo.png"></img>
 	//this is a hook
@@ -62,8 +65,32 @@ function NavBar() {
 		));
 		}
 	**/
-	return(
 
+	const renderNavItem = () => {
+		return (
+			<NavDropdown title={<h6 className="linkText">MY ACCOUNT</h6>} className="nav-drop">
+				<NavDropdown.Item>
+					<h6 className="linkText"> Upload an Article </h6>
+				</NavDropdown.Item>
+				<NavDropdown.Divider />
+				<NavDropdown.Item>
+					<Link to="/" onClick={(e) => { logout(e) }}><h6 className="linkText">Logout</h6></Link>
+				</NavDropdown.Item>
+			</NavDropdown>
+		);
+	}
+
+	const renderForm = () => {
+		return (
+			<Nav.Link>
+				<h6 className="linkText">Log In/Sign up</h6>
+			</Nav.Link>
+		);
+	}
+
+
+	return(
+ 
 		<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
 			<Container>
 				<Navbar.Brand>
@@ -97,7 +124,9 @@ function NavBar() {
 								)
 
 							))}
+							
 						</React.Fragment>
+						{isLoggedin ? renderNavItem() : renderForm()}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
