@@ -41,7 +41,7 @@ function Archives() {
     return (
         <div className="archives">
             <h1>Archives page</h1>
-            {isLoggedin ? <MemberForm handleSubmit={handleSubmit} /> : null}
+            {!isLoggedin ? <MemberForm handleSubmit={handleSubmit} /> : null}
             <button onClick={(e) => {logout(e)}}>Log out here</button>
 
         </div>

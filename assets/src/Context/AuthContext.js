@@ -1,11 +1,11 @@
 import React, {useEffect, useState, useContext} from "react";
-import jwt from 'jsonwebtoken';
+import  { decodeToken } from "react-jwt"; 
 
 const AuthContext = React.createContext();
 
 //create a hook that would return useAuth each time the components are rendered
 export function useAuth(){
-    return useContext(AuthContext);
+    return useContext(AuthContext);s
 }
 
 export function AuthProvider(props) {
@@ -20,7 +20,8 @@ export function AuthProvider(props) {
         setToken(token);
         localStorage.setItem('token', token);
 
-        const decodedToken = jwt.decode(token);
+        const decodedToken = decodeToken(token);
+
         setUser({
             id: decodedToken.data.userID,
             name: decodedToken.data.userName,
@@ -30,11 +31,21 @@ export function AuthProvider(props) {
         setIsLoggedin(true);
     }
 
-    const logout = () => {
+    const logout = (e) => {
         setToken(null);
-        localStorage.setItem(null);
+        localStorage.removeItem('token');
         setUser(null);
+        setIsLoggedin(false);
     }
+
+    //a way to remember on refresh that is rerendering of components.
+    useEffect(() => {
+        const storedToken = localStorage.getItem('token');
+        if (storedToken) {
+            setToken(storedToken);
+            setIsLoggedin(true);
+        }
+    });
 
     const value = {
         token,

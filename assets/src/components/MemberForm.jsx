@@ -165,10 +165,17 @@ function MemberForm({handleSubmit}){
         return valid;
     }
 
-    //decode token 
 
-    
-
+    //create a new map that will take the value key and its value
+    const extractData = (input) => {
+        const validData = {};
+        Object.keys(input).forEach((key) => {
+            validData[key] = input[key].value;
+        });
+        //console.log("value extracted");
+        return validData;
+        
+    } 
 
     
     const handleLogIn = async (event) => {
@@ -197,8 +204,8 @@ function MemberForm({handleSubmit}){
             } else {
                 setLogInputState((prevState) => ({
                     ...prevState,
-                    userIdentity: {...prevState.email, error: 'Invalid Email/Username or Password.'},
-                    password: {...prevState.password, error: 'Invalid Email/Username or Password.'}
+                    userIdentity: {...prevState.email, value: '', error: 'Invalid Email/Username or Password.'},
+                    password: {...prevState.password, value: '', error: 'Invalid Email/Username or Password.'}
                 }));
             }
 
