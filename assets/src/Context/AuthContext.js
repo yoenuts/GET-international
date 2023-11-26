@@ -12,9 +12,7 @@ export function AuthProvider(props) {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
     const [user,setUser] = useState(null);
     const [isLoggedin, setIsLoggedin] = useState(false);
-    //decode the token here
-
-
+    
 
     const login = (token) => {
         setToken(token);
