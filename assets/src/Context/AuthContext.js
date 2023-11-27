@@ -5,7 +5,7 @@ const AuthContext = React.createContext();
 
 //create a hook that would return useAuth each time the components are rendered
 export function useAuth(){
-    return useContext(AuthContext);s
+    return useContext(AuthContext);
 }
 
 export function AuthProvider(props) {

@@ -51,7 +51,8 @@ const LINKS = [
 
 
 function NavBar() {
-	const {isLoggedin, logout } = useAuth();
+	const {isLoggedin, login, logout } = useAuth();
+	const [showForm, setShowForm] = useState(false);
 	/**
 	//<img src="../img/GET-logo.png"></img>
 	//this is a hook
@@ -66,6 +67,33 @@ function NavBar() {
 		}
 	**/
 
+	//when user logs in, handle these states
+	const handleSubmit = (token) => {
+		login(token)
+		setShowForm(false);
+		/*
+		if(login(token)) {
+			
+
+
+			//if user is logged in i need something constant for other pages to know that a user is logged in and
+			//what their role is.
+		} 
+		else {
+
+		}
+		/*
+		if(action == 'signup') {
+			
+		}
+		*/
+
+	}
+
+	const handleCloseForm = () => {
+		setShowForm(false);
+	}
+
 	const renderNavItem = () => {
 		return (
 			<NavDropdown title={<h6 className="linkText">MY ACCOUNT</h6>} className="nav-drop">
@@ -77,14 +105,6 @@ function NavBar() {
 					<Link to="/" onClick={(e) => { logout(e) }}><h6 className="linkText">Logout</h6></Link>
 				</NavDropdown.Item>
 			</NavDropdown>
-		);
-	}
-
-	const renderForm = () => {
-		return (
-			<Nav.Link>
-				<h6 className="linkText">Log In/Sign up</h6>
-			</Nav.Link>
 		);
 	}
 
@@ -101,7 +121,7 @@ function NavBar() {
 				<div className="title-container">
 					<Link to='/' style={{textDecoration:'none'}}>
 						<h5 className="logotitle1">Guild of Educators in TESOL</h5>
-						<h6 className="logotitle2"><bold>I N T E R N A T I O N A L</bold></h6>
+						<h6 className="logotitle2"><b>I N T E R N A T I O N A L</b></h6>
 					</Link>
 				</div>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -126,7 +146,18 @@ function NavBar() {
 							))}
 							
 						</React.Fragment>
-						{isLoggedin ? renderNavItem() : renderForm()}
+						{!isLoggedin ? 			
+							(<Nav.Link onClick={() => setShowForm(true)}>
+								<h6 className="linkText">Login/Sign up</h6>
+							</Nav.Link>) : 
+							(renderNavItem())
+						}
+						{showForm && (
+							<MemberForm
+							handleSubmit={handleSubmit}
+							handleCloseForm={handleCloseForm}
+							/>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

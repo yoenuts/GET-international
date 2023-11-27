@@ -15,34 +15,33 @@ function Archives() {
         }
     }, [isLoggedIn]);
     */
-
-    //when user logs in, handle these states
     const handleSubmit = (token) => {
-        login(token)
-        /*
-        if(login(token)) {
-            
+		login(token)
+		setShowForm(false);
+		/*
+		if(login(token)) {
+			
 
 
-            //if user is logged in i need something constant for other pages to know that a user is logged in and
-            //what their role is.
-        } 
-        else {
+			//if user is logged in i need something constant for other pages to know that a user is logged in and
+			//what their role is.
+		} 
+		else {
 
-        }
-        /*
-        if(action == 'signup') {
-            
-        }
-        */
+		}
+		/*
+		if(action == 'signup') {
+			
+		}
+		*/
 
-    }
+	}
+
 
     return (
         <div className="archives">
             <h1>Archives page</h1>
             {!isLoggedin ? <MemberForm handleSubmit={handleSubmit} /> : null}
-            <button onClick={(e) => {logout(e)}}>Log out here</button>
 
         </div>
     );
