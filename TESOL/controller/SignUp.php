@@ -7,8 +7,6 @@ header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: *");
 
 
-echo 'I hate cake so much!!!!!!!!!! real';
-
 class SignUp extends signupmodel {
     private $username;
     private $email;
@@ -27,23 +25,20 @@ class SignUp extends signupmodel {
     }
 
     public function signUpUser() {  
-        $valid = true; 
         
-        if($this -> validUserName() || $this -> validateEmail() || $this -> validatePass() || $this -> validatePass() || $this -> userExists()) {
-            $valid = false;
+        if($this -> userExists()) {
+            echo json_encode(['status' => 0, 'message' => 'User Already exists.']);
+            return false;
         }
         else {
-            $result = $this -> model;
-            $result -> setUser($this -> username, $this -> email, $this -> pwd);
-            echo 'signupuserexecuted!!!';
+            return $this -> model -> setUser($this -> username, $this -> email, $this -> pwd);
             
-
         }
-
-        return $valid;
         
     }
 
+
+    /*
     private function validUserName() {
         $invalid = false;
         //receiving a json object, but the regex epects a string so have to decode it as a str
@@ -77,18 +72,11 @@ class SignUp extends signupmodel {
         return $invalid;
 
     }
+    */
 
 
     private function userExists() {
-        $invalid = false;
-
-        if($this-> checkInfo($this -> username, $this -> email )){
-            $invalid = true;
-            echo('User Exists. Sign in instead.');
-        }
-
-
-        return $invalid;
+        return $this-> checkInfo($this -> username, $this -> email );
     }
 
     public function testing() {
@@ -113,17 +101,17 @@ if($method === "POST") {
     $stmt->bindParam(':password', $user->password);
     */
     $signUp = new SignUp($user->name, $user->email, $user->password, $user->checkPass);
-    $signUp -> testing();
+    //$signUp -> testing();
     $response = $signUp->signUpUser();
 
     header('Content-Type: application/json');
     //print_r(json_encode($response));
     //$jsonRes = json_encode($response);
     if($response) {
-        return json_encode(['status' => 1, 'message' => 'Record Sucessfully Created.']);
+        echo json_encode(['status' => 1, 'message' => 'Record Sucessfully Created.']);
     }
     else {
-        return json_encode(['status' => 0, 'message' => 'Failure to create record.']);
+        echo json_encode(['status' => 0, 'message' => 'Failure to create record.']);
     }
 
 }
@@ -132,8 +120,6 @@ else{
     $response = ['status' => 0, 'message' => 'Invalid request method (endpoint error)'];
 }
 */
-
-echo 'hi erlein from controller';
 
 
 

@@ -51,7 +51,7 @@ const LINKS = [
 
 
 function NavBar() {
-	const {isLoggedin, login, logout } = useAuth();
+	const {isLoggedin, login, logout, admin } = useAuth();
 	const [showForm, setShowForm] = useState(false);
 	/**
 	//<img src="../img/GET-logo.png"></img>
@@ -90,15 +90,12 @@ function NavBar() {
 
 	}
 
-	const handleCloseForm = () => {
-		setShowForm(false);
-	}
 
 	const renderNavItem = () => {
 		return (
 			<NavDropdown title={<h6 className="linkText">MY ACCOUNT</h6>} className="nav-drop">
 				<NavDropdown.Item>
-					<h6 className="linkText"> Upload an Article </h6>
+					{admin ? (<h6 className="linkText"> Dashboard </h6>) : (<h6 className="linkText"> Upload an Article </h6>)}
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
 				<NavDropdown.Item>
@@ -155,7 +152,6 @@ function NavBar() {
 						{showForm && (
 							<MemberForm
 							handleSubmit={handleSubmit}
-							handleCloseForm={handleCloseForm}
 							/>
 						)}
 					</Nav>

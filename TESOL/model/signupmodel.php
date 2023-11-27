@@ -11,9 +11,6 @@ class signupmodel extends Database{
 
             $hashedPass = password_hash($pwd, PASSWORD_DEFAULT);
 
-            echo '<script>console.log("trying this")</script>';
-
-
             if($stmt->execute(array($name, $email, $hashedPass))){
                 return ['status' => 1, 'message' => 'Record Succesfully Added.'];
             } else {
@@ -32,21 +29,17 @@ class signupmodel extends Database{
     
 
     //check if user exists in db returning boolean
-    protected function checkInfo($uid, $email){
-        $stmt = $this -> connect() -> prepare("SELECT user_name, user_email FROM users WHERE user_name = ? AND user_email = ?");
+    protected function checkInfo($uName, $email){
+        $stmt = $this -> connect() -> prepare("SELECT user_name, user_email FROM users WHERE user_name = :uName OR user_email = :email");
 
-        if($stmt->execute(array($uid, $email))){
-            $stmt = null;
-            //if this fails to execute for some reason, redirect them to an error page
-            
-            exit();
-        } 
+        $stmt -> bindParam(':uName', $uName, PDO::PARAM_STR);
+        $stmt -> bindParam(':email', $email, PDO::PARAM_STR);
 
-
-        $resultCheck = true;
+        $stmt -> execute();
+        $resultCheck = false;
     
         if($stmt -> rowCount() > 0){
-            $resultCheck = false;
+            $resultCheck = true;
         }
 
         return $resultCheck;

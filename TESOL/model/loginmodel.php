@@ -18,14 +18,13 @@ class LogInModel extends Database{
 
                 if($pwdHashed){
                     $checkpwd = password_verify($pwd, $pwdHashed["user_pwd"]);
-                    echo 'getUser password checking';
                     if($checkpwd){
-                        return ['status' => 1, 'message' => 'Record Sucessfully Found.'];
+                        return true;
                     } else {
-                        return ['status' => 0, 'message' => 'Password did not match.'];
+                        return false;
                     }
                 } else {
-                    return ['status' => 1, 'message' => 'Record was not found.'];
+                    return ['status' => 0, 'message' => 'Record was not found. Password GetUser'];
                 }
                     
             }
@@ -40,39 +39,64 @@ class LogInModel extends Database{
 
     }
 
+    protected function hashBrown($userIdentity, $pwd) {
+        try{
+            $stmt = $this -> connect() -> prepare("SELECT user_pwd FROM users WHERE user_email = ? OR user_id = ?");
+
+            $hashedPass = password_hash($pwd, PASSWORD_DEFAULT);
+
+            if($stmt->execute(array($userIdentity, $userIdentity))){
+
+                //store the result in a variable
+                $pwdHashed = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+                if($pwdHashed){
+                    $checkpwd = password_verify($pwd, $pwdHashed["user_pwd"]);
+                    if($checkpwd){
+                        return $pwdHashed['user_pwd'];
+                    } else {
+                        return null;
+                    }
+                } else {
+                    return ['status' => 0, 'message' => 'hashed couldnt be retrieved'];
+                }
+            }
+
+        } catch(PDOException $e){
+            return ['status' => 0, 'message' => 'we ball'];
+        }
+            
+    }
+
     //check if user exists in db
     protected function checkUserExists($uid){
         $stmt = $this -> connect() -> prepare("SELECT user_id FROM users WHERE user_email = ? OR user_name = ?");
-        echo 'checked if user existed';
 
         if($stmt->execute(array($uid, $uid))){
 
             if($stmt -> rowCount() > 0){
-                $resultCheck = false;
+                $stmt = null;
+                return true;
             }
-            $stmt = null;
-            echo 'user does exist lol';
-            return true;
+
         }
 
-        echo 'user doesnt even exist lol';
         return false;
     }
     
     //retrieve ID  for JWT Authentication, returning array
-    protected function retrieveID($email, $pwd){
-        $stmt = $this -> connect() -> prepare("SELECT user_id FROM users WHERE user_email = ? AND user_pwd = ?");
-
-        if($stmt->execute(array($email,$pwd))){
-            //fetch result
+    protected function retrieveID($userIdentity, $pwd){
+        $stmt = $this -> connect() -> prepare("SELECT user_id FROM users WHERE (user_email = ? OR user_name = ?) AND user_pwd = ?");
+        
+        if($stmt->execute(array($userIdentity,$userIdentity,$pwd))){
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             //vlose the statement
             $stmt = null;
-
             if ($result) {
+                
                 return $result['user_id'];
-                echo 'retrieved id';
             }
+
         } 
 
         return null;
@@ -86,11 +110,10 @@ class LogInModel extends Database{
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             //vlose the statement
             $stmt = null;
-
             if ($result) {
-                return $result['user_id'];
-                echo 'retrieved id';
+                return $result['user_name'];
             }
+
         } 
 
         return null;

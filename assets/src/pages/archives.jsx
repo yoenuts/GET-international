@@ -5,7 +5,7 @@ import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 
 function Archives() {
-	const { login, logout, isLoggedin } = useAuth();
+	const { login, isLoggedin } = useAuth();
 
     /*
         cant use this cuz thisll render for each render of components
@@ -17,7 +17,6 @@ function Archives() {
     */
     const handleSubmit = (token) => {
 		login(token)
-		setShowForm(false);
 		/*
 		if(login(token)) {
 			
@@ -34,7 +33,6 @@ function Archives() {
 			
 		}
 		*/
-
 	}
 
 

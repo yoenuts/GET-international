@@ -1,7 +1,6 @@
 <?php
 
 use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
@@ -23,45 +22,47 @@ class LogIn extends LogInModel {
         $this -> model = new LogInModel();
     }
 
-
     public function loginUser(){
         if($this -> userExists()) {
             echo 'User doesnt exist !!!';
+            return null;
         }
         else {
-            $result = $this->model;
-            $result -> getUser($this -> userIdentity, $this -> password);
-    
-            $userID = $result -> retrieveID($this -> userIdentity, $this -> password);
-            $userName = $result -> retrieveName($userID, $this -> password);
-    
-            if($userID !== 1) {
-                $role = 'user';
+            $result = $this-> model -> getUser($this -> userIdentity, $this -> password);
+            $hashed = $this-> model -> hashBrown($this -> userIdentity, $this -> password);
+            //this will return the id if the match is found between pass and email/uname
+            $uID = $this-> model -> retrieveID($this -> userIdentity, $hashed);
+            //use that id to get the username
+            $uName = $this-> model -> retrieveName($uID, $hashed);
+
+            $isAdmin = $uID === 1 && $uName === 'admin';
+
+            $role = $isAdmin ? 'admin' : 'user';
+
+            //create a session in conjuction with JWT 
+            if($result) {
+                $token = $this -> generateJWT($uID, $uName, $role);
+
             }
-            else {
-                $role = 'admin';
-            }
-    
-            $jwt = $this -> generateJWT($userID, $userName, $role);
-    
+
             return $result;
         }
-
-
-        return null;
     }
+
+
+
 
 
     private function userExists(){
         $empty = false;
-
+        //if this returns true the user exists
         if(!$this -> checkUserExists($this -> userIdentity)){
             $empty = true;
-            echo 'user doesnt exist!';
         }
 
         return $empty;
     }
+
 
     private function generateJWT($userId, $username, $role) {
         $key = 'AdminTESOL';
@@ -72,7 +73,7 @@ class LogIn extends LogInModel {
             'aud' => 'localhost', // Audience
             'exp' => time() + 10000, //10 minutes
             'data' => [
-                'sub' => $userId, // Subject (user ID)
+                'user' => $userId, // Subject (user ID)
                 'name' => $username,
                 'role' => $role, // User role
             ]
@@ -81,11 +82,10 @@ class LogIn extends LogInModel {
         $jwt = JWT::encode($payload, $key, 'HS256');
         echo json_encode([
             'status' => 1,
-            'jwt' => $jwt,
+            'token' => $jwt,
             'message' => 'Auth token generated',
 
         ]);
-
         return $jwt;
     }
 
@@ -105,7 +105,6 @@ if ($method === 'POST') {
     $user = json_decode(file_get_contents('php://input'));
 
     $logIn = new LogIn($user->userIdentity, $user->password);
-    $logIn -> testing();
     $response = $logIn -> loginUser();
 
     if($response) {

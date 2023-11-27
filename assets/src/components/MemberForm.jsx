@@ -195,11 +195,13 @@ function MemberForm({handleSubmit}){
             });
 
             // Destructure the response.data object
-
+            console.log(response);
             const { status, token } = response.data;
-
+            
             if (status === 1) {
+                console.log(token);
                 handleSubmit(token);
+                
 
             } else {
                 setLogInputState((prevState) => ({
@@ -208,6 +210,7 @@ function MemberForm({handleSubmit}){
                     password: {...prevState.password, value: '', error: 'Invalid Email/Username or Password.'}
                 }));
             }
+            
 
         } 
         catch (error) {
@@ -221,21 +224,28 @@ function MemberForm({handleSubmit}){
 
     const handleSignUp = async (event) => {
         event.preventDefault();
-
+        
         if(!isSignUpFormValid()) {
             return;
         }
 
         try {
             const response = await axios.post('http://localhost:8080/TESOL/controller/SignUp.php', JSON.stringify(extractData(signInputs)), 
-            // to ensure that data is being passed in the proper json format
             {
                 headers: {
                     'Content-Type' : 'application/json',
                 }
             });
 
-            resetForm();
+            console.log("this:", response);
+            const { status } = response.data;
+
+            if(status === 1) {
+                resetForm();
+            } else {
+                console.log('no response');
+            }
+
             
 
         } catch (error) {
