@@ -1,14 +1,15 @@
-import React, { useRef } from "react";
+import React from "react";
+import ArticleForm from "../components/ArticleForm";
 
-class User extends React.Component {
+class UserPage extends React.Component {
 
     render(){
         return(
             <div className="UserDashboard">
-                <h1>Hi! This is the user page.</h1>
+                <ArticleForm />
             </div>
         );
     }
 }
 
-export default useRef;
+export default UserPage;

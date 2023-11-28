@@ -1,0 +1,134 @@
+@font-face {
+    font-family: "Station";
+    src: url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.eot");
+    src: url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.svg#Station")format("svg");
+}
+  
+@font-face {
+    font-family: "Budmo W00 Solid";
+    src: url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.eot");
+    src: url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.svg#Budmo W00 Solid")format("svg");
+}
+
+
+*,
+*:before,
+*:after{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: 500;
+}
+
+body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.archiveForm {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    background-image: url("../public/img/article-background.png");
+    background-color: #ffffff;
+  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.article-container{
+    background-color: #ffffff;
+    max-width: 80%;
+    min-height: 650px;
+    padding: 35px 50px;
+    border-radius: 10px;
+    box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
+}
+
+/*
+@media (min-width: 1340px) {
+    .article-container{
+        background-color: #ffffff;
+        max-width: 100%;
+        max-height: 600px;
+        margin-top: 10vw;
+        margin-bottom: 5vw;
+        padding: 35px 50px;
+        border-radius: 10px;
+        box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
+    }
+}
+*/
+/**
+h1{
+    font-size: 30px;
+    text-align: center;
+    color: #1c093c;
+}
+
+p{
+    position: relative;
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    color: #606060;
+    font-size: 14px;
+    font-weight: 400;
+}
+**/
+form{
+    max-width: 100%;
+    margin: 50px auto 0 auto;
+}
+
+
+label{
+    color: #1c093c;
+    font-size: 14px;
+}
+
+
+input{
+    width: 100%;
+    font-weight: 400;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1.2px solid #c4cae0;
+    margin-top: 5px;
+}
+
+.dropzone:focus,
+input:focus{
+    outline: none;
+    border-color: #6f6df4;
+}
+
+.dropzone{
+    border-radius: 10px;
+    border: 2px dotted #c4cae0;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+button{
+    border: none;
+    padding: 10px 20px;
+    background: linear-gradient(
+        130deg,
+        #6f6df4,
+        #4c46f5
+    );
+    color: #ffffff;
+    border-radius: 3px;
+}

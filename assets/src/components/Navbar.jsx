@@ -36,10 +36,12 @@ const LINKS = [
 		page: "CONTACT",
 		link: "/contact",
 	},
+	/*
     {
 		page: "ACADEMICS",
 		link: "/academics",
 	},
+	*/
     {
 		page: "RESEARCH",
 		link: "/research",
@@ -95,7 +97,7 @@ function NavBar() {
 		return (
 			<NavDropdown title={<h6 className="linkText">MY ACCOUNT</h6>} className="nav-drop">
 				<NavDropdown.Item>
-					{admin ? (<h6 className="linkText"> Dashboard </h6>) : (<h6 className="linkText"> Upload an Article </h6>)}
+					{admin ? (<Link to="/AdminDashboard"><h6 className="linkText" > Dashboard </h6></Link>) : (<Link to="/dashboard"><h6 className="linkText"> Upload an Article </h6></Link>)}
 				</NavDropdown.Item>
 				<NavDropdown.Divider />
 				<NavDropdown.Item>
@@ -108,7 +110,7 @@ function NavBar() {
 
 	return(
  
-		<Navbar sticky="top" collapseOnSelect expand="lg" className="navbar">
+		<Navbar collapseOnSelect expand="lg" className="navbar">
 			<Container>
 				<Navbar.Brand>
 						<Link to='/'>

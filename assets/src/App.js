@@ -17,6 +17,8 @@ import Background from './pages/background';
 import Footer from './components/Footer';
 import Archives from './pages/archives';
 import MemberForm from './components/MemberForm';
+import Admin from './pages/adminDashboard';
+import UserPage from './pages/userDashboard';
 
 const App = () => {
   return (
@@ -35,6 +37,8 @@ const App = () => {
         <Route  path='/administration/president' element={<President />}></Route>
         <Route  path='/administration/vicepresident' element={<VicePresident />}></Route>
         <Route  path='/memberForm' element={<MemberForm />}></Route>
+        <Route  path='/AdminDashboard' element={<Admin />}></Route>
+        <Route  path='/dashboard' element={<UserPage />}></Route>
       </Routes>
       <Footer />
     </div>
