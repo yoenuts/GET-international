@@ -49,13 +49,9 @@ class LogIn extends LogInModel {
         }
     }
 
-
-
-
-
     private function userExists(){
         $empty = false;
-        //if this returns true the user exists
+        //if this returns true the user doesnt exist.
         if(!$this -> checkUserExists($this -> userIdentity)){
             $empty = true;
         }
@@ -65,7 +61,8 @@ class LogIn extends LogInModel {
 
 
     private function generateJWT($userId, $username, $role) {
-        $key = 'AdminTESOL';
+        $config = include('../config/config.php');
+        $key = $config['secretKey'];
         //$issuedAt = time();
         //$expirationTime = $issuedAt + 3600; // Token expiration time (e.g., 1 hour)
         $payload = array(
@@ -98,7 +95,7 @@ class LogIn extends LogInModel {
 
 }
 
-$method = $method = $_SERVER['REQUEST_METHOD'];
+$method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'POST') {
 

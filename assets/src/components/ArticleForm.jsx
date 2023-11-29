@@ -1,13 +1,20 @@
 import React, {useRef, useState} from "react";
 import '../userStyle.css';
-
-
+import { useAuth } from "../Context/AuthContext";
+import axios from "axios";
 
 function ArticleForm() {
-    const [file, setFile] = useState(null);
+    const {token, getUserID} = useAuth();
+    const [articleFile, setArticleFile] = useState(null);
     const inputRef = useRef(); //reference the actual input in the DOM
     //the input field is actually hidden and clicking on the button triggers it.
     //useRef lets you change the current without rerendering the other components.
+    const [formData, setFormData] = useState({
+        userID: {value: ''},
+        title: {value: '', error: ''},
+        org: {value: '', error: ''},
+
+    })
 
     const handleFileChange = (selectedFiles) => {
         if (selectedFiles.length > 0) {
@@ -31,11 +38,34 @@ function ArticleForm() {
         // Handle only one file
         if (droppedFiles.length > 0) {
             setFile(droppedFiles[0]);
-            console.log("Dropped file:", droppedFiles[0]);
-            console.log("File state:", file);
+            //console.log("Dropped file:", droppedFiles[0]);
+            //console.log("File state:", file);
         }
 
     }
+
+    const formValid = () => {
+
+    }
+
+    const handleUpload = () => {
+        const articleData = new FormData();
+        articleData.append("userID", getUserID());
+        articleData.append("title", formData.title.value);
+        articleData.append("file", articleFile);
+        articleData.append("org", formData.org.value);
+        
+        console.log([...articleData])
+      
+        axios.post("http://localhost:8080/TESOL/controller/submitArticle.php", articleData, {
+            headers: {
+                'Authorization': `${token}`,
+                'Content-Type': 'multipart/form-data',
+            }
+        }).then((res) => {
+            alert("File Upload success");
+        }).catch((err) => alert("File Upload Error"));
+    };
 
 
     return(
@@ -47,21 +77,11 @@ function ArticleForm() {
                             <div class="row">
                                 <div class="column">
                                     <label for="title">Title</label>
-                                    <input type="text" id="title" placeholder="Title here"></input>
+                                    <input type="text" id="title" value={formData.title.value} placeholder="Title here"></input>
                                 </div>
                                 <div class="column">
                                     <label for="org">Institution/Organization</label>
-                                    <input type="text" id="org" placeholder="Institute/Organization"></input>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column">
-                                    <label for="subject">Subject</label>
-                                    <input type="text" id="subject" placeholder="Your subject here"></input>
-                                </div>
-                                <div class="column">
-                                    <label for="contact">Contact Number</label>
-                                    <input type="tel" id="contact" placeholder="Your phone number here"></input>
+                                    <input type="text" id="org" value={formData.org.value} placeholder="Institute/Organization"></input>
                                 </div>
                             </div>
                             <div class="row">
@@ -70,7 +90,7 @@ function ArticleForm() {
                                         onDragOver={handleDragOver}
                                         onDrop={handleOnDrop}
                                     >
-                                        {!file ? 
+                                        {!articleFile ? 
                                             (
                                             <>
                                                 <h6>Drag and Drop PDF Here</h6>
@@ -105,7 +125,7 @@ function ArticleForm() {
                                 </div>
                                 
                             </div>
-                            <button>Submit</button>
+                            <button onClick={handleUpload}>Submit</button>
                         </form>
                     </div>  
                 </div>

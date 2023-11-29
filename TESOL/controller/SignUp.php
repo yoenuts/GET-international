@@ -32,7 +32,7 @@ class SignUp extends signupmodel {
         }
         else {
             return $this -> model -> setUser($this -> username, $this -> email, $this -> pwd);
-            
+
         }
         
     }

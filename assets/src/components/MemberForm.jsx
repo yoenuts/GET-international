@@ -10,15 +10,17 @@ const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 const EMAIL_REGEX = /\S+@\S+\.\S+/;
 
+const initialState = {
+    email: {value: '', error: ''},
+    password: {value: '', error: 'Note: Must contain Atleast One Lowercase and Uppercase letter, One Number and One Symbol.'},
+    name: {value: '', error: ''},
+    checkPass: {value: '', error: ''}
+}
+
 function MemberForm({handleSubmit}){
 
     //one state to check for the error and the data itself
-    const [signInputs, setSignInputState] = useState({
-        email: {value: '', error: ''},
-        password: {value: '', error: 'Note: Must contain Atleast One Lowercase and Uppercase letter, One Number and One Symbol.'},
-        name: {value: '', error: ''},
-        checkPass: {value: '', error: ''}
-    });
+    const [signInputs, setSignInputState] = useState(initialState);
 
     const [logInputs, setLogInputState] = useState({
         userIdentity: {value: '', error: ''},
@@ -27,20 +29,11 @@ function MemberForm({handleSubmit}){
 
     //CHANGES IN FORM INPUT
 
-    const handleSignInputChange = (event, propName) => {
+    const handleInputChange = (event, propName, setState) => {
         const { value } = event.target;
     
-        setSignInputState((prevProps) => ({
-          ...prevProps,
-          [propName]: {value, error: ''}
-        }));
-    };
-    
-    const handleLogInputChange = (event, propName) => {
-        const { value } = event.target;
-    
-        setLogInputState((prevProps) => ({
-          ...prevProps,
+        setState((prevState) => ({
+          ...prevState,
           [propName]: {value, error: ''}
         }));
     };
@@ -54,13 +47,7 @@ function MemberForm({handleSubmit}){
         }));
 
 
-        setSignInputState((prevState) => ({
-            ...prevState,
-            email: {...prevState.email,value: '', error: ''},
-            password: {...prevState.password,value: '', error: 'Note: Must contain a Lowercase and Uppercase letter, a Number and a Symbol.'},
-            name: {...prevState.name,value: '', error: ''},
-            checkPass: {...prevState.checkPass,value: '', error: ''}
-        }));
+        setSignInputState(initialState);
 
     }
 
@@ -201,7 +188,7 @@ function MemberForm({handleSubmit}){
             if (status === 1) {
                 console.log(token);
                 handleSubmit(token);
-                
+
 
             } else {
                 setLogInputState((prevState) => ({
@@ -217,7 +204,7 @@ function MemberForm({handleSubmit}){
             console.error("Error logging in:", error);
             resetForm();
         }
-
+        
         //signal archives page that user has logged in thru JWT token
 
     }
@@ -284,14 +271,14 @@ function MemberForm({handleSubmit}){
                     <h5>Welcome Back!</h5>
                     <Form>
                         <Form.Group className="mb-3" controlId="logFormEmail">
-                            <Form.Control type="text" placeholder="Email Address/Username" value={logInputs.userIdentity.value} onChange={(e) => handleLogInputChange(e, "userIdentity")} />
+                            <Form.Control type="text" placeholder="Email Address/Username" value={logInputs.userIdentity.value} onChange={(e) => handleInputChange(e, "userIdentity", setLogInputState)} />
                             <Form.Text className="text-muted" >
                                 {logInputs.userIdentity.error}
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="logFormPassword">
-                            <Form.Control type="password" value={logInputs.password.value} placeholder="Password" onChange={(e) => handleLogInputChange(e, "password")} />
+                            <Form.Control type="password" value={logInputs.password.value} placeholder="Password" onChange={(e) => handleInputChange(e, "password", setLogInputState)} />
                             <Form.Text className="text-muted" >
                                 {logInputs.password.error}
                             </Form.Text>
@@ -307,28 +294,28 @@ function MemberForm({handleSubmit}){
                     <h5>Or Sign up for a New Account</h5>
                     <Form>
                         <Form.Group className="mb-3" controlId="signformEmail">
-                            <Form.Control type="email" placeholder="Email Address" value={signInputs.email.value} onChange={(e) => handleSignInputChange(e, "email")} />
+                            <Form.Control type="email" placeholder="Email Address" value={signInputs.email.value} onChange={(e) => handleInputChange(e, "email", setSignInputState)} />
                             <Form.Text className="text-muted" >
                                 {signInputs.email.error}
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="signformName">
-                            <Form.Control type="name" placeholder="Username" value={signInputs.name.value} onChange={(e) => handleSignInputChange(e, "name")}/>
+                            <Form.Control type="name" placeholder="Username" value={signInputs.name.value} onChange={(e) => handleInputChange(e, "name", setSignInputState)}/>
                             <Form.Text className="text-muted">
                                 {signInputs.name.error}
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="signFormPassword">
-                            <Form.Control type="password" placeholder="Password" value={signInputs.password.value} onChange={(e) => handleSignInputChange(e, "password")} />
+                            <Form.Control type="password" placeholder="Password" value={signInputs.password.value} onChange={(e) => handleInputChange(e, "password", setSignInputState)} />
                             <Form.Text className="text-muted">
                                 {signInputs.password.error}
                             </Form.Text>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="signFormConfirmPassword">
-                            <Form.Control type="password" placeholder="Confirm your Password" value={signInputs.checkPass.value} onChange={(e) => handleSignInputChange(e, "checkPass")} />
+                            <Form.Control type="password" placeholder="Confirm your Password" value={signInputs.checkPass.value} onChange={(e) => handleInputChange(e, "checkPass", setSignInputState)} />
                             <Form.Text className="text-muted">
                                 {signInputs.checkPass.error}
                             </Form.Text>

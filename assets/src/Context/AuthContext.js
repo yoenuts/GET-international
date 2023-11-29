@@ -14,6 +14,8 @@ export function AuthProvider(props) {
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [admin, setAdmin] = useState(false);
 
+
+
     //a way to remember on refresh that is rerendering of components.
     useEffect(() => {
         const storedToken = localStorage.getItem('token');
@@ -65,9 +67,14 @@ export function AuthProvider(props) {
         }
     }
 
+    const getUserId = () => {
+        return user ? user.id : null;
+    };
+
     const value = {
         token,
         user,
+        getUserId,
         admin,
         isAdmin,
         isLoggedin,
