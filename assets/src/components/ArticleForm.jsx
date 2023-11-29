@@ -9,28 +9,34 @@ function ArticleForm() {
     //the input field is actually hidden and clicking on the button triggers it.
     //useRef lets you change the current without rerendering the other components.
 
+    const handleFileChange = (selectedFiles) => {
+        if (selectedFiles.length > 0) {
+            setFile(selectedFiles[0]);
+        }
+    };
+
     const handleDragOver = (event) => {
         event.preventDefault();
 
     }
     
-    const handleOnDrop = (event) => {
-        event.preventDefault();
+    const handleOnDrop = (e) => {
+        e.preventDefault();
         //console.log(event);
+        //one file only
 
-        setFile(event.dataTransfer.file);
+        // Get the dropped files or selected files
+        const droppedFiles = e.dataTransfer.files || e.target.files;
+
+        // Handle only one file
+        if (droppedFiles.length > 0) {
+            setFile(droppedFiles[0]);
+            console.log("Dropped file:", droppedFiles[0]);
+            console.log("File state:", file);
+        }
+
     }
 
-    if(file) return (
-        <div className="upload">
-            <ul>
-                {Array.from(file).map((file,idx) => <li key={idx}>{file.name}</li>)}
-            </ul>
-            <div className="actions">
-                <button onClick={() => setFile(null)}>Cancel</button>
-            </div>
-        </div>
-    )
 
     return(
         <div className="archiveForm">
@@ -60,22 +66,42 @@ function ArticleForm() {
                             </div>
                             <div class="row">
                                 <div class="column">
-                                    {!file && (
-                                        <div className="dropzone"
-                                            onDragOver={handleDragOver}
-                                            onDrop={handleOnDrop}
-                                        >
-                                            <h6>Drag and Drop PDF Here</h6>
-                                            <h6>Or</h6>
-                                            <input 
-                                                type="file" 
-                                                onChange={(e) => setFile(event.target.file)}
-                                                hidden
-                                                ref={inputRef}    
-                                            ></input>
-                                            <button onClick={() => inputRef.current.click()}>Select Files</button>
-                                        </div>
-                                    )}
+                                    <div className="dropzone"
+                                        onDragOver={handleDragOver}
+                                        onDrop={handleOnDrop}
+                                    >
+                                        {!file ? 
+                                            (
+                                            <>
+                                                <h6>Drag and Drop PDF Here</h6>
+                                                <h6>Or</h6>
+                                                <input 
+                                                    type="file" 
+                                                    onChange={(e) => handleFileChange(e.target.files)}
+                                                    hidden
+                                                    accept="application/pdf"
+                                                    ref={inputRef}    
+                                                ></input>
+                                                <button type="button" onClick={() => inputRef.current.click()}>Select File</button>
+                                            </>
+                                            )
+                                            : 
+                                            (
+                                            <>
+                                                <div>
+                                                    <h6>{file.name}</h6>
+                                                </div>
+                                                <div>
+                                                    <button onClick={() => setFile(null)}>Cancel</button>
+                                                </div>
+                                            </>
+                                            )
+                                        
+                                        
+                                        }
+
+                                    </div>
+
                                 </div>
                                 
                             </div>

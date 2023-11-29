@@ -106,7 +106,6 @@ input{
     margin-top: 5px;
 }
 
-.dropzone:focus,
 input:focus{
     outline: none;
     border-color: #6f6df4;
@@ -119,6 +118,18 @@ input:focus{
     margin-bottom: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.dropzone button {
+    border: none;
+    padding: 5px 10px;
+    background: linear-gradient(
+        130deg,
+        #f46dc0,
+        #f5466f
+    );
+    color: #ffffff;
+    border-radius: 3px;
 }
 
 button{
