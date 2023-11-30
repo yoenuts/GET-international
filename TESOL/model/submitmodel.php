@@ -4,11 +4,17 @@ include_once '../Database.php';
 class articleModel extends Database{
 
     protected function setArticle($userID, $title, $file, $org) {
+        echo 'setArticle ran';
         try{
-            $stmt = $this -> connect() -> prepare("INSERT INTO submittedarticles (user_id, article_title, article_pdf, org_name) VALUES(?,?,?, ?)");
+            $stmt = $this -> connect() -> prepare("INSERT INTO submittedarticles (user_id, article_title, article_path, org_name) VALUES(?,?,?, ?)");
 
+            $targetPath = '../files';
+            $fileName = uniqid() . '_' . $userID;
+            $targetPath = $targetPath . '/' . $fileName;
 
-            if($stmt->execute(array($userID, $title, $file, $org))){
+            move_uploaded_file($file['tmp_name'], $targetPath);
+
+            if($stmt->execute(array($userID, $title, $targetPath, $org))){
                 return ['status' => 1, 'message' => 'Record Succesfully Added.'];
             } else {
                 return ['status' => 0, 'message' => 'Failed to create record. Statement Error.'];
@@ -24,6 +30,7 @@ class articleModel extends Database{
     }
 
     protected function checkArticle($title) {
+        echo 'i checked the article';
         $stmt = $this -> connect() -> prepare("SELECT article_title FROM submittedarticles WHERE article_title = :title");
 
         $stmt -> bindParam(':title', $title, PDO::PARAM_STR);

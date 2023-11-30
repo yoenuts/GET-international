@@ -4,7 +4,7 @@ import { useAuth } from "../Context/AuthContext";
 import axios from "axios";
 
 function ArticleForm() {
-    const {token, getUserID} = useAuth();
+    const {token, getUserId} = useAuth();
     const [articleFile, setArticleFile] = useState(null);
     const inputRef = useRef(); //reference the actual input in the DOM
     //the input field is actually hidden and clicking on the button triggers it.
@@ -16,9 +16,28 @@ function ArticleForm() {
 
     })
 
+    const handleInputChange = (event, propName) => {
+        const { value } = event.target;
+    
+        setFormData((prevState) => ({
+          ...prevState,
+          [propName]: {value, error: ''}
+        }));
+    };
+
+    const resetForm = () => {
+        setLogInputState((prevState) => ({
+            ...prevState,
+            title: {value: '', error: ''},
+            org: {value: '', error: ''},
+        }));
+
+        setArticleFile(null);
+    }
+
     const handleFileChange = (selectedFiles) => {
         if (selectedFiles.length > 0) {
-            setFile(selectedFiles[0]);
+            setArticleFile(selectedFiles[0]);
         }
     };
 
@@ -37,7 +56,7 @@ function ArticleForm() {
 
         // Handle only one file
         if (droppedFiles.length > 0) {
-            setFile(droppedFiles[0]);
+            setArticleFile(droppedFiles[0]);
             //console.log("Dropped file:", droppedFiles[0]);
             //console.log("File state:", file);
         }
@@ -48,24 +67,41 @@ function ArticleForm() {
 
     }
 
-    const handleUpload = () => {
+
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        //ok lol now i know what this is for
+
+        console.log('upload ran');
         const articleData = new FormData();
-        articleData.append("userID", getUserID());
+        articleData.append("userID", getUserId());
         articleData.append("title", formData.title.value);
         articleData.append("file", articleFile);
         articleData.append("org", formData.org.value);
+
+        //console.log([...articleData]);
         
-        console.log([...articleData])
-      
-        axios.post("http://localhost:8080/TESOL/controller/submitArticle.php", articleData, {
-            headers: {
-                'Authorization': `${token}`,
-                'Content-Type': 'multipart/form-data',
-            }
-        }).then((res) => {
-            alert("File Upload success");
-        }).catch((err) => alert("File Upload Error"));
-    };
+        try {
+            const response =  await axios.post("http://localhost:8080/TESOL/controller/submitArticle.php", articleData, 
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'multipart/form-data',
+                }
+            });
+
+            resetForm();
+            //console.log(response);
+
+        } catch  (error) {
+            console.log("error signing up. ", error);
+        }
+
+    }
+
+    const uploadSuccess = () => {
+        
+    }
 
 
     return(
@@ -77,11 +113,11 @@ function ArticleForm() {
                             <div class="row">
                                 <div class="column">
                                     <label for="title">Title</label>
-                                    <input type="text" id="title" value={formData.title.value} placeholder="Title here"></input>
+                                    <input type="text" id="title" value={formData.title.value} onChange={(e) => handleInputChange(e, 'title')} placeholder="Title here"></input>
                                 </div>
                                 <div class="column">
                                     <label for="org">Institution/Organization</label>
-                                    <input type="text" id="org" value={formData.org.value} placeholder="Institute/Organization"></input>
+                                    <input type="text" id="org" value={formData.org.value} onChange={(e) => handleInputChange(e, 'org')} placeholder="Institute/Organization"></input>
                                 </div>
                             </div>
                             <div class="row">
@@ -109,10 +145,10 @@ function ArticleForm() {
                                             (
                                             <>
                                                 <div>
-                                                    <h6>{file.name}</h6>
+                                                    <h6>{articleFile.name}</h6>
                                                 </div>
                                                 <div>
-                                                    <button onClick={() => setFile(null)}>Cancel</button>
+                                                    <button onClick={() => setArticleFile(null)}>Cancel</button>
                                                 </div>
                                             </>
                                             )
@@ -125,7 +161,7 @@ function ArticleForm() {
                                 </div>
                                 
                             </div>
-                            <button onClick={handleUpload}>Submit</button>
+                            <button onClick={(e) => handleUpload(e)}>Submit</button>
                         </form>
                     </div>  
                 </div>

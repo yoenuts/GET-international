@@ -1,6 +1,8 @@
 <?php
 
 use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST');
@@ -10,7 +12,7 @@ require_once '../vendor/autoload.php';
 include_once '../Database.php';
 include_once '../model/submitmodel.php';
 
-//echo('HELLO WORLD');
+echo('HELLO WORLD');
 
 
 class submitArticle extends articleModel {
@@ -46,17 +48,21 @@ class submitArticle extends articleModel {
         return $this -> checkArticle($this -> title);
     }
 
-    private function articleToken($token) {
+    public function articleToken() {
         try {
+            $token = $this -> getAuthorization();
+
+            if (!$token) {
+                echo json_encode(['status' => 0, 'message' => 'Token not provided']);
+                return false;
+            }
+
             $config = include('../config/config.php');
             $key = $config['secretKey'];
     
-            $decoded = JWT::decode($token, $key);
-    
+            $decoded = JWT::decode($token, new Key($key, 'HS256'));
             return $decoded;
 
-
-            
         } catch (\Firebase\JWT\ExpiredException $e) {
             // Handle expired token
             echo json_encode(['status' => 0, 'message' => 'Token has expired']);
@@ -70,14 +76,29 @@ class submitArticle extends articleModel {
 
     }
 
+    /*
+         returns an associative array where the keys are the header 
+         names and the values are the corresponding header values.
+
+
+    */
+
+    private function getAuthorization() {
+        $header = apache_request_headers();
+        if(isset($header['Authorization'])) {
+            return trim(str_replace('Bearer', '', $header['Authorization']));
+        }
+
+        return null;
+    }
+
 }
 
 
 $method = $_SERVER['REQUEST_METHOD'];
 
 if ($method === 'POST') {
-
-    $token = $_POST['token'];
+    echo 'method was post';
     $userID = $_POST['userID'];
     $title = $_POST['title'];
     $org = $_POST['org'];
@@ -85,17 +106,16 @@ if ($method === 'POST') {
 
 
     $article = new submitArticle($userID, $title, $file, $org);
-    $decodeToken = $article -> articleToken($token);
+
+    $decodeToken = $article -> articleToken();
 
     if($decodeToken) {
+        echo 'decoding token was succesful';
+
         $article -> addArticle();
     }
     
 
-    if($article) {
-
-    }
-    
 
 
 } else {

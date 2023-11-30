@@ -22,17 +22,28 @@ export function AuthProvider(props) {
         if (storedToken) {
             setToken(storedToken);
             setIsLoggedin(true);
+
+            
+            const initializeUser = async () => {
+                //decode the token 
+                const decodedToken = decodeToken(storedToken);
+                
+                //create callback to setUser details 
+                await setUser({
+                    id: decodedToken.data.user,
+                    name: decodedToken.data.name,
+                    role: decodedToken.data.role,
+                });
+
+                //checkuser role if admin or not
+                isAdmin();
+            };
+    
+            initializeUser();
         }
-    });
+    }, []);
 
     //to ensure that admin state is preserved depending on the user
-
-    useEffect(() => {
-        if (user) {
-            console.log(user.role);
-            isAdmin();
-        }
-    }, [user]);
 
     const login = (token) => {
         setToken(token);
@@ -41,8 +52,8 @@ export function AuthProvider(props) {
         const decodedToken = decodeToken(token);
 
         setUser({
-            id: decodedToken.data.userID,
-            name: decodedToken.data.userName,
+            id: decodedToken.data.user,
+            name: decodedToken.data.name,
             role: decodedToken.data.role,
         })
         isAdmin();
