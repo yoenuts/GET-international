@@ -10,7 +10,6 @@ function ArticleForm() {
     //the input field is actually hidden and clicking on the button triggers it.
     //useRef lets you change the current without rerendering the other components.
     const [formData, setFormData] = useState({
-        userID: {value: ''},
         title: {value: '', error: ''},
         org: {value: '', error: ''},
 
@@ -64,6 +63,25 @@ function ArticleForm() {
     }
 
     const formValid = () => {
+        let valid = true;
+
+        if(formData.title.value.trim() === '') {
+            setFormData((prevState) => ({
+                ...prevState,
+                title: {...prevState.title, error: 'Input Title to complete this field.'}
+            }));
+            valid = false;
+        }
+        if(formData.org.value.trim() === '') {
+            setFormData((prevState) => ({
+                ...prevState,
+                title: {...prevState.org, error: 'Input Institution name to complete this field.'}
+            }));
+            valid = false;
+        }
+
+        
+        return valid;
 
     }
 
@@ -72,14 +90,16 @@ function ArticleForm() {
         e.preventDefault();
         //ok lol now i know what this is for
 
-        console.log('upload ran');
+        if(!formValid) {
+            return;
+        }
+
+        //console.log('upload ran');
         const articleData = new FormData();
         articleData.append("userID", getUserId());
         articleData.append("title", formData.title.value);
         articleData.append("file", articleFile);
         articleData.append("org", formData.org.value);
-
-        //console.log([...articleData]);
         
         try {
             const response =  await axios.post("http://localhost:8080/TESOL/controller/submitArticle.php", articleData, 
@@ -100,7 +120,9 @@ function ArticleForm() {
     }
 
     const uploadSuccess = () => {
-        
+        return( 
+            <h6>File was uploaded successfully.</h6>
+        );
     }
 
 
@@ -114,10 +136,12 @@ function ArticleForm() {
                                 <div class="column">
                                     <label for="title">Title</label>
                                     <input type="text" id="title" value={formData.title.value} onChange={(e) => handleInputChange(e, 'title')} placeholder="Title here"></input>
+                                    <p className="error-message">{formData.title.error}</p>
                                 </div>
                                 <div class="column">
                                     <label for="org">Institution/Organization</label>
                                     <input type="text" id="org" value={formData.org.value} onChange={(e) => handleInputChange(e, 'org')} placeholder="Institute/Organization"></input>
+                                    <p className="error-message">{formData.org.error}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -161,7 +185,7 @@ function ArticleForm() {
                                 </div>
                                 
                             </div>
-                            <button onClick={(e) => handleUpload(e)}>Submit</button>
+                            {articleFile ? <button onClick={(e) => handleUpload(e)}>Submit</button> : null}
                         </form>
                     </div>  
                 </div>

@@ -1,0 +1,50 @@
+@font-face {
+    font-family: "Station";
+    src: url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.eot");
+    src: url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/4fc7a085792340fab7ee70d72018b0ab.svg#Station")format("svg");
+}
+  
+@font-face {
+    font-family: "Budmo W00 Solid";
+    src: url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.eot");
+    src: url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/4c4a8b4f494bf44c6891cbd63789c881.svg#Budmo W00 Solid")format("svg");
+}
+
+
+.App {
+    text-align: center;
+}
+  
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.admin {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 100vh;
+    background-image: url("../public/img/article-background.png");
+    background-color: #ffffff;
+  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.nav-panel {
+
+}
+
+.main-panel {
+    
+}
+

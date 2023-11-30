@@ -35,14 +35,19 @@ export function AuthProvider(props) {
                     role: decodedToken.data.role,
                 });
 
-                //checkuser role if admin or not
-                isAdmin();
             };
     
             initializeUser();
         }
     }, []);
 
+
+    useEffect(() => {
+        if (user) {
+            isAdmin();
+        }
+    }, [user]);
+    
     //to ensure that admin state is preserved depending on the user
 
     const login = (token) => {
