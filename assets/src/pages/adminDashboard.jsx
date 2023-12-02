@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import '../adminStyle.css';
 import { Table } from 'reactstrap';
 import axios from "axios";
@@ -6,15 +6,15 @@ import { useAuth } from "../Context/AuthContext";
 
 function Admin () {
     const { token } = useAuth();
-    const [articleData, setArticle] = useState(null);
+    const [articleData, setArticle] = useState([]);
+    const [members, setMembers] = useState([]);
 
     useEffect (() => {
         fetchArticles();
-
+        fetchMembers();
     }, []);
 
     const fetchArticles = async () => {
-        e.preventDefault();
 
         try {
             const response = await axios.get("http://localhost:8080/TESOL/controller/Articles.php", {
@@ -22,12 +22,33 @@ function Admin () {
                     'Authorization': `Bearer ${token}`,
                 }
             });
-            const { status } = response.data;
             if(status === 1) {
-                setArticle(response.data.data);
+                setArticle(data);
             }
             else {
-                console.log('no response.');
+                console.log('no response: ');
+            }
+            
+        } catch(error) {
+            console.log("Error fetching data: ", error);
+        }
+    }
+
+    const fetchMembers = async () => {
+
+        try {
+            const response = await axios.get("http://localhost:8080/TESOL/controller/Members.php", {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
+            console.log(response.data.data);
+            const { status, data } = response.data;
+            if(status === 1) {
+                setMembers(data);
+            }
+            else {
+                console.log('no response: ');
             }
             
         } catch(error) {
@@ -75,76 +96,6 @@ function Admin () {
                         </div>
                     </div>
 
-                    <div className="col-md-12 d-flex justify-content-center align-items-center" id="submittedrequests">
-                        <div className="col-md-8">
-                            <Table responsive striped>
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            User ID
-                                        </th>
-                                        <th>
-                                            Title
-                                        </th>
-                                        <th>
-                                            Institution
-                                        </th>
-                                        <th>
-                                            Filepath/Filename
-                                        </th>
-                                        <th>
-                                            Status
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                    <th scope="row">
-                                        1
-                                    </th>
-                                    <td>
-                                        Mark
-                                    </td>
-                                    <td>
-                                        Otto
-                                    </td>
-                                    <td>
-                                        @mdo
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">
-                                        2
-                                    </th>
-                                    <td>
-                                        Jacob
-                                    </td>
-                                    <td>
-                                        Thornton
-                                    </td>
-                                    <td>
-                                        @fat
-                                    </td>
-                                    </tr>
-                                    <tr>
-                                    <th scope="row">
-                                        3
-                                    </th>
-                                    <td>
-                                        Larry
-                                    </td>
-                                    <td>
-                                        the Bird
-                                    </td>
-                                    <td>
-                                        @twitter
-                                    </td>
-                                    </tr>
-                                </tbody>
-                            </Table>
-                        </div>
-                    </div>
-
                     
                     <div className="col-md-12 d-flex justify-content-center align-items-center">
                         <div className="col-md-8">
@@ -169,20 +120,52 @@ function Admin () {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {articleData.map((article,index) => {
+                                    {articleData.map((article,index) => (
                                         <tr key={index}>
                                             <th scope="row">{article.userID}</th>
                                             <td>{article.title}</td>
                                             <td>{article.org}</td>
                                             <td>{article.path}</td>
                                         </tr>
-                                    })}
+                                    ))}
                                 </tbody>
                             </Table>
                         </div>                          
 
                     </div>
                     
+                    <div className="col-md-12 d-flex justify-content-center align-items-center">
+                        <div className="col-md-8">
+                            <Table responsive striped>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            User ID
+                                        </th>
+                                        <th>
+                                            Username
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {members.map((members,index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{members.userID}</th>
+                                            <td>{members.userName}</td>
+                                            <td>{members.email}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </div>                          
+
+                    </div>
 
                     
                 </div>

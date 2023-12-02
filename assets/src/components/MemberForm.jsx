@@ -250,6 +250,17 @@ function MemberForm({handleSubmit}){
                 checkPass: {...prevState.checkPass,value: '', error: ''}
             }));
         };
+
+                                        <tbody>
+                                    {articleData.map((article,index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{article.userID}</th>
+                                            <td>{article.title}</td>
+                                            <td>{article.org}</td>
+                                            <td>{article.path}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
         */
 
     }
