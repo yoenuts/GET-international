@@ -102,7 +102,7 @@ function ArticleForm() {
         articleData.append("org", formData.org.value);
         
         try {
-            const response =  await axios.post("http://localhost:8080/TESOL/controller/submitArticle.php", articleData, 
+            const response =  await axios.post("http://localhost:8080/TESOL/controller/Articles.php", articleData, 
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,

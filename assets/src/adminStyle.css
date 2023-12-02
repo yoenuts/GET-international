@@ -40,11 +40,67 @@ html, body {
     background-size: cover;
 }
 
-.nav-panel {
 
+.nav-panel{
+    background-color: #ffffff;
+    /*
+    max-width: 80%;
+    min-height: 650px;
+    padding: 35px 50px;
+    */
+    border-radius: 10px;
+    box-shadow: 20px 30px 25px rgba(0,0,0,0.15);
 }
 
-.main-panel {
+.panel-header {
+    max-width: 100%;
+    min-height: 40vh;
+    background-image: url("../public/img/article-background.png");
+    background-color: #ffffff;
+  
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+/*
+.panel-cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel-cards .column {
+    background-color: pink;
+    max-width: 100px;
+    max-height: auto;
+}
+*/
+
+.panel-cards {
+    position: relative;
+    top: -80px; /* Adjust this value to control the overlap */
+    z-index: 1;
+}
+
+/*
+#cardset {
+    position: relative;
+    top: -50px;
     
 }
+*/
+#card {
+    margin: 10px;
+    max-width: 400px;
+    max-height: 300px;
+    background-color: #ffffff;
+    border: 1px solid #c9bebe;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+
+
 
