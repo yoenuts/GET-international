@@ -4,6 +4,10 @@ import { Table } from 'reactstrap';
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+
 function Admin () {
     const { token } = useAuth();
     const [articleData, setArticle] = useState([]);
@@ -22,6 +26,7 @@ function Admin () {
                     'Authorization': `Bearer ${token}`,
                 }
             });
+            const { status, data } = response.data;
             if(status === 1) {
                 setArticle(data);
             }
@@ -42,7 +47,8 @@ function Admin () {
                     'Authorization': `Bearer ${token}`,
                 }
             });
-            console.log(response.data.data);
+            console.log('response here: ', response);
+            //console.log(response.data.data);
             const { status, data } = response.data;
             if(status === 1) {
                 setMembers(data);
@@ -56,6 +62,44 @@ function Admin () {
         }
     }
 
+    const deleteRequest = async (endpoint, id) => {
+        try {
+            const response = await axios.delete(`http://localhost:8080/TESOL/controller/${endpoint}.php`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+                data: {
+                    id,
+                }
+            });
+            console.log('response here: ', response);
+            //console.log(response.data.data);
+            const { status, data } = response.data;
+            if(status === 1) {
+                console.log('deleted data');
+
+                if (endpoint === 'Articles') {
+                    fetchArticles();
+                } 
+                else if (endpoint === 'Members') {
+                    fetchMembers();
+                }
+            }
+            else {
+                console.log('no response: ');
+            }
+
+
+        } catch (error) {
+            console.log("Error deleting data: ", error);
+        }
+    }
+
+    const addToArchive = () => {
+        
+    }
+
+
 
     return(
         <div className="Admin">
@@ -64,7 +108,7 @@ function Admin () {
                     <div className="col-md-12">
                         <div className="panel-header">
                             hello???????
-                            this is me this is real im exctly where im supposed to be
+                            
                         </div>
                     </div>
                     <div className="col-md-12">
@@ -103,16 +147,16 @@ function Admin () {
                                 <thead>
                                     <tr>
                                         <th>
+                                            Request ID
+                                        </th>
+                                        <th>
                                             User ID
                                         </th>
                                         <th>
                                             Title
                                         </th>
                                         <th>
-                                            Institution
-                                        </th>
-                                        <th>
-                                            Filepath/Filename
+                                            Organization
                                         </th>
                                         <th>
                                             Status
@@ -122,10 +166,19 @@ function Admin () {
                                 <tbody>
                                     {articleData.map((article,index) => (
                                         <tr key={index}>
-                                            <th scope="row">{article.userID}</th>
+                                            <th scope="row">{article.articleID}</th>
+                                            <td>{article.userID}</td>
                                             <td>{article.title}</td>
                                             <td>{article.org}</td>
-                                            <td>{article.path}</td>
+                                            
+                                            <td>
+                                                <FontAwesomeIcon icon={faCheck} />
+                                                
+                                                <button type="button" onClick={() => deleteRequest('Articles', article.articleID)}>
+                                                    <FontAwesomeIcon icon={faTrashCan} />
+                                                </button>
+                                                
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
@@ -148,18 +201,29 @@ function Admin () {
                                         <th>
                                             Email
                                         </th>
+
                                         <th>
                                             Status
                                         </th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {members.map((members,index) => (
+                                    {members.map((member,index) => (
                                         <tr key={index}>
-                                            <th scope="row">{members.userID}</th>
-                                            <td>{members.userName}</td>
-                                            <td>{members.email}</td>
+                                            <th scope="row">{member.userID}</th>
+                                            <td>{member.userName}</td>
+                                            <td>{member.email}</td>
+                                            { member.userID !== 1 && 
+                                                (
+                                                    <td>
+                                                        <button type="button" onClick={() => deleteRequest('Members', member.userID)}>
+                                                            <FontAwesomeIcon icon={faTrashCan} />
+                                                        </button>
+                                                    </td>
+                                                )
+                                            }
                                         </tr>
+
                                     ))}
                                 </tbody>
                             </Table>

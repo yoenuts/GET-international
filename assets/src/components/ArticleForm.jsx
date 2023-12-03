@@ -25,7 +25,7 @@ function ArticleForm() {
     };
 
     const resetForm = () => {
-        setLogInputState((prevState) => ({
+        setFormData((prevState) => ({
             ...prevState,
             title: {value: '', error: ''},
             org: {value: '', error: ''},
@@ -110,8 +110,8 @@ function ArticleForm() {
                 }
             });
 
+            console.log(response.data);
             resetForm();
-            //console.log(response);
 
         } catch  (error) {
             console.log("error signing up. ", error);
