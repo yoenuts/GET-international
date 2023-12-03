@@ -7,11 +7,17 @@ import { useAuth } from "../Context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import ArchiveForm from "../components/ArchiveForm";
 
 function Admin () {
     const { token } = useAuth();
     const [articleData, setArticle] = useState([]);
     const [members, setMembers] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+
+    const handleShowForm = () => {
+        setShowForm(true);
+    }
 
     useEffect (() => {
         fetchArticles();
@@ -172,12 +178,15 @@ function Admin () {
                                             <td>{article.org}</td>
                                             
                                             <td>
-                                                <FontAwesomeIcon icon={faCheck} />
+                                                <button className="tableButton" type="button" onClick={handleShowForm}>
+                                                    <FontAwesomeIcon icon={faCheck} />
+                                                </button>
                                                 
-                                                <button type="button" onClick={() => deleteRequest('Articles', article.articleID)}>
+                                                <button className="tableButton" type="button" onClick={() => deleteRequest('Articles', article.articleID)}>
                                                     <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
                                                 
+                                                {showForm && <ArchiveForm setShowForm={setShowForm} />}
                                             </td>
                                         </tr>
                                     ))}
