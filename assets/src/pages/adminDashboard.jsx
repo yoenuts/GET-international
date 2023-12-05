@@ -13,31 +13,49 @@ function Admin () {
     const { token } = useAuth();
     const [articleData, setArticle] = useState([]);
     const [members, setMembers] = useState([]);
+    const [archive, setArchive] = useState([]);
     const [showForm, setShowForm] = useState(false);
 
-    const handleShowForm = () => {
+    //create a prop
+
+    const [articleID, setArticleID] = useState();
+
+    const handleShowForm = (articleID) => {
+        setArticleID(articleID);
         setShowForm(true);
     }
 
     useEffect (() => {
-        fetchArticles();
-        fetchMembers();
+        fetchData('Articles');
+        fetchData('Members');
+        fetchData('Archives');
     }, []);
 
-    const fetchArticles = async () => {
 
+    const fetchData = async (endpoint) => {
         try {
-            const response = await axios.get("http://localhost:8080/TESOL/controller/Articles.php", {
+            const response = await axios.get(`http://localhost:8080/TESOL/controller/${endpoint}.php`, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 }
             });
             const { status, data } = response.data;
             if(status === 1) {
-                setArticle(data);
+                if(endpoint === 'Articles') {
+                    setArticle(data);
+                }
+                else if (endpoint === 'Members') {
+                    setMembers(data);
+                }
+                else {
+                    setArchive(data);
+                    console.log("hi");
+                }
+
             }
             else {
-                console.log('no response: ');
+                console.log('no response: ', endpoint);
+                console.log(response);
             }
             
         } catch(error) {
@@ -45,28 +63,6 @@ function Admin () {
         }
     }
 
-    const fetchMembers = async () => {
-
-        try {
-            const response = await axios.get("http://localhost:8080/TESOL/controller/Members.php", {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                }
-            });
-            console.log('response here: ', response);
-            //console.log(response.data.data);
-            const { status, data } = response.data;
-            if(status === 1) {
-                setMembers(data);
-            }
-            else {
-                console.log('no response: ');
-            }
-            
-        } catch(error) {
-            console.log("Error fetching data: ", error);
-        }
-    }
 
     const deleteRequest = async (endpoint, id) => {
         try {
@@ -101,9 +97,6 @@ function Admin () {
         }
     }
 
-    const addToArchive = () => {
-        
-    }
 
 
 
@@ -178,7 +171,7 @@ function Admin () {
                                             <td>{article.org}</td>
                                             
                                             <td>
-                                                <button className="tableButton" type="button" onClick={handleShowForm}>
+                                                <button className="tableButton" type="button" onClick={() => handleShowForm(article.articleID)}>
                                                     <FontAwesomeIcon icon={faCheck} />
                                                 </button>
                                                 
@@ -186,7 +179,7 @@ function Admin () {
                                                     <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
                                                 
-                                                {showForm && <ArchiveForm setShowForm={setShowForm} />}
+                                                {showForm && articleID === article.articleID && (<ArchiveForm setShowForm={setShowForm} articleID={articleID} />)}
                                             </td>
                                         </tr>
                                     ))}
@@ -198,7 +191,7 @@ function Admin () {
                     
                     <div className="col-md-12 d-flex justify-content-center align-items-center">
                         <div className="col-md-8">
-                            <Table responsive striped>
+                            <Table responsive>
                                 <thead>
                                     <tr>
                                         <th>
@@ -240,6 +233,48 @@ function Admin () {
 
                     </div>
 
+                    <div className="col-md-12 d-flex justify-content-center align-items-center">
+                        <div className="col-md-8">
+                            <Table responsive striped>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Archive ID
+                                        </th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Volume
+                                        </th>
+                                        <th>
+                                            Author
+                                        </th>
+                                        <th>
+                                            Org
+                                        </th>
+                                        <th>
+                                            Abstract
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {archive.map((archive,index) => (
+                                        <tr key={index}>
+                                            <th scope="row">{archive.archiveID}</th>
+                                            <td>{archive.title}</td>
+                                            <td>{archive.volume}</td>
+                                            <td>{archive.author}</td>
+                                            <td>{archive.org}</td>
+                                            <td>{archive.abstract}</td>                                           
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </Table>
+                        </div>                          
+
+                    </div>
                     
                 </div>
             
