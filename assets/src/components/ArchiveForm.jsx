@@ -159,8 +159,6 @@ function ArchiveForm({setShowForm, articleID}) {
         archiveData.append("abstract", archive.abstract.value);
         archiveData.append("img", imageFile);
         
-        console.log(...archiveData);
-        console.log("hoy");
 
         try {
             const response = await axios.post("http://localhost:8080/TESOL/controller/Archives.php", archiveData, {
@@ -172,16 +170,39 @@ function ArchiveForm({setShowForm, articleID}) {
             const { status } = response.data;
             if(status === 1) {
                 console.log("successful!");
+
+                try {
+                    const deleteResponse = await axios.delete(`http://localhost:8080/TESOL/controller/Articles.php`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                        data: {
+                            articleID: articleID,
+                        },
+                    });
+                    
+                    const { status } = deleteResponse.data;
+                    if (status === 1) {
+                        console.log('Article deleted from Articles table');
+                        setShowForm(false);
+                    } else {
+                        console.log(deleteResponse);
+                        console.log('Failed to delete article from Articles table');
+                    }
+
+                } catch (deleteError) {
+                    console.log("Error deleting article from Articles table: ", deleteError);
+                }
+            } else {
+                console.log("No data response: ", response);
             }
-            else {
-                console.log('no response: ', response);
-            }
+
             
         } catch(error) {
             console.log("Error fetching data: ", error);
         }
 
-        setShowForm(false);
+        
     }
 
     return ( 

@@ -88,6 +88,8 @@ class Home extends React.Component {
                                             -recognized for quality English language trainings, seminar, workshops, and conference. It aims to provide relevant, quality, 
                                             and accessible seminar; to deliver innovative, and interactive workshops, and, to produce highly competitive and functional trainings 
                                             for teachers and other professions.
+
+                                            
                                         </h5>
                                     </div>
                             </div>

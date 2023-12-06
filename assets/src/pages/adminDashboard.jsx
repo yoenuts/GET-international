@@ -7,6 +7,7 @@ import { useAuth } from "../Context/AuthContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import ArchiveForm from "../components/ArchiveForm";
 
 function Admin () {
@@ -49,7 +50,8 @@ function Admin () {
                 }
                 else {
                     setArchive(data);
-                    console.log("hi");
+                    
+                    
                 }
 
             }
@@ -64,28 +66,78 @@ function Admin () {
     }
 
 
-    const deleteRequest = async (endpoint, id) => {
+    const deleteArticle = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8080/TESOL/controller/${endpoint}.php`, {
+            console.log(id);
+            const response = await axios.delete(`http://localhost:8080/TESOL/controller/Articles.php`,
+            {
                 headers: {
                     'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
                 },
-                data: {
-                    id,
-                }
+                data: { articleID: id }, 
+                
+            });
+            console.log(response);
+            //console.log(response.data.data);
+            const { status, data } = response.data;
+            if(status === 1) {
+                fetchData('Articles');
+            }
+            else {
+                console.log(id);
+                console.log('status not == 1');
+            }
+
+
+        } catch (error) {
+            console.log("Error deleting data: ", error);
+        }
+    }
+
+    const deleteMembers = async (id) => {
+    
+        try {
+            const response = await axios.delete(`http://localhost:8080/TESOL/controller/Members.php`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                data: {userID: id},
             });
             console.log('response here: ', response);
             //console.log(response.data.data);
             const { status, data } = response.data;
             if(status === 1) {
                 console.log('deleted data');
+                fetchData('Members');
+            }
+            else {
+                console.log('no response: ');
+            }
 
-                if (endpoint === 'Articles') {
-                    fetchArticles();
-                } 
-                else if (endpoint === 'Members') {
-                    fetchMembers();
-                }
+
+        } catch (error) {
+            console.log("Error deleting data: ", error);
+        }
+    }
+
+    const deleteArchive = async (id) => {
+    
+        try {
+            const response = await axios.delete(`http://localhost:8080/TESOL/controller/Archives.php`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                data: {archiveID: id},
+            });
+            console.log('response here: ', response);
+            //console.log(response.data.data);
+            const { status, data } = response.data;
+            if(status === 1) {
+                console.log('deleted data');
+                fetchData('Archives');
             }
             else {
                 console.log('no response: ');
@@ -106,7 +158,7 @@ function Admin () {
                 <div className="main-panel">
                     <div className="col-md-12">
                         <div className="panel-header">
-                            hello???????
+                            dude help me pls 
                             
                         </div>
                     </div>
@@ -158,7 +210,7 @@ function Admin () {
                                             Organization
                                         </th>
                                         <th>
-                                            Status
+                                            
                                         </th>
                                     </tr>
                                 </thead>
@@ -175,10 +227,10 @@ function Admin () {
                                                     <FontAwesomeIcon icon={faCheck} />
                                                 </button>
                                                 
-                                                <button className="tableButton" type="button" onClick={() => deleteRequest('Articles', article.articleID)}>
+                                                <button className="tableButton" type="button" onClick={() => deleteArticle(article.articleID)}>
                                                     <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
-                                                
+
                                                 {showForm && articleID === article.articleID && (<ArchiveForm setShowForm={setShowForm} articleID={articleID} />)}
                                             </td>
                                         </tr>
@@ -205,7 +257,7 @@ function Admin () {
                                         </th>
 
                                         <th>
-                                            Status
+                                            
                                         </th>
                                     </tr>
                                 </thead>
@@ -218,7 +270,7 @@ function Admin () {
                                             { member.userID !== 1 && 
                                                 (
                                                     <td>
-                                                        <button type="button" onClick={() => deleteRequest('Members', member.userID)}>
+                                                        <button type="button" onClick={() => deleteMembers(member.userID)}>
                                                             <FontAwesomeIcon icon={faTrashCan} />
                                                         </button>
                                                     </td>
@@ -256,7 +308,9 @@ function Admin () {
                                         <th>
                                             Abstract
                                         </th>
-
+                                        <th>
+                                            
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -267,7 +321,18 @@ function Admin () {
                                             <td>{archive.volume}</td>
                                             <td>{archive.author}</td>
                                             <td>{archive.org}</td>
-                                            <td>{archive.abstract}</td>                                           
+                                            <td>{archive.abstract}</td>  
+
+                                            <td>
+                                                <button type="button" onClick={() => deleteArchive(archive.archiveID)}>
+                                                    <FontAwesomeIcon icon={faTrashCan} />
+                                                </button>
+
+                                                <button className="tableButton" type="button" >
+                                                    <FontAwesomeIcon icon={faEdit} />
+                                                </button>
+
+                                            </td>                                         
                                         </tr>
                                     ))}
                                 </tbody>

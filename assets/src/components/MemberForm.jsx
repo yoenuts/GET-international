@@ -13,19 +13,22 @@ const EMAIL_REGEX = /\S+@\S+\.\S+/;
 const initialState = {
     email: {value: '', error: ''},
     password: {value: '', error: 'Note: Must contain Atleast One Lowercase and Uppercase letter, One Number and One Symbol.'},
-    name: {value: '', error: ''},
-    checkPass: {value: '', error: ''}
+    name: {value: '', error: 'Note: Minimum of 3-23 characters.'},
+    checkPass: {value: '', error: ''},
+    error: '',
 }
+
 
 function MemberForm({handleSubmit}){
 
     //one state to check for the error and the data itself
     const [signInputs, setSignInputState] = useState(initialState);
-
     const [logInputs, setLogInputState] = useState({
         userIdentity: {value: '', error: ''},
-        password: {value: '', error: ''}
+        password: {value: '', error: ''},
+        error: '',
     });
+    const [formMessage, setFormMessage] = useState(false);
 
     //CHANGES IN FORM INPUT
 
@@ -89,7 +92,7 @@ function MemberForm({handleSubmit}){
             valid = false;
         }
         else if(!EMAIL_REGEX.test(signInputs.email.value)) {
-            console.log("email regex");
+
             setSignInputState((prevState) => ({
                 ...prevState,
                 email: {...prevState.email, error: 'Invalid email format.'}
@@ -183,7 +186,7 @@ function MemberForm({handleSubmit}){
 
             // Destructure the response.data object
             console.log(response);
-            const { status, token } = response.data;
+            const { status, token, message } = response.data;
             
             if (status === 1) {
                 console.log(token);
@@ -224,16 +227,23 @@ function MemberForm({handleSubmit}){
                 }
             });
 
-            console.log("this:", response);
-            const { status } = response.data;
+            console.log(response);
+            const { status, message } = response.data;
 
             if(status === 1) {
                 resetForm();
+                setSignInputState((prevState) => ({
+                    ...prevState,
+                    error: 'Sign up was successful. Try logging in to your account.',
+                }));
+
             } else {
-                console.log('no response');
+                setSignInputState((prevState) => ({
+                    ...prevState,
+                    error: message || 'Invalid Email/Username or Password.',
+                }));
             }
 
-            
 
         } catch (error) {
             console.log("Error signing up:", error);
@@ -282,7 +292,7 @@ function MemberForm({handleSubmit}){
                     <h5>Welcome Back!</h5>
                     <Form>
                         <Form.Group className="mb-3" controlId="logFormEmail">
-                            <Form.Control type="text" placeholder="Email Address/Username" value={logInputs.userIdentity.value} onChange={(e) => handleInputChange(e, "userIdentity", setLogInputState)} />
+                            <Form.Control type="text" placeholder="Email Address" value={logInputs.userIdentity.value} onChange={(e) => handleInputChange(e, "userIdentity", setLogInputState)} />
                             <Form.Text className="text-muted" >
                                 {logInputs.userIdentity.error}
                             </Form.Text>
@@ -304,6 +314,7 @@ function MemberForm({handleSubmit}){
                 <Modal.Body>
                     <h5>Or Sign up for a New Account</h5>
                     <Form>
+                        <Form.Text className="text-muted">{signInputs.error}</Form.Text>
                         <Form.Group className="mb-3" controlId="signformEmail">
                             <Form.Control type="email" placeholder="Email Address" value={signInputs.email.value} onChange={(e) => handleInputChange(e, "email", setSignInputState)} />
                             <Form.Text className="text-muted" >
