@@ -28,7 +28,9 @@ function MemberForm({handleSubmit}){
         password: {value: '', error: ''},
         error: '',
     });
-    const [formMessage, setFormMessage] = useState(false);
+
+    const[verified, setVerified] = useState(false);
+    //const [formMessage, setFormMessage] = useState(false);
 
     //CHANGES IN FORM INPUT
 
@@ -189,7 +191,7 @@ function MemberForm({handleSubmit}){
             const { status, token, message } = response.data;
             
             if (status === 1) {
-                console.log(token);
+                //console.log(token);
                 handleSubmit(token);
 
 
@@ -234,7 +236,7 @@ function MemberForm({handleSubmit}){
                 resetForm();
                 setSignInputState((prevState) => ({
                     ...prevState,
-                    error: 'Sign up was successful. Try logging in to your account.',
+                    error: 'Sign up succesful. Verify email to login.',
                 }));
 
             } else {

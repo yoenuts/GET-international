@@ -177,7 +177,7 @@ function ArchiveForm({setShowForm, articleID}) {
                             'Authorization': `Bearer ${token}`,
                         },
                         data: {
-                            articleID: articleID,
+                            articleID: archive.ID.value,
                         },
                     });
                     
@@ -187,6 +187,7 @@ function ArchiveForm({setShowForm, articleID}) {
                         setShowForm(false);
                     } else {
                         console.log(deleteResponse);
+                        console.log(archive.ID.value);
                         console.log('Failed to delete article from Articles table');
                     }
 

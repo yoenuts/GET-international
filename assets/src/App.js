@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 import './App.css';
 import NavBar from './components/Navbar';
+import VerifyForm from './components/VerifyForm';
 import Home from './pages/home';
 import About from './pages/about';
 import Academics from './pages/academics';
@@ -39,6 +40,7 @@ const App = () => {
         <Route  path='/memberForm' element={<MemberForm />}></Route>
         <Route  path='/AdminDashboard' element={<Admin />}></Route>
         <Route  path='/dashboard' element={<UserPage />}></Route>
+        <Route  path='/verifyAccount' element={<VerifyForm />}></Route>
       </Routes>
       <Footer />
     </div>

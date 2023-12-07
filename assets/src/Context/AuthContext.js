@@ -10,7 +10,8 @@ export function useAuth(){
 
 export function AuthProvider(props) {
     const [token, setToken] = useState(localStorage.getItem('token') || null);
-    const [user,setUser] = useState(null);
+    const [user, setUser] = useState(null);
+    const [ userID , setUserID] = useState(null);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [admin, setAdmin] = useState(false);
 
@@ -34,6 +35,8 @@ export function AuthProvider(props) {
                     name: decodedToken.data.name,
                     role: decodedToken.data.role,
                 });
+
+                setUserID(decodedToken.data.user);
 
             };
     
@@ -90,6 +93,7 @@ export function AuthProvider(props) {
     const value = {
         token,
         user,
+        userID,
         getUserId,
         admin,
         isAdmin,
