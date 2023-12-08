@@ -3,13 +3,13 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 const OTPRegex = /^[0-9]+$/;
 
-function VerifyForm() {
+function VerifyForm({handleVerifySubmit}) {
 
     const [code, setCode] = useState({
-        value: '', error: ''
+        value: '', error: '', action: 'verifyUser',
     });
 
     const handleInputChange = (event) => {
@@ -49,6 +49,40 @@ function VerifyForm() {
 
     }
 
+    const handleVerifyForm = async () => {
+
+        if(!isValid()) {
+            return;
+        }
+
+        try {
+            const response = await axios.post('http://localhost:8080/TESOL/controller/Verify.php', JSON.stringify(code), 
+            {
+                headers: {
+                    'Content-Type' : 'application/json',
+                }
+            });
+
+            console.log(response);
+            const { status, message } = response.data;
+
+            if(status === 1) {
+                handleVerifySubmit(true);
+            } else {
+                setCode((prevState) => ({
+                    ...prevState,
+                    value: '', error: message,
+                }));
+            }
+
+
+        } catch (error) {
+            console.log("Error verifying up:", error);
+            //resetForm();
+        }
+
+    }
+
     return (
         <div className='verifyForm'>
             <Modal
@@ -75,7 +109,7 @@ function VerifyForm() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button>Verify</Button>
+                    <Button onClick={() => handleVerifyForm()}>Verify</Button>
                     <Link Link to='/'>
                         <Button>Return to Homepage</Button>
                     </Link>

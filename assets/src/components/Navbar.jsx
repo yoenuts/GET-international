@@ -1,3 +1,23 @@
+import axios from "axios";
+
+export const verifyUser = async (userID) => {
+	try {
+	  const response = await axios.post('http://localhost:8080/TESOL/controller/Verify.php', {
+		userID,
+		action: 'fetchStatus',
+	  }, {
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+	  });
+  
+	  return response.data;
+	} catch (error) {
+	  console.error('Error in API request:', error);
+	  throw error; // Rethrow the error to be caught by the component
+	}
+};
+
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -5,12 +25,11 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import VerifyForm from './VerifyForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'
+import '../App.css';
 import { useAuth } from "../Context/AuthContext";
 import MemberForm from "./MemberForm";
-import axios from "axios";
-
 
 const LINKS = [
 	{
@@ -37,12 +56,6 @@ const LINKS = [
 		page: "CONTACT",
 		link: "/contact",
 	},
-	/*
-    {
-		page: "ACADEMICS",
-		link: "/academics",
-	},
-	*/
     {
 		page: "RESEARCH",
 		link: "/research",
@@ -80,33 +93,17 @@ function NavBar() {
 	}
 
 	const handleVerifySubmit = () => {
+		
 		setShowVerify(false);
 	}
 
 	useEffect(() => {
-		// When showVerify becomes true, set setShowForm to false
-		if (showVerify) {
-		  setShowForm(false);
-		}
-	
-		// Your existing logic for fetching user status
+		// fetch user status if user is not an admin and user is logged in
 		const fetchUserStatus = async () => {
 		  try {
-			if (!admin && isLoggedin) {
-			  const response = await axios.post("http://localhost:8080/TESOL/controller/Verify.php", { userID }, {
-				headers: {
-				  'Content-Type': 'application/json',
-				}
-			  });
-	
-			  console.log(response);
-			  const { status } = response.data;
-	
-			  if (status === 1) {
+			if (!admin && isLoggedin && !userStatus) {
+				const {status} = await verifyUser(userID);
 				setUserStatus(true);
-			  } else {
-				setUserStatus(false);
-			  }
 			}
 		  } catch (error) {
 			console.error("Error fetching user status:", error);
@@ -115,7 +112,7 @@ function NavBar() {
 	
 		// Fetch user status when the component mounts or when isLoggedin or admin changes
 		fetchUserStatus();
-	  }, [showVerify, admin, isLoggedin, userID]);
+	}, [admin, isLoggedin, userID, userStatus]);
 
 
 
@@ -194,7 +191,7 @@ function NavBar() {
 
 						{
 							showVerify && (
-								<VerifyForm />
+								<VerifyForm handleVerifySubmit={handleVerifySubmit}/>
 							)
 						}
 					</Nav>

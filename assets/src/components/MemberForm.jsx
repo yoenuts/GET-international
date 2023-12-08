@@ -29,9 +29,6 @@ function MemberForm({handleSubmit}){
         error: '',
     });
 
-    const[verified, setVerified] = useState(false);
-    //const [formMessage, setFormMessage] = useState(false);
-
     //CHANGES IN FORM INPUT
 
     const handleInputChange = (event, propName, setState) => {
@@ -210,7 +207,7 @@ function MemberForm({handleSubmit}){
             resetForm();
         }
         
-        //signal archives page that user has logged in thru JWT token
+
 
     }
 
@@ -251,29 +248,7 @@ function MemberForm({handleSubmit}){
             console.log("Error signing up:", error);
             resetForm();
         }
-        /*
-        //wont work because setInputState is asynchronous so i tmay not read the state of input after handle submit executes.
-        if(handleSubmit("signup", extractData(signInputs))){
-            setSignInputState((prevState) => ({
-                ...prevState,
-                email: {...prevState.email,value: '', error: ''},
-                password: {...prevState.password,value: '', error: 'Note: Must contain Atleast One Lowercase and Uppercase letter, One Number and One Symbol.'},
-                name: {...prevState.name,value: '', error: ''},
-                checkPass: {...prevState.checkPass,value: '', error: ''}
-            }));
-        };
-
-                                        <tbody>
-                                    {articleData.map((article,index) => (
-                                        <tr key={index}>
-                                            <th scope="row">{article.userID}</th>
-                                            <td>{article.title}</td>
-                                            <td>{article.org}</td>
-                                            <td>{article.path}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-        */
+        
 
     }
 
