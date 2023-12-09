@@ -65,14 +65,14 @@ function ArchiveForm({setShowForm, articleID}) {
     const handleInputChange = (event, propName) => {
         const { value } = event.target;
 
-        console.log("before update: ", archive);
+        
 
         setArchive((prevState) => ({
             ...prevState,
             [propName]: { value, error: '' }
         }));
 
-        console.log("after update: ", archive);
+        
     };
 
     const resetForm = () => {
@@ -144,9 +144,6 @@ function ArchiveForm({setShowForm, articleID}) {
 
         if(!formValid()) {
             console.log("form not valid");
-            console.log(archive.title.value);
-            console.log(archive.abstract.value);
-            console.log(archive.author.value);
             return;
         }
 
@@ -172,13 +169,14 @@ function ArchiveForm({setShowForm, articleID}) {
                 console.log("successful!");
 
                 try {
-                    const deleteResponse = await axios.delete(`http://localhost:8080/TESOL/controller/Articles.php`, {
+                    const deleteResponse = await axios.delete(`http://localhost:8080/TESOL/controller/Articles.php` ,{
                         headers: {
                             'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json',
                         },
                         data: {
-                            articleID: archive.ID.value,
-                        },
+                            articleID: archive.ID.value
+                        }
                     });
                     
                     const { status } = deleteResponse.data;
@@ -187,7 +185,7 @@ function ArchiveForm({setShowForm, articleID}) {
                         setShowForm(false);
                     } else {
                         console.log(deleteResponse);
-                        console.log(archive.ID.value);
+                        
                         console.log('Failed to delete article from Articles table');
                     }
 

@@ -1,27 +1,6 @@
 import axios from "axios";
-
-export const verifyUser = async (userID) => {
-	try {
-	  const response = await axios.post('http://localhost:8080/TESOL/controller/Verify.php', {
-		userID,
-		action: 'fetchStatus',
-	  }, {
-		headers: {
-		  'Content-Type': 'application/json',
-		},
-	  });
-  
-	  return response.data;
-	} catch (error) {
-	  console.error('Error in API request:', error);
-	  throw error; // Rethrow the error to be caught by the component
-	}
-};
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -30,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 import { useAuth } from "../Context/AuthContext";
 import MemberForm from "./MemberForm";
+import { Container } from "reactstrap";
 
 const LINKS = [
 	{
@@ -84,35 +64,49 @@ function NavBar() {
 		));
 		}
 	**/
-
 	//when user logs in, handle these states
-	const handleSubmit = (token) => {
+	useEffect(() => {
+		fetchUserStatus();
+	}, [userStatus, isLoggedin]);
+
+	const handleSubmit = async (token) => {
 		login(token)
 		setShowForm(false);
-
-	}
-
-	const handleVerifySubmit = () => {
 		
-		setShowVerify(false);
 	}
 
-	useEffect(() => {
-		// fetch user status if user is not an admin and user is logged in
-		const fetchUserStatus = async () => {
-		  try {
-			if (!admin && isLoggedin && !userStatus) {
-				const {status} = await verifyUser(userID);
+	const handleVerifySubmit = async () => {
+		setShowVerify(false);
+		setUserStatus(true);
+	}
+
+
+	const fetchUserStatus = async () => {
+		try {
+		  if (!admin && isLoggedin) {
+			  const response = await axios.post('http://localhost:8080/TESOL/controller/Verify.php', {
+				  userID,
+				  action: 'fetchStatus',
+			  }, {
+				  headers: {
+				  'Content-Type': 'application/json',
+				  },
+			  });
+
+			  const {status} = response.data;
+			  
+			  console.log(response);
+			  if( status === 1) {
 				setUserStatus(true);
-			}
-		  } catch (error) {
-			console.error("Error fetching user status:", error);
+			  } else {
+				  console.log('Not verified yet');
+			  }
+			  
 		  }
-		};
-	
-		// Fetch user status when the component mounts or when isLoggedin or admin changes
-		fetchUserStatus();
-	}, [admin, isLoggedin, userID, userStatus]);
+		} catch (error) {
+		  console.error("Error fetching user status:", error);
+		}
+	};
 
 
 
@@ -138,6 +132,7 @@ function NavBar() {
 		  </NavDropdown>
 		);
 	  }
+
 
 
 	return(

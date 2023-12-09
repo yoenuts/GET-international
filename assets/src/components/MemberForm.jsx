@@ -233,7 +233,7 @@ function MemberForm({handleSubmit}){
                 resetForm();
                 setSignInputState((prevState) => ({
                     ...prevState,
-                    error: 'Sign up succesful. Verify email to login.',
+                    error: 'Sign up succesful. Login to verify your account.',
                 }));
 
             } else {

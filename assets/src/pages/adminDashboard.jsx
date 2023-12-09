@@ -1,9 +1,11 @@
+import axios from "axios";
+
+
+
 import React, {useState, useEffect} from "react";
 import '../adminStyle.css';
 import { Table } from 'reactstrap';
-import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +19,6 @@ function Admin () {
     const [archive, setArchive] = useState([]);
     const [showForm, setShowForm] = useState(false);
 
-    //create a prop
 
     const [articleID, setArticleID] = useState();
 
@@ -26,10 +27,12 @@ function Admin () {
         setShowForm(true);
     }
 
+
     useEffect (() => {
         fetchData('Articles');
         fetchData('Members');
         fetchData('Archives');
+        
     }, []);
 
 
@@ -75,17 +78,18 @@ function Admin () {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                data: { articleID: id }, 
+                data:
+                { 
+                    articleID: id 
+                },
                 
             });
             console.log(response);
-            //console.log(response.data.data);
-            const { status, data } = response.data;
+            const { status, message } = response.data;
             if(status === 1) {
                 fetchData('Articles');
             }
             else {
-                console.log(id);
                 console.log('status not == 1');
             }
 
@@ -103,7 +107,9 @@ function Admin () {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                data: {userID: id},
+                data: {
+                    userID: id
+                },
             });
             console.log('response here: ', response);
             //console.log(response.data.data);
@@ -130,17 +136,17 @@ function Admin () {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 },
-                data: {archiveID: id},
+                data: {
+                    archiveID: id
+                }
             });
-            console.log('response here: ', response);
+            //console.log(id);
+            //console.log('response here: ', response);
             //console.log(response.data.data);
             const { status, data } = response.data;
             if(status === 1) {
                 console.log('deleted data');
-                fetchData('Archives');
-            }
-            else {
-                console.log('no response: ');
+                fetchData('Archives'); 
             }
 
 
@@ -158,7 +164,7 @@ function Admin () {
                 <div className="main-panel">
                     <div className="col-md-12">
                         <div className="panel-header">
-                            dude help me pls 
+                            
                             
                         </div>
                     </div>
