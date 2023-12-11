@@ -6,16 +6,17 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
  
-function ArchiveForm({setShowForm, articleID}) {
+function ArchiveForm({setShowForm, article}) {
     const {token} = useAuth();
-    const volumeValue = [1,2,3];
+    const volumeValue = [1,2,3,4];
     const [archive, setArchive] = useState({
-        ID: {value: articleID},
-        title: {value: '', error: ''},
-        org: {value: '', error: ''},
+        ID: {value: article.articleID},
+        title: {value: article.title, error: ''},
+        org: {value: article.org, error: ''},
         author: {value: '', error: ''},
         volume: {value: '', error: ''},
         abstract: {value: '', error: ''},
+        action: 'addToArchive', 
     });
 
     const inputRef = useRef();
@@ -74,19 +75,6 @@ function ArchiveForm({setShowForm, articleID}) {
 
         
     };
-
-    const resetForm = () => {
-        setArchive((prevState) => ({
-            ...prevState,
-            title: {value: '', error: ''},
-            org: {value: '', error: ''},
-            author: {value: '', error: ''},
-            volume: {value: '', error: ''},
-            abstract: {value: '', error: ''},
-            
-        }));
-
-    }
 
     const formValid = () => {
         let valid = true;
@@ -154,6 +142,7 @@ function ArchiveForm({setShowForm, articleID}) {
         archiveData.append("author", archive.author.value);
         archiveData.append("volume", archive.volume.value);
         archiveData.append("abstract", archive.abstract.value);
+        archiveData.append("action", archive.action);
         archiveData.append("img", imageFile);
         
 

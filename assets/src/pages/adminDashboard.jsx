@@ -1,7 +1,5 @@
 import axios from "axios";
 
-
-
 import React, {useState, useEffect} from "react";
 import '../adminStyle.css';
 import { Table } from 'reactstrap';
@@ -11,6 +9,7 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import ArchiveForm from "../components/ArchiveForm";
+import EditForm from "../components/editForm";
 
 function Admin () {
     const { token } = useAuth();
@@ -18,7 +17,7 @@ function Admin () {
     const [members, setMembers] = useState([]);
     const [archive, setArchive] = useState([]);
     const [showForm, setShowForm] = useState(false);
-
+    const [showEdit, setShowEdit] = useState(false);
 
     const [articleID, setArticleID] = useState();
 
@@ -27,12 +26,22 @@ function Admin () {
         setShowForm(true);
     }
 
+    const handleShowEditForm = () => {
+        setShowEdit(true);
+    }
+
+    const handleEditUpload = (upload) => {
+        if(upload){
+            console.log('upload attempt');
+            setShowEdit(false)
+            fetchData('Archives');
+        }
+    }
 
     useEffect (() => {
         fetchData('Articles');
         fetchData('Members');
         fetchData('Archives');
-        
     }, []);
 
 
@@ -53,8 +62,7 @@ function Admin () {
                 }
                 else {
                     setArchive(data);
-                    
-                    
+    
                 }
 
             }
@@ -68,11 +76,9 @@ function Admin () {
         }
     }
 
-
-    const deleteArticle = async (id) => {
+    const deleteItem = async (id, itemProp, endpoint) => {
         try {
-            console.log(id);
-            const response = await axios.delete(`http://localhost:8080/TESOL/controller/Articles.php`,
+            const response = await axios.delete(`http://localhost:8080/TESOL/controller/${endpoint}.php`,
             {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -80,14 +86,13 @@ function Admin () {
                 },
                 data:
                 { 
-                    articleID: id 
-                },
+                    [itemProp]: id 
+                }
                 
             });
-            console.log(response);
-            const { status, message } = response.data;
+            const { status } = response.data;
             if(status === 1) {
-                fetchData('Articles');
+                fetchData(endpoint);
             }
             else {
                 console.log('status not == 1');
@@ -98,64 +103,6 @@ function Admin () {
             console.log("Error deleting data: ", error);
         }
     }
-
-    const deleteMembers = async (id) => {
-    
-        try {
-            const response = await axios.delete(`http://localhost:8080/TESOL/controller/Members.php`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                data: {
-                    userID: id
-                },
-            });
-            console.log('response here: ', response);
-            //console.log(response.data.data);
-            const { status, data } = response.data;
-            if(status === 1) {
-                console.log('deleted data');
-                fetchData('Members');
-            }
-            else {
-                console.log('no response: ');
-            }
-
-
-        } catch (error) {
-            console.log("Error deleting data: ", error);
-        }
-    }
-
-    const deleteArchive = async (id) => {
-    
-        try {
-            const response = await axios.delete(`http://localhost:8080/TESOL/controller/Archives.php`, {
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                },
-                data: {
-                    archiveID: id
-                }
-            });
-            //console.log(id);
-            //console.log('response here: ', response);
-            //console.log(response.data.data);
-            const { status, data } = response.data;
-            if(status === 1) {
-                console.log('deleted data');
-                fetchData('Archives'); 
-            }
-
-
-        } catch (error) {
-            console.log("Error deleting data: ", error);
-        }
-    }
-
-
 
 
     return(
@@ -233,11 +180,13 @@ function Admin () {
                                                     <FontAwesomeIcon icon={faCheck} />
                                                 </button>
                                                 
-                                                <button className="tableButton" type="button" onClick={() => deleteArticle(article.articleID)}>
+                                                <button className="tableButton" type="button" onClick={() => deleteItem(article.articleID, 'articleID', 'Articles')}>
                                                     <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
 
-                                                {showForm && articleID === article.articleID && (<ArchiveForm setShowForm={setShowForm} articleID={articleID} />)}
+                                                {showForm && (<ArchiveForm setShowForm={setShowForm} article={article} />)}
+                                    
+                                            
                                             </td>
                                         </tr>
                                     ))}
@@ -276,7 +225,7 @@ function Admin () {
                                             { member.userID !== 1 && 
                                                 (
                                                     <td>
-                                                        <button type="button" onClick={() => deleteMembers(member.userID)}>
+                                                        <button type="button" onClick={() => deleteItem(member.userID, 'userID', 'Members')}>
                                                             <FontAwesomeIcon icon={faTrashCan} />
                                                         </button>
                                                     </td>
@@ -330,13 +279,15 @@ function Admin () {
                                             <td>{archive.abstract}</td>  
 
                                             <td>
-                                                <button type="button" onClick={() => deleteArchive(archive.archiveID)}>
+                                                <button type="button" onClick={() => deleteItem(archive.archiveID, 'archiveID', 'Archives')}>
                                                     <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
 
-                                                <button className="tableButton" type="button" >
+                                                <button className="tableButton" type="button" onClick={() => handleShowEditForm()}>
                                                     <FontAwesomeIcon icon={faEdit} />
                                                 </button>
+
+                                                {showEdit && (<EditForm setShowEdit = {setShowEdit} archive={archive} handleEditUpload={handleEditUpload}/>) }
 
                                             </td>                                         
                                         </tr>

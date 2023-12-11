@@ -37,11 +37,8 @@ const LINKS = [
 		link: "/contact",
 	},
     {
-		page: "RESEARCH",
-		link: "/research",
-		subLinks: [
-			{title: "Archives", link: '/research/archives'}
-		]
+		page: "ARCHIVES",
+		link: "/archives",
 	},	
 ];
 

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import './App.css';
 import NavBar from './components/Navbar';
 import VerifyForm from './components/VerifyForm';
+import EditForm from './components/editForm';
 import Home from './pages/home';
 import About from './pages/about';
 import Academics from './pages/academics';
@@ -21,6 +22,7 @@ import MemberForm from './components/MemberForm';
 import Admin from './pages/adminDashboard';
 import UserPage from './pages/userDashboard';
 
+
 const App = () => {
   return (
     <div className='App'>
@@ -30,10 +32,13 @@ const App = () => {
         <Route  path='/about' element={<About />}></Route>
         <Route  path='/contact' element={<Contact />}></Route>
         <Route  path='/academics' element={<Academics />}></Route>
-        <Route  path='/about/background' element={<Background />}></Route>
-        <Route  path='/about/vmc' element={<VMC />}></Route>
-        <Route  path='/research' element={<Research />}></Route>
-        <Route  path='/research/archives' element={<Archives />}></Route>
+        <Route  path='/background' element={<Background />}></Route>
+        <Route  path='/vmc' element={<VMC />}></Route>
+        <Route  path='/archives' element={<Archives />}>
+          <Route path=':volume' element={<ArchiveInfo />}>
+            <Route path=':title' element={<ArticleInfo />}></Route>
+          </Route>
+        </Route>
         <Route  path='/administration' element={<Administration />}></Route>
         <Route  path='/administration/president' element={<President />}></Route>
         <Route  path='/administration/vicepresident' element={<VicePresident />}></Route>
@@ -41,6 +46,7 @@ const App = () => {
         <Route  path='/AdminDashboard' element={<Admin />}></Route>
         <Route  path='/dashboard' element={<UserPage />}></Route>
         <Route  path='/verifyAccount' element={<VerifyForm />}></Route>
+        <Route  path='/editForm' element={<EditForm />}></Route>
       </Routes>
       <Footer />
     </div>
