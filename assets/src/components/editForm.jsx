@@ -153,7 +153,7 @@ function EditForm({setShowEdit, archive, handleEditUpload }) {
                                 <div className="col-md-4">
                                     <Dropdown onSelect={handleDropdownSelect}>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                            {archives.volume.value ? archives.volume.value : "Select Volume"}
+                                            {archives.volume.value ? archives.volume.value : "Select Issue"}
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>

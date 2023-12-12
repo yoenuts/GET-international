@@ -3,7 +3,7 @@ import '../App.css';
 import MemberForm from "../components/MemberForm";
 import axios from "axios";
 import { useAuth } from "../Context/AuthContext";
-
+import { Link } from "react-router-dom";
 
 function Archives() {
 	const { login, isLoggedin } = useAuth();
@@ -56,14 +56,20 @@ function Archives() {
                 <section className="research-content-div">
                     <div className="row">
                         <div className="col d-flex justify-content-center align-items-center">
+                            <h2>Volume 1 Issue 01(February 2023)</h2>
                             <div className="archive-front-img">
-                                <Link></Link>
+                                <Link to="/archives/1">
+                                    <img src="/img/issue01.png" alt="issue-1-front-page"></img>
+                                </Link>
                             </div>
                         </div>
 
                         <div className="col d-flex justify-content-center align-items-center">
+                            <h2>Volume 1 Issue 02 (May 2023)</h2>
                             <div className="archive-front-img">
-                                <Link></Link>
+                                <Link to="/archives/2">
+                                    <img src="/img/issue02.png" alt="issue-2-front-page"></img>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -71,13 +77,19 @@ function Archives() {
                     <div className="row">
                         <div className="col d-flex justify-content-center align-items-center">
                             <div className="archive-front-img">
-                                <Link></Link>
+                            <h2>Volume 1 Issue 03 (May 2023)</h2>
+                                <Link to="/archives/3">
+                                    <img src="/img/issue03.png" alt="issue-3-front-page"></img>
+                                </Link>
                             </div>
                         </div>
 
                         <div className="col d-flex justify-content-center align-items-center">
+                            <h2>Volume 1 Issue 04 (May 2023)</h2>
                             <div className="archive-front-img">
-                                <Link></Link>
+                                <Link to="/archives/4">
+                                    <img src="/img/issue03.png" alt="issue-3-front-page" ></img>
+                                </Link>
                             </div>
                         </div>
                     </div>

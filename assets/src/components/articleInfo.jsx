@@ -1,12 +1,22 @@
-import React from "react";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 function ArticleInfo() {
-    return() {
-        <div className="archiveInfo">
+  const location = useLocation();
+  const { article } = location.state || {};
 
-        </div>
-    }
+  if (!article) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className="archiveInfo">
+      <h5>Title: {article.title}</h5>
+      <h5>Org: {article.org}</h5>
+      <h5>Author: {article.author}</h5>
+      <h5>Path: {article.path}</h5>
+    </div>
+  );
 }
-
 
 export default ArticleInfo;

@@ -219,7 +219,7 @@ function ArchiveForm({setShowForm, article}) {
                                 <div className="col-md-4">
                                     <Dropdown onSelect={handleDropdownSelect}>
                                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                                            {archive.volume.value ? archive.volume.value : "Select Volume"}
+                                            {archive.volume.value ? archive.volume.value : "Select Issue"}
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
