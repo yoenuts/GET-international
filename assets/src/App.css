@@ -247,6 +247,16 @@ a {
   background-size: cover ;
 }
 
+#issue-cover-div {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.front-page-img {
+  min-width: 400px;
+  height: 637.68px;
+}
+
 /*
 @media (min-width: 893px) {
   .research-logo {

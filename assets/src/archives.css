@@ -1,0 +1,16 @@
+.archive-top-header {
+    min-height: 40vh;
+    background-color: #ffffff;
+
+}
+
+.archive-top-img {
+
+    max-width: auto;
+    max-height: 200px;
+}
+
+.archive-info {
+    min-height: 100vh;
+    background-color: rgba(74, 78, 161, 0.092);
+}

@@ -5,10 +5,6 @@ function ArticleInfo() {
   const location = useLocation();
   const { article } = location.state || {};
 
-  if (!article) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="archiveInfo">
       <h5>Title: {article.title}</h5>

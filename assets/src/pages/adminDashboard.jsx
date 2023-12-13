@@ -26,6 +26,14 @@ function Admin () {
         setShowForm(true);
     }
 
+    const handleShowFormUpload = (upload) => {
+        if(upload) {
+            fetchData('Articles');
+            fetchData('Archives');
+            setShowForm(false);
+        }
+    }
+
     const handleShowEditForm = () => {
         setShowEdit(true);
     }
@@ -184,7 +192,7 @@ function Admin () {
                                                     <FontAwesomeIcon icon={faTrashCan} />
                                                 </button>
 
-                                                {showForm && (<ArchiveForm setShowForm={setShowForm} article={article} />)}
+                                                {showForm && (<ArchiveForm handleShowFormUpload={handleShowFormUpload} article={article} setShowForm={setShowForm} />)}
                                     
                                             
                                             </td>

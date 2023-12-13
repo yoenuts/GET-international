@@ -90,7 +90,8 @@ function ArticleForm() {
         e.preventDefault();
         //ok lol now i know what this is for
 
-        if(!formValid) {
+        if(!formValid()) {
+            console.log("error");
             return;
         }
 

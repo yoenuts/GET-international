@@ -6,13 +6,14 @@ import Form from 'react-bootstrap/Form';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Button from 'react-bootstrap/Button';
  
-function ArchiveForm({setShowForm, article}) {
+function ArchiveForm({handleShowFormUpload, setShowForm, article}) {
     const {token} = useAuth();
     const volumeValue = [1,2,3,4];
     const [archive, setArchive] = useState({
         ID: {value: article.articleID},
         title: {value: article.title, error: ''},
         org: {value: article.org, error: ''},
+        path: {value: article.path},
         author: {value: '', error: ''},
         volume: {value: '', error: ''},
         abstract: {value: '', error: ''},
@@ -143,8 +144,10 @@ function ArchiveForm({setShowForm, article}) {
         archiveData.append("volume", archive.volume.value);
         archiveData.append("abstract", archive.abstract.value);
         archiveData.append("action", archive.action);
+        archiveData.append("path", archive.path.value);
         archiveData.append("img", imageFile);
         
+        console.log(...archiveData);
 
         try {
             const response = await axios.post("http://localhost:8080/TESOL/controller/Archives.php", archiveData, {
@@ -153,6 +156,8 @@ function ArchiveForm({setShowForm, article}) {
                     'Content-Type' : 'multipart/form-data',
                 }
             });
+
+            console.log(response);
             const { status } = response.data;
             if(status === 1) {
                 console.log("successful!");
@@ -171,7 +176,7 @@ function ArchiveForm({setShowForm, article}) {
                     const { status } = deleteResponse.data;
                     if (status === 1) {
                         console.log('Article deleted from Articles table');
-                        setShowForm(false);
+                        handleShowFormUpload(true);
                     } else {
                         console.log(deleteResponse);
                         
@@ -182,7 +187,7 @@ function ArchiveForm({setShowForm, article}) {
                     console.log("Error deleting article from Articles table: ", deleteError);
                 }
             } else {
-                console.log("No data response: ", response);
+                console.log("No status response.");
             }
 
             

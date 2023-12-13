@@ -64,7 +64,7 @@ function NavBar() {
 	//when user logs in, handle these states
 	useEffect(() => {
 		fetchUserStatus();
-	}, [userStatus, isLoggedin]);
+	}, [userStatus, login]);
 
 	const handleSubmit = async (token) => {
 		login(token)
