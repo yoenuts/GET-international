@@ -37,8 +37,13 @@ const LINKS = [
 		link: "/contact",
 	},
     {
-		page: "ARCHIVES",
-		link: "/archives",
+		page: "RESEARCH",
+		link: "/research",
+		subLinks: [
+			{
+				title: "Archives", link: '/archives'
+			}
+		]
 	},	
 ];
 
@@ -109,16 +114,16 @@ function NavBar() {
 
 	const renderNavItem = () => {
 		return (
-		  <NavDropdown title={<h6 className="linkText">MY ACCOUNT</h6>} className="nav-drop">
+		  <NavDropdown title={<h6 className="linkText">MY ACCOUNT </h6>} className="nav-drop">
 			<NavDropdown.Item>
 			  {admin ? (
-				<Link to="/AdminDashboard"><h6 className="linkText"> Dashboard </h6></Link>
+				<Link to="/AdminDashboard"><h6 className="sublinkText"> Dashboard </h6></Link>
 			  ) : !userStatus ? (
 				<Nav.Link onClick={() => setShowVerify(true)}>
 					<h6 className="linkText">Verify My Account</h6>
 				</Nav.Link>
 			  ) : (
-				<Link to="/dashboard"><h6 className="linkText"> Upload an Article </h6></Link>
+				<Link to="/dashboard"><h6 className="sublinkText"> Upload an Article </h6></Link>
 			  )}
 			</NavDropdown.Item>
 
@@ -136,58 +141,66 @@ function NavBar() {
  
 		<Navbar collapseOnSelect expand="lg" className="navbar">
 			<Container>
-				<Navbar.Brand>
+				<div className="d-flex align-items-center ml-0">
+					<Navbar.Brand>
 						<Link to='/'>
 							<img src="../img/GET-logo.png" alt="Guild of Educators in TESOL International Institute" className="logo"></img>
 						</Link>
-				</Navbar.Brand>
-				<div className="title-container">
-					<Link to='/' style={{textDecoration:'none'}}>
-						<h5 className="logotitle1">Guild of Educators in TESOL</h5>
-						<h6 className="logotitle2"><b>I N T E R N A T I O N A L</b></h6>
-					</Link>
+					</Navbar.Brand>
+					<div className="title-container d-none d-sm-block">
+						<Link to='/' style={{ textDecoration: 'none' }}>
+							<h5 className="logotitle1">Guild of Educators in TESOL</h5>
+							<h6 className="logotitle2"><b>I N T E R N A T I O N A L</b></h6>
+						</Link>
+					</div>
 				</div>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
-				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="nav-contain">
-						<React.Fragment>
-							{LINKS.map((link,index) => (
-								link.subLinks ? (
-									<NavDropdown key={index} title={<Link to={link.link} className="linkText"><h6>{link.page}</h6></Link>} id={`nav-dropdown-${index}`} className="nav-drop" show="false" as={Link} to={link.link}>
-										{link.subLinks.map((subLink,subIndex) => (
-											<NavDropdown.Item key={subIndex} as={Link} to={subLink.link}>
-												<h6 className="linkText">{subLink.title}</h6>
-											</NavDropdown.Item>
-										))}
-									</NavDropdown>
-								) : (
-									<Nav.Link key={index} as={Link} to={link.link}>
-										<h6 className="linkText">{link.page}</h6>
-									</Nav.Link>
+				
+				<div>
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="nav-contain ">
+							<React.Fragment>
+								{LINKS.map((link,index) => (
+									link.subLinks ? (
+										<NavDropdown key={index} title={<Link to={link.link} className="linkText"><h6>{link.page}</h6></Link>} id={`nav-dropdown-${index}`} className="nav-drop" show="false" as={Link} to={link.link}>
+											{link.subLinks.map((subLink,subIndex) => (
+												<NavDropdown.Item key={subIndex} as={Link} to={subLink.link}>
+													<h6 className="sublinkText">{subLink.title}</h6>
+												</NavDropdown.Item>
+											))}
+										</NavDropdown>
+									) : (
+										<Nav.Link key={index} as={Link} to={link.link} >
+											<h6 className="linkText">{link.page}</h6>
+										</Nav.Link>
+									)
+
+								))}
+								
+							</React.Fragment>
+							{!isLoggedin ? 			
+								(<Nav.Link onClick={() => setShowForm(true)}>
+									<h6 className="sublinkText">Login/Sign up</h6>
+								</Nav.Link>) : 
+								(renderNavItem())
+							}
+							{showForm && (
+								<MemberForm
+								handleSubmit={handleSubmit}
+								/>
+							)}
+
+							{
+								showVerify && (
+									<VerifyForm handleVerifySubmit={handleVerifySubmit}/>
 								)
+							}
+						</Nav>
+				
+					</Navbar.Collapse>
 
-							))}
-							
-						</React.Fragment>
-						{!isLoggedin ? 			
-							(<Nav.Link onClick={() => setShowForm(true)}>
-								<h6 className="linkText">Login/Sign up</h6>
-							</Nav.Link>) : 
-							(renderNavItem())
-						}
-						{showForm && (
-							<MemberForm
-							handleSubmit={handleSubmit}
-							/>
-						)}
+				</div>
 
-						{
-							showVerify && (
-								<VerifyForm handleVerifySubmit={handleVerifySubmit}/>
-							)
-						}
-					</Nav>
-				</Navbar.Collapse>
+				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			</Container>
 		</Navbar>												
 

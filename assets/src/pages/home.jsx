@@ -54,12 +54,6 @@ class Home extends React.Component {
             <div className="Home">
                 <section className="home-top-div">
                     <div className="row">
-                        <div className="col d-flex align-items-center">
-                            <div className="title-header">
-                                <h1>Welcome to the Guild of Educators in TESOL International</h1>
-                                <h3><i>Your gateway to endless opportunities</i></h3>
-                            </div>
-                        </div>
                         <div className="col d-flex justify-content-center">
                             <div className="col d-flex ">
                                 <iframe  
@@ -70,6 +64,12 @@ class Home extends React.Component {
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                                 >
                                 </iframe>
+                            </div>
+                        </div>
+                        <div className="col d-flex align-items-center">
+                            <div className="title-header">
+                                <h1>Welcome to the Guild of Educators in TESOL International</h1>
+                                <h3><i>Your gateway to endless opportunities</i></h3>
                             </div>
                         </div>
                     </div>

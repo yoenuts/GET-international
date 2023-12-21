@@ -45,9 +45,39 @@ html, body {
 
 .linkText {
   color: #21409a;
+  position: relative;
+}
+
+.linkText::after {
+  color: #21409a;
+  content: "";
+  background: #bd2529;
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  bottom: -2px;
+  opacity: 0;
+  left: 0px;
+
 }
 
 .linkText:hover{
+  color: #bd2529;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .linkText:hover::after{
+    opacity: 1;
+  }
+}
+
+
+.sublinkText {
+  color: #21409a;
+}
+
+.sublinkText:hover{
   color: #bd2529;
 }
 
@@ -82,12 +112,14 @@ html, body {
   font-weight: 1000;
 }
 
+/*
 .title-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5px
 }
+*/
 
 .logotitle1, .logotitle2 {
   margin: 0;
