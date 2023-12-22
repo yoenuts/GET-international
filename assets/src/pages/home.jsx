@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from "../components/carouselImages";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 class Home extends React.Component {
     //check if component mounted on DOM, then target class nd execute the function import on it.
@@ -94,7 +96,7 @@ class Home extends React.Component {
                                     </div>
                             </div>
                             
-                            <div className="col d-flex align-items-center">
+                            <div className="col d-flex align-items-center justify-content-center">
                                 <Carousel images={images} />
                             </div>
 
@@ -108,6 +110,63 @@ class Home extends React.Component {
                                     </h5>
                                 </div>
                             </div>
+
+                            <div className="col d-flex align-items-center">
+                                <div className="child-title">
+                                    <h2>Announcements</h2>
+                                </div>
+                            </div>
+
+                            <div className="col d-flex align-items-center mt-4">
+                                <div className="card-announcements">
+                                    <div className="row">
+                                        <div className="col d-flex justify-content-space-evenly pt-5">
+                                
+                                            <Card style={{ width: '18rem' }}>
+                                                <Card.Img variant="top" src="/img/MOA-signing.jpg" />
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        <h5>GET INTERNATIONAL AND CITI GLOBAL COLLEGE MEMORANDUM OF AGREEMENT (MOA) SIGNING</h5>
+                                                    </Card.Title>
+                                                    <Button variant="primary">Read More</Button>
+                                                </Card.Body>
+                                            </Card>
+
+                                        </div>
+
+                                        <div className="col d-flex justify-content-space-evenly pt-5">
+                                
+                                            <Card style={{ width: '18rem' }}>
+                                                <Card.Img variant="top" src="/img/MOA-signing.jpg" />
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        <h5>GET INTERNATIONAL AND CITI GLOBAL COLLEGE MEMORANDUM OF AGREEMENT (MOA) SIGNING</h5>
+                                                    </Card.Title>
+                                                    <Button variant="primary">Read More</Button>
+                                                </Card.Body>
+                                            </Card>
+
+                                        </div>
+
+                                        <div className="col d-flex justify-content-space-evenly pt-5">
+                                
+                                            <Card style={{ width: '18rem' }}>
+                                                <Card.Img variant="top" src="/img/MOA-signing.jpg" />
+                                                <Card.Body>
+                                                    <Card.Title>
+                                                        <h5>GET INTERNATIONAL AND CITI GLOBAL COLLEGE MEMORANDUM OF AGREEMENT (MOA) SIGNING</h5>
+                                                    </Card.Title>
+                                                    <Button variant="primary">Read More</Button>
+                                                </Card.Body>
+                                            </Card>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
 
                         
@@ -116,12 +175,12 @@ class Home extends React.Component {
                             <div className="right-child">
                                 <div className="row">
 
-                                    <div className = "col-md-12">
+                                    <div className = "col-md-12 justify-content-center">
                                         <div className="child-title">
                                             <h2>Is Tesol Program For You?</h2>
                                         </div>
                                     </div>
-                                    <div className="col-md-12">
+                                    <div className="col-md-12 justify-content-center ml-1">
                                         <div className="mCustomScrollbar" id="card-1">
                                             <h5>Integrating TESOL with other subjects and disciplines can create meaningful and engaging learning experiences for English language learners. 
                                                 Here are some examples of how TESOL can be integrated with various subjects:  </h5>
@@ -139,7 +198,7 @@ class Home extends React.Component {
                                                 <li>
                                                     <strong>Physical Education (PE): </strong> TESOL integration in PE involves using English language instruction during physical activities and sports. Teachers can incorporate vocabulary 
                                                     related to body parts, sports equipment, and movement verbs. Additionally, they can encourage English language learners to communicate and collaborate in English during team games and exercises.  
-                                                </li> 
+                                                </li>  
                                                 <li>
                                                     <strong>Social Studies:</strong> TESOL integration in social studies helps English language learners understand historical events, cultural practices, 
                                                     and social systems. Teachers can provide language support to facilitate reading, writing, and discussion of social studies content. They can also incorporate interactive activities such as debates, role-plays, and projects that require English language use within social studies contexts
@@ -172,7 +231,7 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-12">
+                                    <div className="col-md-12 justify-content-center align-items-center">
                                         <div className="mCustomScrollbar" id="card-2">
                                             <h5>When we consider TESOL from an interdisciplinary perspective, it means examining the field in connection with other disciplines and exploring the intersections and interconnections between them. TESOL can intersect with other disciplines in an interdisciplinary manner: </h5>
                                             <ul className="card-content">
@@ -214,7 +273,7 @@ class Home extends React.Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-md-12">
+                                    <div className="col-md-12 justify-content-center ml-auto">
                                         <div className="mCustomScrollbar" id="card-3"> 
                                             <h5>Teaching English to Speakers of Other Languages (TESOL) is a field that can be approached from a multi-disciplinary or interdisciplinary perspective. Here’s how TESOL can intersect with various disciplines </h5>
                                             <ul className="card-content">

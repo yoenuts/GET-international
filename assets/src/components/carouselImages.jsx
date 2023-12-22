@@ -18,7 +18,7 @@ class Carousel extends React.Component {
 
 
         return(
-            <div className="owl-carousel owl-theme">
+            <div className="owl-carousel owl-theme" style={{ margin: 'auto', textAlign: 'center', marginTop: '4vw', paddingLeft: '50px' }}>
                 {carouselItems}
             </div>
         );

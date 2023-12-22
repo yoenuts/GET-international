@@ -14,7 +14,11 @@ html, body {
 }
 
 .navbar {
-  background: linear-gradient(to right,rgba(74, 78, 161, 0.4) 15% , hsl(255, 33%, 70%, 0.4),  hsl(237, 37%, 46%, 0.4) 90%);
+  background-color: rgba(74, 78, 161, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  /*background: linear-gradient(to right,rgba(74, 78, 161, 0.4) 15% , hsl(255, 33%, 70%, 0.4),  hsl(237, 37%, 46%, 0.4) 90%);*/
 }
 
 .dropdown-toggle::after {
@@ -214,10 +218,13 @@ html, body {
 .child-title {
   margin-top: 20px; 
 }
+.child-title h2{
+  margin-top: 20px; 
+  padding-left: 50px;
+}
 
 .right-child h2 {
   color: #bd2529;
-
   font-family: "Budmo W00 Solid";
 
 }
@@ -249,10 +256,15 @@ a {
   
 }
 
-.owl-carousel {
-  margin-top: 4vw;
-  margin-left: 2vw;
+/*Cards here */
+
+.card-announcements {
+  margin-left: 50px;
+  margin-right: 60px;
 }
+
+
+/*Carousel here*/
 
 @media (min-width: 893px) {
   .owl-carousel {
@@ -263,8 +275,8 @@ a {
 }
 
 .owl-carousel img {
-  max-width: 85%; /* or any other width suitable to fill the carousel */
-  height: auto; /* Maintain aspect ratio */
+  max-width: 85%; 
+  height: auto;
 }
 
 /*research section*/
@@ -303,6 +315,8 @@ a {
 .Footer {
   background-color: rgb(74, 78, 161, 0.3);
   font-style: Arial;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
 }
 

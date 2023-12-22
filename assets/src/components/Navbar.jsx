@@ -139,7 +139,7 @@ function NavBar() {
 
 	return(
  
-		<Navbar collapseOnSelect expand="lg" className="navbar">
+		<Navbar collapseOnSelect expand="lg" className="navbar" sticky="top">
 			<Container>
 				<div className="d-flex align-items-center ml-0">
 					<Navbar.Brand>
