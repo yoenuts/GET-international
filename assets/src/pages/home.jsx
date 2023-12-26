@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Carousel from "../components/carouselImages";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import CarouselFade from '../components/carouselLarge';
 
 class Home extends React.Component {
     //check if component mounted on DOM, then target class nd execute the function import on it.
@@ -48,6 +49,15 @@ class Home extends React.Component {
             "./img/carouselItem4.png",
             "./img/carouselItem5.png",
             "./img/carouselItem6.png"
+        ]
+
+        const carouselImages = [
+            "../img/members/member-1.jpg",
+            "../img/members/member-2.jpg",
+            "../img/members/member-3.jpg",
+            "../img/members/member-4.jpg",
+            "../img/members/member-5.jpg",
+            "../img/members/member-6.jpg",
         ]
         
 
@@ -117,56 +127,71 @@ class Home extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="col d-flex align-items-center mt-4">
-                                <div className="card-announcements">
-                                    <div className="row">
-                                        <div className="col d-flex justify-content-space-evenly pt-5">
+                            <div className="col d-flex align-items-center justify-content-center mt-4">
                                 
-                                            <Card style={{ width: '18rem' }}>
-                                                <Card.Img variant="top" src="/img/MOA-signing.jpg" />
-                                                <Card.Body>
-                                                    <Card.Title>
-                                                        <h5>GET INTERNATIONAL AND CITI GLOBAL COLLEGE MEMORANDUM OF AGREEMENT (MOA) SIGNING</h5>
-                                                    </Card.Title>
-                                                    <Button variant="primary">Read More</Button>
-                                                </Card.Body>
-                                            </Card>
+                                <div className="row">
 
-                                        </div>
-
-                                        <div className="col d-flex justify-content-space-evenly pt-5">
-                                
-                                            <Card style={{ width: '18rem' }}>
-                                                <Card.Img variant="top" src="/img/MOA-signing.jpg" />
-                                                <Card.Body>
-                                                    <Card.Title>
-                                                        <h5>GET INTERNATIONAL AND CITI GLOBAL COLLEGE MEMORANDUM OF AGREEMENT (MOA) SIGNING</h5>
-                                                    </Card.Title>
-                                                    <Button variant="primary">Read More</Button>
-                                                </Card.Body>
-                                            </Card>
-
-                                        </div>
-
-                                        <div className="col d-flex justify-content-space-evenly pt-5">
-                                
-                                            <Card style={{ width: '18rem' }}>
-                                                <Card.Img variant="top" src="/img/MOA-signing.jpg" />
-                                                <Card.Body>
-                                                    <Card.Title>
-                                                        <h5>GET INTERNATIONAL AND CITI GLOBAL COLLEGE MEMORANDUM OF AGREEMENT (MOA) SIGNING</h5>
-                                                    </Card.Title>
-                                                    <Button variant="primary">Read More</Button>
-                                                </Card.Body>
-                                            </Card>
-
-                                        </div>
+                                    <div className="col d-flex justify-content-center pt-5">
+                                        
+                                        <Card style={{ width: '18rem' }}>
+                                            <Card.Img variant="top" src="/img/MOA-signing.jpg" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>GET International and Citi Global College Memorandum Of Agreement (MOA) Signing</h5>
+                                                </Card.Title>
+                                                <Button variant="primary">Read More</Button>
+                                            </Card.Body>
+                                        </Card>
 
                                     </div>
+
+                                    <div className="col d-flex justify-content-center pt-5">
+                            
+                                        <Card>
+                                            <Card.Img variant="top" src="/img/call-for-papers.jpg" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>Call for Papers! (November 2023)</h5>
+                                                </Card.Title>
+                                                <Button variant="primary">Read More</Button>
+                                            </Card.Body>
+                                        </Card>
+
+                                    </div>
+
+                                    <div className="col d-flex justify-content-center pt-5">
+                                        
+                                        <Card style={{ width: '18rem' }}>
+                                            <Card.Img variant="top" src="/img/MOA-signing.jpg" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>GET International and Citi Global College Memorandum Of Agreement (MOA) Signing</h5>
+                                                </Card.Title>
+                                                <Button variant="primary">Read More</Button>
+                                            </Card.Body>
+                                        </Card>
+
+                                    </div>
+
+                                </div>
+
+                                
+                            </div>
+
+                            <div className="col d-flex align-items-center">
+                                <div className="child-title">
+                                    <h2>TESOL Graduates 2023</h2>
                                 </div>
                             </div>
 
-
+                            <div className="col d-flex justify-content-center align-items-center mt-5">
+                                <div className="row">
+                                    <div className='col d-flex justify-content-center carousel'>
+                                        <CarouselFade carImages={carouselImages} />
+                                    </div>
+                                </div>
+                            
+                            </div>
                         </div>
 
                         

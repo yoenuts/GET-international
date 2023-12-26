@@ -116,15 +116,6 @@ html, body {
   font-weight: 1000;
 }
 
-/*
-.title-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5px
-}
-*/
-
 .logotitle1, .logotitle2 {
   margin: 0;
   margin-right: 10px;
@@ -258,11 +249,18 @@ a {
 
 /*Cards here */
 
-.card-announcements {
-  margin-left: 50px;
-  margin-right: 60px;
+.card {
+  width: 18rem; /* Set your desired width for the cards */
+  min-height: 250px; /* Set your desired fixed height for the cards */
+  max-height: 350px;
+
 }
 
+.card img {
+  height: 50%;
+  object-fit: cover;
+  width: 100%;
+}
 
 /*Carousel here*/
 
@@ -275,7 +273,17 @@ a {
 }
 
 .owl-carousel img {
-  max-width: 85%; 
+  max-width: 80%; 
+  height: auto;
+}
+
+.carImages img{
+  max-width: 100%;
+  height: auto;
+}
+
+.carousel {
+  max-width: 65%;
   height: auto;
 }
 
@@ -301,16 +309,7 @@ a {
   height: 637.68px;
 }
 
-/*
-@media (min-width: 893px) {
-  .research-logo {
-    margin-left: 4vw;
-    margin
-  }
-
-}*/
-
-/*Footer here*/
+/*footer*/
 
 .Footer {
   background-color: rgb(74, 78, 161, 0.3);
