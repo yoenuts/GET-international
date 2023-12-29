@@ -60,16 +60,20 @@ class Home extends React.Component {
             "../img/members/member-6.jpg",
         ]
         
-
+        /*
+        <div className="col d-flex align-items-center home-footer">
+            <div className="home-footer" style={{ borderTop: '1px solid #000', width: '70%', marginLeft: 'auto', marginRight: 'auto' }}></div>
+        </div>
+        */
 
         return(
             <div className="Home">
                 <section className="home-top-div">
                     <div className="row">
-                        <div className="col d-flex justify-content-center">
+                        <div className="col d-flex justify-content-center mt-5">
                             <div className="col d-flex ">
                                 <iframe  
-                                    className="youtube-video"
+                                    className="youtube-video mx-5"
                                     src="https://www.youtube.com/embed/4jJVMXrOb14?si=ASM9HO8AVzT-f7JA" 
                                     title="YouTube video player" 
                                     frameborder="0" 
@@ -78,8 +82,8 @@ class Home extends React.Component {
                                 </iframe>
                             </div>
                         </div>
-                        <div className="col d-flex align-items-center">
-                            <div className="title-header">
+                        <div className="col d-flex align-items-center ml-1 mr-1 mb-3">
+                            <div className="title-header align-items-center justify-content-center">
                                 <h1>Welcome to the Guild of Educators in TESOL International</h1>
                                 <h3><i>Your gateway to endless opportunities</i></h3>
                             </div>
@@ -121,19 +125,42 @@ class Home extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="col d-flex align-items-center">
-                                <div className="child-title">
-                                    <h2>Announcements</h2>
-                                </div>
+                            
+                            <div className="col d-flex align-items-center mt-5">
+                                <h2>
+                                    <span className=" child-title">
+                                        TESOL Graduates 2023
+                                    </span>
+                                    
+                                </h2>
+                                <hr class="title-rule"></hr>
                             </div>
 
-                            <div className="col d-flex align-items-center justify-content-center mt-4">
+                            <div className="col d-flex justify-content-center align-items-center mt-3">
+                                <div className="row">
+                                    <div className='col d-flex justify-content-center carousel'>
+                                        <CarouselFade carImages={carouselImages} />
+                                    </div>
+                                </div>
+                            
+                            </div>
+
+                            <div className="col d-flex align-items-center mt-5">
+                                <h2>
+                                    <span className="child-title">
+                                        Latest News
+                                    </span>
+                                </h2>
+                                <hr class="title-rule"></hr>
+                            </div>
+
+                            <div className="col d-flex align-items-center justify-content-center mt-3">
+                                
                                 
                                 <div className="row">
-
                                     <div className="col d-flex justify-content-center pt-5">
                                         
-                                        <Card style={{ width: '18rem' }}>
+                                        <Card >
                                             <Card.Img variant="top" src="/img/MOA-signing.jpg" />
                                             <Card.Body>
                                                 <Card.Title>
@@ -161,7 +188,41 @@ class Home extends React.Component {
 
                                     <div className="col d-flex justify-content-center pt-5">
                                         
-                                        <Card style={{ width: '18rem' }}>
+                                        <Card >
+                                            <Card.Img variant="top" src="/img/magazine.jpg" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>Teacher as A Community Leader</h5>
+                                                </Card.Title>
+                                                <Button variant="primary">Read More</Button>
+                                            </Card.Body>
+                                        </Card>
+
+                                    </div>
+                                </div>
+                                
+
+                                
+                            </div>
+
+                            <div className="col d-flex align-items-center mt-5">
+                                <h2>
+                                    <span className="child-title">
+                                        Announcements
+                                    </span>
+                                </h2>
+                                <hr class="title-rule"></hr>
+
+                            </div>
+
+
+                            <div className="col d-flex align-items-center justify-content-center mb-5 mt-3">
+                                
+                                
+                                <div className="row">
+                                    <div className="col d-flex justify-content-center pt-5">
+                                        
+                                        <Card >
                                             <Card.Img variant="top" src="/img/MOA-signing.jpg" />
                                             <Card.Body>
                                                 <Card.Title>
@@ -173,29 +234,43 @@ class Home extends React.Component {
 
                                     </div>
 
+                                    <div className="col d-flex justify-content-center pt-5">
+                            
+                                        <Card>
+                                            <Card.Img variant="top" src="/img/call-for-papers.jpg" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>Call for Papers! (November 2023)</h5>
+                                                </Card.Title>
+                                                <Button variant="primary">Read More</Button>
+                                            </Card.Body>
+                                        </Card>
+
+                                    </div>
+
+                                    <div className="col d-flex justify-content-center pt-5">
+                                        
+                                        <Card >
+                                            <Card.Img variant="top" src="/img/magazine.jpg" />
+                                            <Card.Body>
+                                                <Card.Title>
+                                                    <h5>Teacher as A Community Leader</h5>
+                                                </Card.Title>
+                                                <Button variant="primary">Read More</Button>
+                                            </Card.Body>
+                                        </Card>
+
+                                    </div>
                                 </div>
+                                
 
                                 
                             </div>
 
-                            <div className="col d-flex align-items-center">
-                                <div className="child-title">
-                                    <h2>TESOL Graduates 2023</h2>
-                                </div>
-                            </div>
-
-                            <div className="col d-flex justify-content-center align-items-center mt-5">
-                                <div className="row">
-                                    <div className='col d-flex justify-content-center carousel'>
-                                        <CarouselFade carImages={carouselImages} />
-                                    </div>
-                                </div>
-                            
-                            </div>
                         </div>
 
                         
-                        <div className="col-md-4">
+                        <div className="col-md-4 d-none d-sm-block mb-5">
                             
                             <div className="right-child">
                                 <div className="row">
@@ -316,7 +391,7 @@ class Home extends React.Component {
                                                     <strong>Pedagogy:</strong> TESOL incorporates teaching methodologies and principles from the field of education. 
                                                     Educators adapt and apply theories of learning, instructional design, assessment, and classroom management to the 
                                                     specific context of teaching English as a second or foreign language.   
-                                                </li> 
+                                               </li> 
                                                 <li>
                                                     <strong>Cultural Studies:</strong> Language is deeply intertwined with culture, and TESOL acknowledges the importance 
                                                     of cultural awareness and sensitivity. Incorporating elements of cultural studies helps teachers promote intercultural 
@@ -350,13 +425,9 @@ class Home extends React.Component {
                         </div>
 
                     </div>
-
                     
                 </section>
-                <section>
-                    <div className="home-content-2">hello hi</div>
-                </section>
-
+                
             </div>
         );
     }

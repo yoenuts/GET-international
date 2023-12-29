@@ -41,8 +41,15 @@ const LINKS = [
 		link: "/research",
 		subLinks: [
 			{
-				title: "Archives", link: '/archives'
-			}
+				title: "Archives", link: '/research/archives'
+			},
+			{
+				title: "About GET Journal", link: '/research/aboutJournal'
+			},
+			{ 
+				title: "Information", link: '/research/information'
+			
+			},
 		]
 	},	
 ];

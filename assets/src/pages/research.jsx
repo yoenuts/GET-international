@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import '../App.css';
+import MemberForm from "../components/MemberForm";
+import { useAuth } from "../Context/AuthContext";
+import { Link } from "react-router-dom";
 
-class Research extends React.Component {
+function Research() {
+	const { login, isLoggedin } = useAuth();
+    const handleSubmit = (token) => {
+		login(token)
+	}
 
-    render(){
-        return(
-            <div className="Research">
-                <div className="research-top-div">
+    return (
+        <div className="archives">
+            {!isLoggedin ? <MemberForm handleSubmit={handleSubmit} /> : null}
+
+            <div className="research-top-div">
                     <div className="row">
                         <div className="col d-flex">
                             <div className="col d-flex justify-content-center">
@@ -41,26 +50,52 @@ class Research extends React.Component {
                             </div>
                         </div>
                     </div>
-                </div>
+            </div>
 
                 <section className="research-content-div">
                     <div className="row">
-                        <div className="col d-flex align-items-center">
-                            <b>GUILD OF EDUCATORS IN TESOL INTERNATIONAL INSTITUTE</b> is a progressive knowledge generating institution that is 
-                            internationally -recognized for quality English language trainings, seminar, workshops, and conference. It aims to provide relevant, quality, and accessible seminar; 
-                            to deliver innovative, and interactive workshops, and, to produce highly competitive and functional trainings for teachers and other professions. GET International Research Journal aims to promote English language education to educators across all disciplines, 
-                            to provide excellent training in language education through open learning, seminars and workshops, to enable the educators to be expert in the teaching of English to speakers of other languages and to be a leading 
-                            center of excellence in the continuing professional development for teachers and other professions locally and internationally.
+                        <div className="col d-flex justify-content-center align-items-center" id="issue-cover-div">
+                            <div className="archive-front-div">
+                                <Link to="/archives/1">
+                                    <img src="/img/issue01.png" alt="issue-1-front-page" className="front-page-img"></img>
+                                </Link>
+                                <h3>Volume 1 Issue 01 (2023): February </h3>
+                            </div>
                         </div>
 
-                        <div className="col d-flex">
-                            
+                        <div className="col d-flex justify-content-center align-items-center" id="issue-cover-div">
+                            <div className="archive-front-div">
+                                <Link to="/archives/2">
+                                    <img src="/img/issue02.png" alt="issue-2-front-page" className="front-page-img"></img>
+                                </Link>
+                                <h3>Volume 1 Issue 02 (2023): May</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col d-flex justify-content-center align-items-center" id="issue-cover-div">
+                            <div className="archive-front-div">
+                                <Link to="/archives/3">
+                                    <img src="/img/issue03.png" alt="issue-3-front-page" className="front-page-img"></img>
+                                </Link>
+                                <h3>Volume 1 Issue 03 (2023): August</h3>
+                            </div>
+                        </div>
+
+                        <div className="col d-flex justify-content-center align-items-center" id="issue-cover-div">
+                            <div className="archive-front-div">
+                                <Link to="/archives/4">
+                                    <img src="/img/issue03.png" alt="issue-4-front-page" className="front-page-img" ></img>
+                                </Link>
+                                <h3>Volume 1 Issue 04 (2023): December</h3>
+                            </div>
                         </div>
                     </div>
                 </section>
-            </div>
-        );
-    }
+
+        </div>
+    );
 }
 
 export default Research;

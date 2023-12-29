@@ -125,7 +125,7 @@ html, body {
 .home-top-div {
   display: flex;
   justify-content: space-evenly;
-  min-height: 100vh;
+  min-height: 70vh;
   background-image: url("../public/img/GET-background-blur.png");
   background-color: #ffffff;
 
@@ -137,9 +137,6 @@ html, body {
 
 
 .title-header {
-  max-width: 100%;
-  min-height: 200px;
-  padding: 50px;
   text-align: center;
 } 
 
@@ -153,9 +150,6 @@ html, body {
 .youtube-video {
   width:  90vw;
   height: 50.625vw; /* 90*9/16 */
-  margin-left: 5vw;
-  margin-right: 5vw;
-  margin-top: 10vw;
   
 }
 
@@ -206,26 +200,23 @@ html, body {
   padding-left: 10px;
 }
 
-.child-title {
-  margin-top: 20px; 
-}
-.child-title h2{
-  margin-top: 20px; 
-  padding-left: 50px;
-}
-
 .right-child h2 {
   color: #bd2529;
   font-family: "Budmo W00 Solid";
 
 }
 
-@media (min-width: 893px) {
-  .child-title {
-    margin-top: 40px;
-  }
+.child-title {
+  margin-left: 3rem;
 }
 
+.title-rule {
+  flex-grow: 1;
+  height: 2px; 
+  background-color: #bd2529; /* Set rule color */
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
 
 ul {
   list-style-type: none;
@@ -250,9 +241,10 @@ a {
 /*Cards here */
 
 .card {
-  width: 18rem; /* Set your desired width for the cards */
-  min-height: 250px; /* Set your desired fixed height for the cards */
-  max-height: 350px;
+  min-width: 15rem;
+  max-width: 18rem; 
+  min-height: 250px;
+  max-height: 380px;
 
 }
 
@@ -283,7 +275,7 @@ a {
 }
 
 .carousel {
-  max-width: 65%;
+  max-width: 60%;
   height: auto;
 }
 
@@ -334,7 +326,7 @@ a {
   padding-bottom: 25px;
 }
 
-.Footer hr {
+.Footer hr, .home-footer hr {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
