@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../App.css';
 import { useAuth } from "../Context/AuthContext";
 import MemberForm from "./MemberForm";
-import { Container } from "reactstrap";
+import Container from 'react-bootstrap/Container';
 
 const LINKS = [
 	{
@@ -38,7 +38,7 @@ const LINKS = [
 	},
     {
 		page: "RESEARCH",
-		link: "/research",
+		link: "/research/home",
 		subLinks: [
 			{
 				title: "Archives", link: '/research/archives'

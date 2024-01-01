@@ -16,9 +16,6 @@ import VMC from './pages/vmc';
 import Background from './pages/background';
 import Footer from './components/Footer';
 import Research from './pages/research';
-import Archives from './pages/archives';
-import Information from './pages/information';
-import aboutJournal from './pages/aboutJournal';
 import MemberForm from './components/MemberForm';
 import Admin from './pages/adminDashboard';
 import UserPage from './pages/userDashboard';
@@ -36,10 +33,7 @@ const App = () => {
         <Route path='/academics' element={<Academics />} />
         <Route path='/background' element={<Background />} />
         <Route path='/vmc' element={<VMC />} />
-        <Route path='/research' element={<Research />} />
-        <Route path='/research/archives' element={<Archives />} />
-        <Route path='/research/information' element={<Information />} />
-        <Route path='/research/aboutJournal' element={<aboutJournal />} />
+        <Route path='/research/:section' element={<Research />} />
         <Route path='/archives/:issue' element={<ArchiveInfo />} />
         <Route path='/archives/:issue/:title' element={<ArticleInfo />} />
         <Route path='/administration' element={<Administration />} />

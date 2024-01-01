@@ -1,29 +1,38 @@
-import React, { useState, useRef, useEffect } from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import '../App.css';
-import { MapContainer, TileLayer, Marker} from 'react-leaflet';
+import React, {useState} from "react";
+import { MapContainer, TileLayer, Marker } from 'react-leaflet';
 import osm from './Leaflet/osmprovider';
 import "leaflet/dist/leaflet.css";
+import '../App.css';
 
 const SOCIAL_LINKS = [
-	{
+	{	
 		name: "Facebook",
 		link: "https://www.facebook.com/TESOLintl",
 		icon: "facebook-f",
 	},
 ];
 
-function Footer() {
-	const mapRef = useRef();
-	const ZOOM_LEVEL = 9;
-	const [center, setCenter] = useState({
-		lat: 14.9221,
-		lng: 120.8448,
-	});
-	useEffect(() => {
-		console.log("Effect triggered. Center:", center);
-	}, [center]);
+/*
+				<div className="col OSM">
+					<MapContainer
+						center={center}
+						zoom={ZOOM_LEVEL}
+						scrollWheelZoom={false}
+					>
+						<TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
+						<Marker position={center}></Marker>
+					</MapContainer>
+				</div>
+				<hr />
 
+*/
+
+function Footer() {
+	const ZOOM_LEVEL = 13;
+	const center = {
+		lat: 14.9221,
+		lng: 120.8448
+	};
 	
 	return (
 		<div className='Footer'>
@@ -44,25 +53,13 @@ function Footer() {
 					<img src="/img/quetext-logo.svg" alt="quetext-logo"></img>
 				</div>
 				<hr />
-				<div className="col OSM">
-					<MapContainer
-						center={center}
-						zoom={ZOOM_LEVEL}
-						useRef={mapRef}
-						scrollWheelZoom={false}
-					>
-						<TileLayer url={osm.maptiler.url} attribution={osm.maptiler.attribution} />
-						<Marker position={center}></Marker>
-					</MapContainer>
-				</div>
-				<hr />
 				<div className="footer-end">
 					<h5><strong>Guild of Educators in TESOL International Institute – Graduate School for Teachers Inc.</strong></h5>
 					<h6>9036 Tinejero <br></br> Brgy. Pulilan, Bulacan <br></br> Philippines</h6>
 				</div>
 
 			</div>
-			
+		
 		</div>
 	);
 	
