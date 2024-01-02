@@ -17,7 +17,6 @@ import Background from './pages/background';
 import Footer from './components/Footer';
 import Research from './pages/research';
 import MemberForm from './components/MemberForm';
-import Admin from './pages/adminDashboard';
 import UserPage from './pages/userDashboard';
 import ArchiveInfo from './components/archiveInfo';
 import ArticleInfo from './components/articleInfo';
@@ -40,7 +39,6 @@ const App = () => {
         <Route path='/administration/president' element={<President />} />
         <Route path='/administration/vicepresident' element={<VicePresident />} />
         <Route path='/memberForm' element={<MemberForm />} />
-        <Route path='/AdminDashboard' element={<Admin />} />
         <Route path='/dashboard' element={<UserPage />} />
         <Route path='/verifyAccount' element={<VerifyForm />} />
         <Route path='/editForm' element={<EditForm />} />

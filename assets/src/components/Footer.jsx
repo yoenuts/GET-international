@@ -37,9 +37,9 @@ function Footer() {
 	return (
 		<div className='Footer'>
 			<div className="row">
-				<div className="col d-flex justify-content-center">
+				<div className="col d-flex justify-content-center mt-3">
 					<div className="logo-collection">
-						<h4>GET International Research Journal is indexed by:</h4>
+						<h5>GET International Research Journal is indexed by:</h5>
 						<img src="/img/issn-logo.png" alt="issn-logo" />
 						<a href="https://www.openaire.eu/"><img src="/img/open-aire-logo.png" alt="open-aire-logo" /></a>
 						<a href="https://zenodo.org/communities/getinternational?q=&l=list&p=1&s=10&sort=newest"><img src="/img/zenodo-logo.png" alt="zenodo-logo" /></a>
@@ -49,7 +49,7 @@ function Footer() {
 				</div>
 				
 				<div className="logo-collection-1">
-					<h4>Plagiarism checked by:</h4>
+					<h5>Plagiarism checked by:</h5>
 					<img src="/img/quetext-logo.svg" alt="quetext-logo"></img>
 				</div>
 				<hr />

@@ -4,13 +4,9 @@ import React, {useState, useEffect} from "react";
 import '../adminStyle.css';
 import Table from 'react-bootstrap/Table';
 import { useAuth } from "../Context/AuthContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import ArchiveForm from "../components/ArchiveForm";
 import EditForm from "../components/editForm";
-
+/*
 function Admin () {
     const { token } = useAuth();
     const [articleData, setArticle] = useState([]);
@@ -315,3 +311,4 @@ function Admin () {
 }
 
 export default Admin;
+*/

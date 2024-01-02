@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import '../App.css';
+import '../userStyle.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebookSquare , faGoogle, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 function Contact () {
 
@@ -154,30 +156,31 @@ function Contact () {
 
             </div>  
 
-            <div className="archiveForm">
-                <div className="row">
+            <div className="contactForm">
+                <div className="row mt-3">
                     <div className="col-md-6 d-flex flex-column justify-content-center align-items-center">
-                        <div class="article-container">
+                        <h1>Send Us A Message</h1>
+                        <div class="article-container mt-4 mb-4">
                             <form>
                                 <div class="row">
+                                    <label for="name">Name</label>
                                     <div class="column">
-                                        <label for="name">Name</label>
                                         <input type="text" id="name" value={formData.name.value} onChange={(e) => handleInputChange(e, 'name')} placeholder="Name"></input>
                                         <p className="error-message">{formData.name.error}</p>
                                     </div>
+                                    <label for="email">Email</label>
                                     <div class="column">
-                                        <label for="email">Email</label>
                                         <input type="email" id="email" value={formData.email.value} onChange={(e) => handleInputChange(e, 'email')} placeholder="Email"></input>
                                         <p className="error-message">{formData.email.error}</p>
                                     </div>
+                                    <label for="subject">Subject</label>
                                     <div class="column">
-                                        <label for="subject">Subject</label>
                                         <input type="text" id="subject" value={formData.subject.value} onChange={(e) => handleInputChange(e, 'subject')} placeholder="Subject"></input>
                                         <p className="error-message">{formData.subject.error}</p>
                                     </div>
+                                    <label for="message">Message</label>
                                     <div class="column">
-                                        <label for="message">Message</label>
-                                        <input type="text" id="message" value={formData.message.value} onChange={(e) => handleInputChange(e, 'message')} placeholder="Message here"></input>
+                                        <textarea id="message" value={formData.message.value} onChange={(e) => handleInputChange(e, 'message')} placeholder="Message here"></textarea>
                                         <p className="error-message">{formData.message.error}</p>
                                     </div>
                                 </div>
@@ -186,8 +189,38 @@ function Contact () {
                         </div>  
                     </div>
                     <div className="col-md-6 d-flex align-items-center">
-                        <h1>Submit An Article</h1>
-                        <p>Complete all fields to submit form.</p>
+                        <div className="row">
+                            <span className="contact">
+                                <h1>Contact Us</h1>
+                                <div>
+                                    <h5>
+                                        If you have any questions, comments, or 
+                                        anything else to tell us, feel free to send us an email.
+                                    </h5>
+                                </div>
+                            </span>
+                            
+                            <div className=" social-links d-flex flex-column align-items-start fa-3x mt-5">
+                                <div className="icon-with-caption">
+                                    <a href="https://www.facebook.com/TESOLintl">
+                                        <FontAwesomeIcon icon={faFacebookSquare} />
+                                    </a>
+                                    <span className="caption"><a href="https://www.facebook.com/TESOLintl">TESOL International</a></span>
+                                </div>
+                                <div className="icon-with-caption">
+                                    <a href="https://www.youtube.com/channel/UCLJ3YTTYbu0kHYxjnwpb0cQ">
+                                        <FontAwesomeIcon icon={faYoutube} />
+                                    </a>                              
+                                    <span className="caption">
+                                    <a href="https://www.youtube.com/channel/UCLJ3YTTYbu0kHYxjnwpb0cQ">GET International</a>
+                                    </span>
+                                </div>
+                                <div className="icon-with-caption">
+                                    <FontAwesomeIcon icon={faGoogle} />
+                                    <span className="caption">tesol8international@gmail.com</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
