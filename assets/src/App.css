@@ -83,7 +83,7 @@ html, body {
 }
 
 .sublinkText:hover{
-  color: #bd2529;
+  color: #2b69af;
 }
 
 @font-face {
@@ -336,7 +336,7 @@ a {
   padding-bottom: 25px;
 }
 
-.Footer hr, .home-footer hr {
+.Footer hr, .home-footer hr, .Administration hr {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -357,6 +357,34 @@ a {
 
 .contact, .social-links {
   text-align: left;
+}
+
+/* Administration page */
+
+/*
+.adminMain {
+  background-color: rgb(74, 78, 161, 0.3);
+
+}
+*/
+.Administration img {
+  max-height: 400px;
+  height: auto;
+
+}
+
+.Administration h1 {
+  color: #2b69af;
+}
+
+.adminMessage {
+  max-width: 800px;
+}
+
+
+.adminMessage p {
+  font-size: large;
+  color: #2b69af;
 }
 
 /* fA logo */

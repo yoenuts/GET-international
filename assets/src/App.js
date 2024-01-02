@@ -10,8 +10,6 @@ import About from './pages/about';
 import Academics from './pages/academics';
 import Contact from './pages/contact';
 import Administration from './pages/administration';
-import VicePresident from './pages/vicepresident';
-import President from './pages/president';
 import VMC from './pages/vmc';
 import Background from './pages/background';
 import Footer from './components/Footer';
@@ -35,9 +33,7 @@ const App = () => {
         <Route path='/research/:section' element={<Research />} />
         <Route path='/archives/:issue' element={<ArchiveInfo />} />
         <Route path='/archives/:issue/:title' element={<ArticleInfo />} />
-        <Route path='/administration' element={<Administration />} />
-        <Route path='/administration/president' element={<President />} />
-        <Route path='/administration/vicepresident' element={<VicePresident />} />
+        <Route path='/administration/:admin' element={<Administration />} />
         <Route path='/memberForm' element={<MemberForm />} />
         <Route path='/dashboard' element={<UserPage />} />
         <Route path='/verifyAccount' element={<VerifyForm />} />

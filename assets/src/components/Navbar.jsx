@@ -26,7 +26,7 @@ const LINKS = [
 	},
 	{
 		page: "ADMINISTRATION",
-		link: "/administration",
+		link: "/administration/president",
 		subLinks: [
 			{title: "Message of the President", link: '/administration/president'},
 			{title: "Message of the Vice President for International Linkages and Research Publication", link: '/administration/vicepresident'}
