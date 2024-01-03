@@ -207,7 +207,7 @@ class Home extends React.Component {
 
                             <div className="col d-flex align-items-center mt-5">
                                 <h2>
-                                    <span className="child-title">
+                                    <span className="child-title pl-3">
                                         Announcements
                                     </span>
                                 </h2>
@@ -269,18 +269,15 @@ class Home extends React.Component {
 
                         </div>
 
-                        
+                         
                         <div className="col-md-4 d-none d-sm-block mb-5">
                             
                             <div className="right-child">
                                 <div className="row">
 
-                                    <div className = "col-md-12 justify-content-center">
-                                        <div className="child-title">
-                                            <h2>Is Tesol Program For You?</h2>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-12 justify-content-center ml-1">
+                                    <h2 className="mt-5">Is Tesol Program For You?</h2>
+
+                                    <div className="justify-content-center mt-3 mb-3">
                                         <div className="mCustomScrollbar" id="card-1">
                                             <h5>Integrating TESOL with other subjects and disciplines can create meaningful and engaging learning experiences for English language learners. 
                                                 Here are some examples of how TESOL can be integrated with various subjects:  </h5>
@@ -331,7 +328,7 @@ class Home extends React.Component {
                                     </div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-12 justify-content-center align-items-center">
+                                    <div className="col-md-12 justify-content-center align-items-center mt-5 mb-3">
                                         <div className="mCustomScrollbar" id="card-2">
                                             <h5>When we consider TESOL from an interdisciplinary perspective, it means examining the field in connection with other disciplines and exploring the intersections and interconnections between them. TESOL can intersect with other disciplines in an interdisciplinary manner: </h5>
                                             <ul className="card-content">
@@ -373,7 +370,7 @@ class Home extends React.Component {
                                 </div>
 
                                 <div className="row">
-                                    <div className="col-md-12 justify-content-center ml-auto">
+                                    <div className="col-md-12 justify-content-center align-items-center mt-5 mb-3 ml-5">
                                         <div className="mCustomScrollbar" id="card-3"> 
                                             <h5>Teaching English to Speakers of Other Languages (TESOL) is a field that can be approached from a multi-disciplinary or interdisciplinary perspective. Here’s how TESOL can intersect with various disciplines </h5>
                                             <ul className="card-content">

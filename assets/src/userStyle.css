@@ -37,7 +37,8 @@ body{
     display: flex;
     justify-content: space-evenly;
     min-height: 100vh;
-    background-color: rgb(74, 78, 161, 0.3);
+    /*background-color: rgb(74, 78, 161, 0.3);*/
+    background-color: #f0f0f0;
   
 }
 
@@ -107,12 +108,16 @@ textarea:focus, input:focus{
 }
 
 
-button{
+button {
     border: none;
     padding: 10px 20px;
     background-color: #6e9acb;
     color: #ffffff;
     border-radius: 3px;
+}
+
+button:hover {
+    background-color: #21409a;
 }
 
 p{

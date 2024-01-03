@@ -59,6 +59,11 @@ function Footer() {
 				</div>
 
 			</div>
+
+			<section className='copyright2024' >
+				Guild of Educators in TESOL International © 2024
+			</section>
+
 		
 		</div>
 	);

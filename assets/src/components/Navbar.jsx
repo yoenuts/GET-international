@@ -18,9 +18,9 @@ const LINKS = [
 	},
 	{
 		page: "ABOUT",
-		link: "/about",
+		link: "/about/background",
 		subLinks: [
-			{title: "History of GET International", link: '/about/background'},
+			{title: "Background", link: '/about/background'},
 			{title: "Vision, Mission and Core Values", link: '/about/vmc'},
 		]
 	},

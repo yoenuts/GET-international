@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+body {
+  margin: 0;
+  background-color: #f0f0f0;
+}
 
 html, body {
   max-width: 100%;
@@ -165,6 +169,7 @@ html, body {
 }
 
 .home-content-1 {
+  /*
   min-height: 100vh;
   background-image: url("../public/img/section-background.png");
   background-color: #ffffff;
@@ -172,6 +177,8 @@ html, body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover ;
+  */
+  background-color: #fcfcfc;
 }
 
 .home-content-1 h2 {
@@ -180,18 +187,16 @@ html, body {
 }
 
 .mCustomScrollbar {
-  background-color: rgb(74, 78, 161);
+  /*background-color: rgb(74, 78, 161);*/
+  background-color: rgba(74, 78, 161, 0.2);
   font-family: Arial;
-  color: white;
-  max-width: 100%;
+  color: rgb(0, 0, 0);
+  max-width: 550px;
   min-height: 200px;
   max-height: 700px;
   padding: 10px;
-  border-radius: 20px;
-  margin-top: 15px;
-  margin-right: 15px;
+  border-radius: 10px;
   overflow: auto;
-  margin-bottom: 25px;
 
 }
 
@@ -202,19 +207,20 @@ html, body {
 }
 
 .right-child h2 {
-  color: #bd2529;
+  color: #2b69af;
   font-family: "Budmo W00 Solid";
 
 }
 
 .child-title {
-  margin-left: 3rem;
+  color: #2b69af;
 }
+
 
 .title-rule {
   flex-grow: 1;
   height: 2px; 
-  background-color: #bd2529; /* Set rule color */
+  background-color: #2b69af; /* Set rule color */
   margin-left: 10px;
   margin-bottom: 20px;
 }
@@ -336,7 +342,7 @@ a {
   padding-bottom: 25px;
 }
 
-.Footer hr, .home-footer hr, .Administration hr {
+.Footer hr, .home-footer hr, .Administration hr, .About hr {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -344,6 +350,11 @@ a {
 
 .footer-end {
   margin-top: 50px;
+}
+
+.copyright2024 {
+  background-color: #f1f1f1;
+  color: #21409a
 }
 
 /* Map */
@@ -355,9 +366,43 @@ a {
 
 /* Contact */
 
+
+.contactForm h1 {
+  color: #2b69af;
+  /*color: rgba(74, 78, 161, 0.776);*/
+  /*color: white;*/
+  font-family: "Budmo W00 Solid";
+}
+
 .contact, .social-links {
   text-align: left;
 }
+
+/* fA logo */
+
+.social-links {
+  color: #21409a;
+  /*color: white;*/
+  text-align: left;
+}
+
+.caption {
+  color: #21409a;
+  /*color: white;*/
+  font-size: medium;
+  padding-left: 15px;
+}
+
+.social-links a, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-links a:hover {
+  color: #2b69af;
+  text-decoration: none;
+}
+
 
 /* Administration page */
 
@@ -367,14 +412,28 @@ a {
 
 }
 */
-.Administration img {
+
+.Administration {
+  background: #f0f0f0;
+}
+
+.administration img {
   max-height: 400px;
   height: auto;
 
 }
 
-.Administration h1 {
+.administration h1, .Administration hr{
   color: #2b69af;
+  
+}
+
+.Administration hr {
+  border: none;
+  height: 2px;
+  /* Set the hr color */
+  color: #2b69af;  /* old IE */
+  background-color: #2b69af;  /* Modern Browsers */
 }
 
 .adminMessage {
@@ -384,24 +443,33 @@ a {
 
 .adminMessage p {
   font-size: large;
-  color: #2b69af;
+  font-weight: 400;
+  color: black;
 }
 
-/* fA logo */
 
-.social-links {
-  color: #2b69af;
-  text-align: left;
+/* About page */
+
+.background-container { 
+  font-family: Arial;
+  max-width: 1000px;
+  border-radius: 10px;
+  padding: 30px;
+
 }
 
-.caption {
-  color: #21409a;
+.background-container p {
   font-size: medium;
-  padding-left: 15px;
+  text-align: justify;
+  color: rgb(0, 0, 0);
 }
 
-.social-links a, a:hover, a:focus, a:active {
-  text-decoration: none;
-  color: inherit;
+.feb2023 img {
+  max-width: 300px;
+  height: auto;
 }
 
+.training2017 img {
+  max-width: 500px;
+  max-height: 300px;
+}

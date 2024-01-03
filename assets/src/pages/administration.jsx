@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import '../App.css';
 
+
 function Administration () {
 
     const { admin } = useParams();
@@ -52,14 +53,16 @@ function Administration () {
 
     return(
         <div className="Administration">
-            <h1 className="mt-5">{pageTitle}</h1>
-            <hr></hr>
-            <div className="row mt-4 mb-5">
-                <div className="col-md-5 d-flex align-items-center justify-content-end">
-                    <img src={imgPath} alt={imgAlt}></img>
-                </div>
-                {message}
+            <div className="administration row">
+                <h1 className="mt-5">{pageTitle}</h1>
+                <hr></hr>
+                <div className="row mt-4 mb-5">
+                    <div className="col-md-5 d-flex align-items-center justify-content-end">
+                        <img src={imgPath} alt={imgAlt}></img>
+                    </div>
+                    {message}
 
+                </div>
             </div>
         </div>
         

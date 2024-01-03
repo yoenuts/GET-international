@@ -25,11 +25,10 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
+        <Route path='/about/background' element={<About />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/academics' element={<Academics />} />
-        <Route path='/background' element={<Background />} />
-        <Route path='/vmc' element={<VMC />} />
+        <Route path='about/vmc' element={<VMC />} />
         <Route path='/research/:section' element={<Research />} />
         <Route path='/archives/:issue' element={<ArchiveInfo />} />
         <Route path='/archives/:issue/:title' element={<ArticleInfo />} />
