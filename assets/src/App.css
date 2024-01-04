@@ -188,13 +188,13 @@ html, body {
 
 .mCustomScrollbar {
   /*background-color: rgb(74, 78, 161);*/
-  background-color: rgba(74, 78, 161, 0.2);
   font-family: Arial;
   color: rgb(0, 0, 0);
   max-width: 550px;
-  min-height: 200px;
-  max-height: 700px;
+  min-height: 250px;
+  max-height: 400px;
   padding: 10px;
+  border: 1px solid #2b69af;
   border-radius: 10px;
   overflow: auto;
 
@@ -245,6 +245,53 @@ a {
   
 }
 
+
+.announcements {
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  box-shadow: inset 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.announcements:hover {
+  border: 2px solid #21409a;
+}
+
+/*
+.main-img-description-container {
+  background-color: white;
+}
+*/
+.main-img-container h6 {
+  color: white;
+}
+
+.main-img-container img {
+  max-width: 300px;
+  max-height: 200x;
+  padding: 10px;
+  
+}
+
+/*
+
+.main-img-container .overlay {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  right: 0;
+  background-color: rgba(10, 4, 4, 0.5);
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  transition: .5s ease;
+}
+
+.main-img-container:hover .overlay {
+  height: 100%;
+  
+}
+*/
 /*Cards here */
 
 .card {
@@ -286,7 +333,7 @@ a {
 }
 
 .carousel {
-  max-width: 60%;
+  max-width: 70%;
   height: auto;
 }
 
