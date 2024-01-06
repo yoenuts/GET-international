@@ -206,14 +206,10 @@ html, body {
   padding-left: 10px;
 }
 
-.right-child h2 {
+.right-child h2, .child-title {
   color: #2b69af;
   font-family: "Budmo W00 Solid";
 
-}
-
-.child-title {
-  color: #2b69af;
 }
 
 
@@ -249,9 +245,20 @@ a {
 .announcements {
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
-  box-shadow: inset 10px rgba(0, 0, 0, 0.1);
-
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+  max-width: 550px;
 }
+
+.announcements .main-img-container img {
+  max-height: 130px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.announcements .main-img-container h5{
+  text-align: left;
+}
+
 
 .announcements:hover {
   border: 2px solid #21409a;
@@ -271,6 +278,16 @@ a {
   max-height: 200x;
   padding: 10px;
   
+}
+
+#Participants {
+  max-width: 60%;
+
+}
+
+#Conference2023 {
+  max-width: 250px;
+  max-height: 400px;
 }
 
 /*
@@ -294,23 +311,38 @@ a {
 */
 /*Cards here */
 
-.card {
-  min-width: 15rem;
-  max-width: 18rem; 
-  min-height: 250px;
-  max-height: 380px;
 
+
+.card {
+  max-width: 18rem;
+  padding: 10px;
 }
 
 .card img {
-  height: 50%;
+  height: 200px; /* Set a fixed height for uniformity */
   object-fit: cover;
-  width: 100%;
+
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  margin-top: 10px; /* Adjust the margin as needed */
 }
 
 .card Button {
   background-color: #6e9acb;
+  border: none;
 }
+
+.card Button:hover {
+  background-color: rgb(33, 64, 154);
+  border: none;
+}
+
+
 
 /*Carousel here*/
 
@@ -333,7 +365,7 @@ a {
 }
 
 .carousel {
-  max-width: 70%;
+  max-width: 80%;
   height: auto;
 }
 
@@ -389,7 +421,7 @@ a {
   padding-bottom: 25px;
 }
 
-.Footer hr, .home-footer hr, .Administration hr, .About hr {
+.Footer hr, .home-footer hr, .Administration hr, .About hr, .vision-container hr {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -505,10 +537,16 @@ a {
 
 }
 
-.background-container p {
+.background-container p, .vision-container p {
   font-size: medium;
   text-align: justify;
   color: rgb(0, 0, 0);
+}
+
+.background-container h4 {
+  color: #21409a;
+  font-family: "Budmo W00 Solid";
+  text-align: left;
 }
 
 .feb2023 img {
@@ -517,6 +555,7 @@ a {
 }
 
 .training2017 img {
-  max-width: 500px;
-  max-height: 300px;
+  width: 100%;
+  max-height: 400px;
 }
+

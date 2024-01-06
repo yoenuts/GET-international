@@ -16,10 +16,12 @@ function Administration () {
             message = (
                 <div className="col-md-7 align-items-center justify-content-center ">
                     <div className="adminMessage mt-5">
-                        <q>
-                            As the world grows increasingly interconnected, interactions become more important than ever. Thus, learning a second language promotes self-improvement, comfort, and confidence in connecting to the multicultural world.
-                            Guild of Educators in TESOL International Institute is established to offer courses and trainings that give a competitive advancement in your chosen career and increase your opportunities to develop marketable skills in the global economy. The GET International Institute is dedicated to assisting professionals across disciplines. Let us be partners in pursuing your countless opportunities.
-                        </q>
+                        <h4>
+                            <q>
+                                As the world grows increasingly interconnected, interactions become more important than ever. Thus, learning a second language promotes self-improvement, comfort, and confidence in connecting to the multicultural world.
+                                Guild of Educators in TESOL International Institute is established to offer courses and trainings that give a competitive advancement in your chosen career and increase your opportunities to develop marketable skills in the global economy. The GET International Institute is dedicated to assisting professionals across disciplines. Let us be partners in pursuing your countless opportunities.
+                            </q>
+                        </h4>
                     </div>
                 </div>
             );
@@ -33,10 +35,12 @@ function Administration () {
             message = (
                 <div className="col-md-7 flex-column align-items-center justify-content-center mt-3">
                     <div className="adminMessage mt-5"> 
-                        <q>
-                            Nothing has never been more powerful in transforming one’s life than education. With this, allow us, the Guild of Educators in TESOL International to be your instrument of transformation.
-                            The courses and trainings we offer to our clients, professionals and students alike from diverse disciplines, provide great career advantage as it is our utmost goal to help you in achieving countless opportunities.
-                        </q>
+                        <h4>
+                            <q>
+                                Nothing has never been more powerful in transforming one’s life than education. With this, allow us, the Guild of Educators in TESOL International to be your instrument of transformation.
+                                The courses and trainings we offer to our clients, professionals and students alike from diverse disciplines, provide great career advantage as it is our utmost goal to help you in achieving countless opportunities.
+                            </q>
+                        </h4>
                     </div>
                 </div>
             );

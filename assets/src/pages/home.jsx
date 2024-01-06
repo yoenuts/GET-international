@@ -4,6 +4,7 @@ import Carousel from "../components/carouselImages";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CarouselFade from '../components/carouselLarge';
+import '../App.css';
 
 function Home () {
     //check if component mounted on DOM, then target class nd execute the function import on it.
@@ -89,34 +90,67 @@ function Home () {
         "../img/members/member-6.jpg",
     ]
 
+
+    //latest news
     const newsItems = [
 
         {
             title: "GET International and Citi Global College MOA Signing",
-            imgSrc: "/img/MOA-signing.jpg",
+            imgSrc: "/img/MOA-signing-cover.jpg",
         },
         {
-            title: "Call for Papers! (November 2023)",
+            title: "1st National Conference held in Unibersidad de Manila",
+            imgSrc: "/img/carouselItem2.png",
+        },
+        {
+            title: "GET International receives Distinguished Teacher Training Award",
+            imgSrc: "/img/distinguished-teacher-training-award.jpg",
+        },
+        // Add more items as needed
+    ];  
+
+    //latest announcements
+    const announceItems = [
+
+        {
+            title: "Call for Papers for Volume 01, Issue 04 (November)",
             imgSrc: "/img/call-for-papers.jpg",
         },
         {
-            title: "Teacher as A Community Leader",
-            imgSrc: "/img/magazine.jpg",
+            title: "Welcome, new members from Zamboanga Peninsula Polytechnic State University!",
+            imgSrc: '../img/members/member-3.jpg',
         },
-        // Add more items as needed
-    ];
-    
+        {
+            title: "Submit All Entries for Teacher as A Community Leader",
+            imgSrc: "/img/magazine.jpg",
+        }
+    ]
+
+
     const renderedNews = newsItems.map((item, index) => (
-        <div key={index} className="col d-flex justify-content-center pt-5">
-            <Card>
-            <Card.Img variant="top" src={item.imgSrc} />
-            <Card.Body>
-                <Card.Title>
-                <h5>{item.title}</h5>
-                </Card.Title>
-                <Button variant="primary">Read More</Button>
-            </Card.Body>
+        <div key={index} className="col-md-4 d-flex justify-content-center mt-4 mb-2 ">
+            <Card className="card-container" style={{backgroundColor: 'rgba(33, 64, 154, 0.2)', backdropFilter:'blur(5px)'}}>
+                <div className="card-img">
+                    <Card.Img variant="top" src={item.imgSrc} />
+                </div>
+                <Card.Body>
+                    <Card.Title>
+                        <h5>{item.title}</h5>
+                    </Card.Title>
+                    <Button variant="primary">Read More</Button>
+                </Card.Body>
             </Card>
+        </div>
+    ));
+
+    const renderedAnnouncements = announceItems.map((item, index) => (
+        <div key={index} className="row announcements mt-3">
+            <div className="col d-flex justify-content-center align-items-center main-img-container">
+                <img src={item.imgSrc} alt="Announcement Image" />
+            </div>
+            <div className="col d-flex align-items-center main-img-description-container" >
+                <h5 className="align-items-center">{item.title}</h5>
+            </div>
         </div>
     ));
 
@@ -149,59 +183,31 @@ function Home () {
             <section className="home-content-1">
                 
                 <div className="row">
-                    
-                    
 
                     <div className="col-md-4">
                         
-                        <div className="row">
+                        <div className="row" style={{marginLeft:'20px', marginRight: '15px'}}>
 
                             <div className="col d-flex align-items-center mt-5">
-                                <h2>
-                                    <span className="child-title pl-3">
+                                <h3 className="pl-5">
+                                    <span className="child-title">
                                         Announcements
                                     </span>
-
-                                </h2>
+                                </h3>
                                 <hr class="title-rule"></hr>
                             </div>
 
-                            <div className="justify-content-center align-items-center mt-3">
+                            <div className="d-flex justify-content-center align-items-center mt-3">
                                 <div className="row">
-                                    
-                                    <div className="row announcements mt-3">
-                                        <div className="col d-flex justify-content-center align-items-center main-img-container">
-                                            <img src='/img/carouselItem6.png' alt="Announcement Image" />
-                                        </div>
-                                        <div className="col d-flex justify-content-center align-items-center main-img-description-container" >
-                                            <h6 className="align-items-center">Call For Papers (November 2023)</h6>
-                                        </div>
+                                    <div>
+                                        {renderedAnnouncements}
                                     </div>
-
-                                    <div className="row announcements mt-3">
-                                        <div className="col d-flex justify-content-center align-items-center main-img-container">
-                                            <img src='/img/carouselItem6.png' alt="Announcement Image" />
-                                        </div>
-                                        <div className="col d-flex justify-content-center align-items-center main-img-description-container" >
-                                            <h6 className="align-items-center">Call For Papers (November 2023)</h6>
-                                        </div>
-                                    </div>
-
-                                    <div className="row announcements mt-3">
-                                        <div className="col d-flex justify-content-center align-items-center main-img-container">
-                                            <img src='/img/carouselItem6.png' alt="Announcement Image" />
-                                        </div>
-                                        <div className="col d-flex justify-content-center align-items-center main-img-description-container" >
-                                            <h6 className="align-items-center">Call For Papers (November 2023)</h6>
-                                        </div>
-                                    </div>
-                                
                                 </div>
                             
                             </div>
                         </div>
 
-                        <div className="right-child">
+                        <div className="right-child d-none d-sm-block">
                             <div className="row">
 
                                 <h2 className="mt-5">Is Tesol Program For You?</h2>
@@ -209,7 +215,8 @@ function Home () {
                                 <div className="d-flex justify-content-center align-items-center mt-3 mb-3">
                                     <div className="mCustomScrollbar" id="card-1">
                                         <h5>Integrating TESOL with other subjects and disciplines can create meaningful and engaging learning experiences for English language learners. 
-                                            Here are some examples of how TESOL can be integrated with various subjects:  </h5>
+                                            Here are some examples of how TESOL can be integrated with various subjects:  
+                                        </h5>
                                         <ul className="card-content">
                                             <li>
                                                 <strong>Math:</strong> TESOL can support English language learners in developing math language proficiency by providing language support and 
@@ -257,7 +264,7 @@ function Home () {
                                 </div>
                             </div>
                             <div className="row">
-                                <div className="d-flex justify-content-center align-items-center mt-5 mb-3">
+                                <div className="d-flex justify-content-center align-items-center mt-3 mb-3">
                                     <div className="mCustomScrollbar" id="card-2">
                                         <h5>When we consider TESOL from an interdisciplinary perspective, it means examining the field in connection with other disciplines and exploring the intersections and interconnections between them. TESOL can intersect with other disciplines in an interdisciplinary manner: </h5>
                                         <ul className="card-content">
@@ -299,7 +306,7 @@ function Home () {
                             </div>
 
                             <div className="row">
-                                <div className="d-flex justify-content-center align-items-center mt-5 mb-3">
+                                <div className="d-flex justify-content-center align-items-center mt-3 mb-3">
                                     <div className="mCustomScrollbar" id="card-3"> 
                                         <h5>Teaching English to Speakers of Other Languages (TESOL) is a field that can be approached from a multi-disciplinary or interdisciplinary perspective. Here’s how TESOL can intersect with various disciplines </h5>
                                         <ul className="card-content">
@@ -369,6 +376,10 @@ function Home () {
                         
                         </div>
 
+                        <div className="col d-flex align-items-center justify-content-center d-none d-sm-block">
+                            <Carousel images={images} />
+                        </div>
+
                         <div className="col d-flex align-items-center mt-5">
                             <h2>
                                 <span className="child-title">
@@ -385,16 +396,30 @@ function Home () {
                                 {renderedNews}
                                 
                             </div>
-                            
-                            <div className="row">
-                                {renderedNews}
-                            </div>
-                            
                         
+                        </div>
+
+                        <div className="col d-flex align-items-center mt-5">
+                            <h3>
+                                <span className="child-title">
+                                    1st National Extension Conference 2023
+                                </span>
+                            </h3>
+                            <hr class="title-rule"></hr>
                         </div>
 
 
                         <div className="col d-flex align-items-center justify-content-center mb-5 mt-3">
+                            <div className="row">
+                                <div className="col d-flex align-items-center">
+                                    <img src="/img/national-conference-participants2023.jpg" alt="National COnference 2023 Participants" id="Participants"/>
+                                </div>
+
+                                <div className="justify-content-center align-items-center">
+
+                                </div>
+                            </div>
+
 
                         </div>
 
