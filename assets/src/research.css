@@ -1,0 +1,31 @@
+.about-journal-container  p {
+    font-size: medium;
+    text-align: justify;
+    color: rgb(0, 0, 0);
+}
+
+.aboutJournal-title {
+    font-family: "Budmo W00 Solid";
+    color: #21409a;
+}
+
+.aboutJournal-buttons div {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #2b69af;
+}
+
+.aboutJournal-buttons h5 {
+    color: white;
+}
+
+.aboutJournal-buttons h5:hover {
+    color: #21409a;
+}
+
+.aboutJournal-buttons div:hover {
+    background-color: rgba(43, 105, 175, 0.1);
+}
