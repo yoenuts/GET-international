@@ -18,6 +18,7 @@ import MemberForm from './components/MemberForm';
 import UserPage from './pages/userDashboard';
 import ArchiveInfo from './components/archiveInfo';
 import ArticleInfo from './components/articleInfo';
+import AboutJournal from './components/aboutJournal';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path='/academics' element={<Academics />} />
         <Route path='about/vmc' element={<VMC />} />
         <Route path='/research/:section' element={<Research />} />
+        <Route path='/research/aboutJournal/:page' element={<AboutJournal />} />
         <Route path='/archives/:issue' element={<ArchiveInfo />} />
         <Route path='/archives/:issue/:title' element={<ArticleInfo />} />
         <Route path='/administration/:admin' element={<Administration />} />

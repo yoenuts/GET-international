@@ -1,61 +1,35 @@
 import React from "react";
 import '../research.css';
-import { Link } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
+import Policies from '../components/Policies';
+import ResearchHeader from "./research-header";
+import Guidelines from "../components/guidelines";
+import Process from "../components/review-process";
+import EditorialBoard from "../components/editorial-board";
 
 function aboutJournal() {
 
-    return(
-        <div className="aboutJournal">
-            <div className="row" style={{marginLeft: '20px', marginRight: '15px'}} >
-                <div className="col-md-4  mt-5 mb-5" >
-                    <div className="row">
-                        <div className="row d-flex justify-content-center">
-                            
-                            <img src="/img/2023/vol1-series4.png" alt='Volume 1 Series 4' style={{maxWidth: '400px', maxHeight: '500px'}}></img>
-                            
-                            <div className="row">
-                                <div className=" aboutJournal-buttons row mt-3">
-                                    <Link Link to='/'>
-                                        
-                                        <div>
-                                            <h5>Publication Policies and Ethics</h5>
-                                        </div>
-                                        
-                                    </Link>
+    const location = useLocation();
+    const { page } = useParams();
+    let content;
 
-                                    
-                                    <Link Link to='/'>
-                                        <div>
-                                            <h5>Submission Guidelines</h5>
-                                        </div>
-                                        
-                                    </Link>
-                                    
-                                    <Link Link to='/'>
-                                        <div>
-                                            <h5>Review Process</h5>
-                                        </div>
-
-                                    </Link>
-
-                                    <Link Link to='/'>
-                                        
-                                        <div>
-                                            <h5>Editorial Board</h5>
-                                        </div>
-                                        
-                                    </Link>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
+    switch(page) {
+        case 'policies':
+            content =  <Policies />;
+            break;
+        case 'guidelines':
+            content = <Guidelines />
+            break;
+        case 'process':
+            content = <Process />
+            break;
+        case 'editorialBoard':
+            content = <EditorialBoard />
+            break;
+        default:
+            content = 
                 <div className="col-md-8 about-container">
-                    
+
                     <div className="row d-flex" style={{marginRight: '20px'}}>
                         <div className="row">
                             <div className="col d-flex align-items-center mt-5">
@@ -83,7 +57,7 @@ function aboutJournal() {
                             <div className="col d-flex justify-content-center align-items-center">
                                 <h3 className="pl-5">
                                     <span className="aboutJournal-title">
-                                    Aims and Scope
+                                        Aims and Scope
                                     </span>
                                 </h3>
                                 <hr class="title-rule"></hr>
@@ -111,12 +85,98 @@ function aboutJournal() {
                     </div>
 
                 </div>
+            break;
+    }
+
+    return(
+        <div className="aboutJournal" style={{marginBottom: '70px'}}>
+            {!renderNavHeader() && <ResearchHeader />}
+            <div className="row" style={{marginLeft: '20px', marginRight: '15px'}} >
+                <div className="col-md-4  mt-5 mb-5" >
+                    <div className="row">
+                        <div className="row d-flex justify-content-center">
+                            
+                            <img src="/img/2023/vol1-series4.png" alt='Volume 1 Series 4' style={{maxWidth: '400px', maxHeight: '500px'}}></img>
+                            
+
+                            <div className="row">
+                                <div className=" aboutJournal-buttons row mt-3">
+
+                                    <Link Link to='/'>
+                                        
+                                        <div style={{backgroundColor: '#21409a'}}>
+                                            <h4 style={{color: 'white'}}>Submit An Article</h4>
+                                        </div>
+                                        
+                                    </Link>
+
+
+                                   <Link to='/research/aboutJournal'>
+                                        
+                                        <div>
+                                            <h5>About</h5>
+                                        </div>
+                                        
+                                    </Link>
+                                    <Link to="/research/aboutJournal/policies">
+                                        
+                                        <div>
+                                            <h5>Publication Policies and Ethics</h5>
+                                        </div>
+                                        
+                                    </Link>
+
+                                    
+                                    <Link to='/research/aboutJournal/guidelines'>
+                                        <div>
+                                            <h5>Submission Guidelines</h5>
+                                        </div>
+                                        
+                                    </Link>
+                                    
+                                    <Link Link to='/research/aboutJournal/process'>
+                                        <div>
+                                            <h5>Review Process</h5>
+                                        </div>
+
+                                    </Link>
+
+                                    <Link Link to='/research/aboutJournal/editorialBoard'>
+                                        
+                                        <div>
+                                            <h5>Editorial Board</h5>
+                                        </div>
+                                        
+                                    </Link>
+
+                                    <a href="https://docs.google.com/document/d/1CssEEUH0h3tw7iI_GpyTij_MeP-1OmZf/edit" target="_blank" rel="noopener noreferrer">
+                                        <div>
+                                            <h5>Sample Manuscript</h5>
+                                        </div>
+                                    </a>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                {content}
+
                     
             </div>
 
         </div>
 
     );
+    
+    function renderNavHeader() {
+        return location.pathname === '/research/aboutJournal';
+    }
+
 }
 
 export default aboutJournal;

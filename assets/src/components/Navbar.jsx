@@ -46,10 +46,6 @@ const LINKS = [
 			{
 				title: "About GET Journal", link: '/research/aboutJournal'
 			},
-			{ 
-				title: "Information", link: '/research/information'
-			
-			},
 		]
 	},	
 ];
@@ -151,7 +147,7 @@ function NavBar() {
 				<div className="d-flex align-items-center ml-0">
 					<Navbar.Brand>
 						<Link to='/'>
-							<img src="../img/GET-logo.png" alt="Guild of Educators in TESOL International Institute" className="logo"></img>
+							<img src="/img/GET-logo.png" alt="Guild of Educators in TESOL International Institute" className="logo"></img>
 						</Link>
 					</Navbar.Brand>
 					<div className="title-container d-none d-sm-block">
