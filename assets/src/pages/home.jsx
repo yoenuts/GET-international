@@ -40,21 +40,21 @@ function Home () {
     }, []);
     
     const images = [
-        "./img/carouselItem1.png",
-        "./img/carouselItem2.png",
-        "./img/carouselItem3.png",
-        "./img/carouselItem4.png",
-        "./img/carouselItem5.png",
-        "./img/carouselItem6.png"
+        "/img/carouselItem1.png",
+        "/img/carouselItem2.png",
+        "/img/carouselItem3.png",
+        "/img/carouselItem4.png",
+        "/img/carouselItem5.png",
+        "/img/carouselItem6.png"
     ]
 
     const carouselImages = [
-        "../img/members/member-1.jpg",
-        "../img/members/member-2.jpg",
-        "../img/members/member-3.jpg",
-        "../img/members/member-4.jpg",
-        "../img/members/member-5.jpg",
-        "../img/members/member-6.jpg",
+        "/img/members/member-1.jpg",
+        "/img/members/member-2.jpg",
+        "/img/members/member-3.jpg",
+        "/img/members/member-4.jpg",
+        "/img/members/member-5.jpg",
+        "/img/members/member-6.jpg",
     ]
 
 

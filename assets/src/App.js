@@ -33,7 +33,7 @@ const App = () => {
         <Route path='/research/:section' element={<Research />} />
         <Route path='/research/aboutJournal/:page' element={<AboutJournal />} />
         <Route path='/archives/:issue' element={<ArchiveInfo />} />
-        <Route path='/archives/:issue/:title' element={<ArticleInfo />} />
+        <Route path='/research/archives/:issue/:title' element={<ArticleInfo />} />
         <Route path='/administration/:admin' element={<Administration />} />
         <Route path='/memberForm' element={<MemberForm />} />
         <Route path='/dashboard' element={<UserPage />} />

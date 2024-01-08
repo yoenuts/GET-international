@@ -6,8 +6,9 @@ import { Link, useParams } from "react-router-dom";
 import Archives from "../components/archives";
 import AboutJournal from "../components/aboutJournal";
 import Information from "../components/information";
-import ResearchHome from "../components/researchHome";
+import ResearchHome from "../components/research-home";
 import ResearchHeader from "../components/research-header.jsx";
+
 
 function Research() {
 	const { login, isLoggedin } = useAuth();
